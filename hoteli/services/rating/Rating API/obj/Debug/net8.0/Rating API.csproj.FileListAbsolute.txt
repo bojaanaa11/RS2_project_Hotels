@@ -1,0 +1,33 @@
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\bin\Debug\net8.0\appsettings.json
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\bin\Debug\net8.0\Rating API.exe
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\bin\Debug\net8.0\Rating API.deps.json
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\bin\Debug\net8.0\Rating API.runtimeconfig.json
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\bin\Debug\net8.0\Rating API.dll
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\bin\Debug\net8.0\Rating API.pdb
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\obj\Debug\net8.0\Rating API.csproj.AssemblyReference.cache
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\obj\Debug\net8.0\Rating API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\obj\Debug\net8.0\Rating API.AssemblyInfoInputs.cache
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\obj\Debug\net8.0\Rating API.AssemblyInfo.cs
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\obj\Debug\net8.0\Rating API.csproj.CoreCompileInputs.cache
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\obj\Debug\net8.0\Rating API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\obj\Debug\net8.0\Rating API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\obj\Debug\net8.0\Rating API.sourcelink.json
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\obj\Debug\net8.0\staticwebassets\msbuild.Rating API.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\obj\Debug\net8.0\staticwebassets\msbuild.build.Rating API.props
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Rating API.props
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Rating API.props
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\obj\Debug\net8.0\scopedcss\bundle\Rating API.styles.css
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\obj\Debug\net8.0\Rating API.csproj.CopyComplete
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\obj\Debug\net8.0\Rating API.dll
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\obj\Debug\net8.0\refint\Rating API.dll
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\obj\Debug\net8.0\Rating API.pdb
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\obj\Debug\net8.0\Rating API.genruntimeconfig.cache
+C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hoteli\services\rating\Rating API\obj\Debug\net8.0\ref\Rating API.dll
