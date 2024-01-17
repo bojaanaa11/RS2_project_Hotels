@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "z95u3f7kBn1VllLDJFKN2CULI2Zde4XrIwj37XXwQzUo0xFVqV3cYy5I9SdlXZiYq/K2Riin+lU+rJwf+IwF+g==",
+  "dgSpecHash": "5WdGnubhktZCIJlqZomgeDnRpbQmi5KEb2SB/wikQ7TRtB5Hn+YgT7xfzEiCJPJfiN8Ut3UKOhupfPGPJLBAtw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hoteli\\services\\rating\\Rating API\\Rating API.csproj",
+  "projectFilePath": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hoteli\\services\\rating\\Rating API\\Rating.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\WIN 10\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\WIN 10\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",

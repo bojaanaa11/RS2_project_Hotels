@@ -1210,9 +1210,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hoteli\\services\\reservations\\Reservations API\\Reservations API\\Reservations API.csproj",
-      "projectName": "Reservations API",
-      "projectPath": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hoteli\\services\\reservations\\Reservations API\\Reservations API\\Reservations API.csproj",
+      "projectUniqueName": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hoteli\\services\\reservations\\Reservations API\\Reservations API\\Reservations.API.csproj",
+      "projectName": "Reservations.API",
+      "projectPath": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hoteli\\services\\reservations\\Reservations API\\Reservations API\\Reservations.API.csproj",
       "packagesPath": "C:\\Users\\WIN 10\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hoteli\\services\\reservations\\Reservations API\\Reservations API\\obj\\",
       "projectStyle": "PackageReference",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Aq+dzr8OEw5UB0EmOnfRLAkYNbkwCZoPfio+nciQG+heUjSJeCthr6/nu0bhGoQlVlDTXbRBE9wBpo5QqVXw7A==",
+  "dgSpecHash": "6HvmUOGAEvNUMPHD4cJJ9jenBAHO/FlHQOE/UeL0aDZl0N34rwHXLSLY9WvfUla2liFuiKuD4JMrzedjptgT/w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hoteli\\services\\payment\\Payment API\\Payment API.csproj",
+  "projectFilePath": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hoteli\\services\\payment\\Payment API\\Payment.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\WIN 10\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\WIN 10\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",

@@ -10,7 +10,7 @@
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5200"
     },
-    "Reservations API": {
+    "Reservations.API": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "swagger",

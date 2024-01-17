@@ -1210,9 +1210,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hoteli\\services\\managing_rooms\\Room Managing API\\Room Managing API.csproj",
-      "projectName": "Room Managing API",
-      "projectPath": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hoteli\\services\\managing_rooms\\Room Managing API\\Room Managing API.csproj",
+      "projectUniqueName": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hoteli\\services\\managing_rooms\\Room Managing API\\RoomManaging.API.csproj",
+      "projectName": "RoomManaging.API",
+      "projectPath": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hoteli\\services\\managing_rooms\\Room Managing API\\RoomManaging.API.csproj",
       "packagesPath": "C:\\Users\\WIN 10\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hoteli\\services\\managing_rooms\\Room Managing API\\obj\\",
       "projectStyle": "PackageReference",

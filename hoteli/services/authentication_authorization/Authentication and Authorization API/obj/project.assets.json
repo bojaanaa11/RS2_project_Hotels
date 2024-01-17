@@ -1210,9 +1210,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hoteli\\services\\authentication_authorization\\Authentication and Authorization API\\Authentication and Authorization API.csproj",
-      "projectName": "Authentication and Authorization API",
-      "projectPath": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hoteli\\services\\authentication_authorization\\Authentication and Authorization API\\Authentication and Authorization API.csproj",
+      "projectUniqueName": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hoteli\\services\\authentication_authorization\\Authentication and Authorization API\\AuthenticationAuthorization.API.csproj",
+      "projectName": "AuthenticationAuthorization.API",
+      "projectPath": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hoteli\\services\\authentication_authorization\\Authentication and Authorization API\\AuthenticationAuthorization.API.csproj",
       "packagesPath": "C:\\Users\\WIN 10\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hoteli\\services\\authentication_authorization\\Authentication and Authorization API\\obj\\",
       "projectStyle": "PackageReference",

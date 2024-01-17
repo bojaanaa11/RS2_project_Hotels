@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "Mj/RLOWF4SmTsgASbB2UAOKL0YPhpe328BHlEwN1Iww=",
-  "Source": "Authentication and Authorization API",
-  "BasePath": "_content/Authentication and Authorization API",
+  "Hash": "M7my00gIUNuQPogHdgxAqLi32MTC/OmGsISzFccKRiE=",
+  "Source": "AuthenticationAuthorization.API",
+  "BasePath": "_content/AuthenticationAuthorization.API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

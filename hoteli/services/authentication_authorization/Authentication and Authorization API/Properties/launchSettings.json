@@ -10,7 +10,7 @@
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5095"
     },
-    "Authentication and Authorization API": {
+    "AuthenticationAuthorization.API": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "swagger",

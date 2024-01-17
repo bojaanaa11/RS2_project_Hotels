@@ -10,7 +10,7 @@
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5155"
     },
-    "Room Managing API": {
+    "RoomManaging.API": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "swagger",
