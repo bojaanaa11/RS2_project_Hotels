@@ -1,6 +1,16 @@
 {
   "profiles": {
-    "http": {
+    "WSL": {
+      "commandName": "WSL2",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:5155/swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5155"
+      },
+      "distributionName": ""
+    },
+    "RoomManaging.API": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
@@ -9,14 +19,6 @@
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5155"
-    },
-    "RoomManaging.API": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
     }
   },
   "$schema": "http://json.schemastore.org/launchsettings.json",
