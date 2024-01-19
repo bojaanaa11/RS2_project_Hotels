@@ -4,6 +4,6 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup>
-    <ActiveDebugProfile>Rating API</ActiveDebugProfile>
+    <ActiveDebugProfile>Rating.API</ActiveDebugProfile>
   </PropertyGroup>
 </Project>
