@@ -1,0 +1,79 @@
+name: dockercompose6646330085425228216
+services:
+  authenticationauthorization.api:
+    build:
+      context: C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hotels
+      dockerfile: Services/AuthenticationAuthorization/AuthenticationAuthorization.API/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTP_PORTS: "8080"
+    image: authenticationauthorizationapi
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 8080
+        published: "8000"
+        protocol: tcp
+  payment.api:
+    build:
+      context: C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hotels
+      dockerfile: Services/Payment/Payment.API/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTP_PORTS: "8080"
+    image: paymentapi
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 8080
+        published: "8001"
+        protocol: tcp
+  rating.api:
+    build:
+      context: C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hotels
+      dockerfile: Services/Rating/Rating.API/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTP_PORTS: "8080"
+    image: ratingapi
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 8080
+        published: "8002"
+        protocol: tcp
+  reservations.api:
+    build:
+      context: C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hotels
+      dockerfile: Services/Reservations/Reservations.API/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTP_PORTS: "8080"
+    image: reservationsapi
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 8080
+        published: "8003"
+        protocol: tcp
+  roommanaging.api:
+    build:
+      context: C:\Users\WIN 10\Documents\MASTER\RS2\RS2projekat_Hoteli\hotels
+      dockerfile: Services/ManagingRooms/RoomManaging.API/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTP_PORTS: "8080"
+    image: roommanagingapi
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 8080
+        protocol: tcp
+networks:
+  default:
+    name: dockercompose6646330085425228216_default

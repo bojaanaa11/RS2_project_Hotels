@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34408.163
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthenticationAuthorization.API", "Services\AuthenticationAuthorization\AuthenticationAuthorization.API\AuthenticationAuthorization.API.csproj", "{A031418A-5790-49C8-A4D5-B65B5EF2F875}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoomManaging.API", "Services\ManagingRooms\RoomManaging.API\RoomManaging.API.csproj", "{708CEB67-35E2-49CB-93BE-C2AC6AD60F29}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Payment.API", "Services\Payment\Payment.API\Payment.API.csproj", "{E7F733DE-D80D-466B-ABD6-3D902E904834}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rating.API", "Services\Rating\Rating.API\Rating.API.csproj", "{6CB89E01-989C-40A6-9134-92DE24CE663D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reservations.API", "Services\Reservations\Reservations.API\Reservations.API.csproj", "{2C98B2B8-25D2-48A7-9837-25C9EAF74204}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{16754822-057E-4D51-9731-B1447A55F5D2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A031418A-5790-49C8-A4D5-B65B5EF2F875}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A031418A-5790-49C8-A4D5-B65B5EF2F875}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A031418A-5790-49C8-A4D5-B65B5EF2F875}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A031418A-5790-49C8-A4D5-B65B5EF2F875}.Release|Any CPU.Build.0 = Release|Any CPU
+		{708CEB67-35E2-49CB-93BE-C2AC6AD60F29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{708CEB67-35E2-49CB-93BE-C2AC6AD60F29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{708CEB67-35E2-49CB-93BE-C2AC6AD60F29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{708CEB67-35E2-49CB-93BE-C2AC6AD60F29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7F733DE-D80D-466B-ABD6-3D902E904834}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7F733DE-D80D-466B-ABD6-3D902E904834}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7F733DE-D80D-466B-ABD6-3D902E904834}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7F733DE-D80D-466B-ABD6-3D902E904834}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CB89E01-989C-40A6-9134-92DE24CE663D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CB89E01-989C-40A6-9134-92DE24CE663D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CB89E01-989C-40A6-9134-92DE24CE663D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CB89E01-989C-40A6-9134-92DE24CE663D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C98B2B8-25D2-48A7-9837-25C9EAF74204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C98B2B8-25D2-48A7-9837-25C9EAF74204}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C98B2B8-25D2-48A7-9837-25C9EAF74204}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C98B2B8-25D2-48A7-9837-25C9EAF74204}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16754822-057E-4D51-9731-B1447A55F5D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16754822-057E-4D51-9731-B1447A55F5D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16754822-057E-4D51-9731-B1447A55F5D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16754822-057E-4D51-9731-B1447A55F5D2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5ABFE2B5-BA68-46A6-9AE8-343FACA484DD}
+	EndGlobalSection
+EndGlobal
