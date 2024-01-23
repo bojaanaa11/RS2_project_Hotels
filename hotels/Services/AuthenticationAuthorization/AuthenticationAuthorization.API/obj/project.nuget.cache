@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lUjl6/q53E3sP0IPnyhFLGwXr+0nTy2Erhv3c/JZ7qrRfYqAa+NmS3Ej/68lNax79m0ipPKOH9Nw/CTKGASllw==",
+  "dgSpecHash": "BfwQKuh73AA3XFq4cixupj4FQDwSSWuQyktMv9gLQbM//nX9wDR7tjZ5UMPtrYwI/ExVdV43/fHSO3N4WVP51w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hotels\\Services\\AuthenticationAuthorization\\AuthenticationAuthorization.API\\AuthenticationAuthorization.API.csproj",
+  "projectFilePath": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2_project_Hotels\\hotels\\Services\\AuthenticationAuthorization\\AuthenticationAuthorization.API\\AuthenticationAuthorization.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\WIN 10\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\WIN 10\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",

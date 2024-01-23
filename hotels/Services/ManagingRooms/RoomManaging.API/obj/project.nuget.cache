@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SBxrCrcTxpeTJB3kr/OnOkZSPxpaoKcmwE6oV47Tp3ghdDn6mEq6PrCH9sPVketv/MIr/x2RngjSlSZvGqYLjg==",
+  "dgSpecHash": "OwJbhFkfRSagEypQl7+LhOG2gLngBM/ljH/5e9LPWYRNzZzO25bmGQ6wCirwtUToxUPQdUITpp6JZx8PDu5yBQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hotels\\Services\\ManagingRooms\\RoomManaging.API\\RoomManaging.API.csproj",
+  "projectFilePath": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2_project_Hotels\\hotels\\Services\\ManagingRooms\\RoomManaging.API\\RoomManaging.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\WIN 10\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\WIN 10\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",

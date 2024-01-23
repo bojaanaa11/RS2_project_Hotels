@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hotels\\Services\\Reservations\\Reservations.API\\Reservations.API.csproj": {}
+    "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2_project_Hotels\\hotels\\Services\\Reservations\\Reservations.API\\Reservations.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hotels\\Services\\Reservations\\Reservations.API\\Reservations.API.csproj": {
+    "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2_project_Hotels\\hotels\\Services\\Reservations\\Reservations.API\\Reservations.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hotels\\Services\\Reservations\\Reservations.API\\Reservations.API.csproj",
+        "projectUniqueName": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2_project_Hotels\\hotels\\Services\\Reservations\\Reservations.API\\Reservations.API.csproj",
         "projectName": "Reservations.API",
-        "projectPath": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hotels\\Services\\Reservations\\Reservations.API\\Reservations.API.csproj",
+        "projectPath": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2_project_Hotels\\hotels\\Services\\Reservations\\Reservations.API\\Reservations.API.csproj",
         "packagesPath": "C:\\Users\\WIN 10\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2projekat_Hoteli\\hotels\\Services\\Reservations\\Reservations.API\\obj\\",
+        "outputPath": "C:\\Users\\WIN 10\\Documents\\MASTER\\RS2\\RS2_project_Hotels\\hotels\\Services\\Reservations\\Reservations.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\WIN 10\\AppData\\Roaming\\NuGet\\NuGet.Config",
