@@ -20,12 +20,17 @@ namespace CheckInOut.API.Entities
             GuestName = guestName ?? throw new ArgumentNullException(nameof(guestName));
             RoomNumber = roomnumber;
             CheckInDate = checkindate;
-            CheckOutDate = checkoutdate;
+            SetCheckOutDate(checkoutdate);
         }
 
-        public void SetCheckOutDate(DateTime checkoutdate){
+        public void SetCheckOutDate(DateTime? checkoutdate){
+            if(checkoutdate is null){
+                CheckOutDate = null;
+                return;
+            }
             if(checkoutdate < CheckInDate){
-                throw new DateException("Check out date must be after check in date"); 
+                CheckOutDate = null;
+                throw new DateException("Check out date must be after check in date");                 
             } else 
             CheckOutDate = checkoutdate;
         }
