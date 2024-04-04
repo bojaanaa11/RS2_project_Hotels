@@ -1,6 +1,29 @@
 version: '3.4'
 
 services:
+  checkinoutdb:
+    container_name: checkinoutdb
+    restart: always
+    environment:
+      - POSTGRES_USER=isidora
+      - POSTGRES_PASSWORD=271020
+      - POSTGRES_DB=CheckInOutDb
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+  pghoteladmin:
+    container_name: pghoteladmin
+    restart: always
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=isidoraburmaz@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=271020
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/root/.pgadmin
+
   authenticationauthorization.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -38,4 +61,15 @@ services:
       - ASPNETCORE_HTTP_PORTS=8080
     ports:
       - "8004:8080"
+
+  checkinoutapi:
+    container_name: checkinoutapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - "DatabaseSettings:ConnectionString=Server=checkinoutdb;Port=5432;Database=CheckInOutDb;User Id=isidora;Password=271020;"
+    depends_on:
+      - checkinoutdb
+    ports:
+      - "8005:8080"
 

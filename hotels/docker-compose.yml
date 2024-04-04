@@ -1,6 +1,12 @@
 version: '3.4'
 
 services:
+  checkinoutdb:
+    image: postgres
+
+  pghoteladmin:
+    image: dpage/pgadmin4
+
   authenticationauthorization.api:
     image: ${DOCKER_REGISTRY-}authenticationauthorizationapi
     build:
@@ -33,4 +39,14 @@ services:
     build:
       context: .
       dockerfile: Services/ManagingRooms/RoomManaging.API/Dockerfile
+
+  checkinoutapi:
+    image: checkinoutapi
+    build:
+      context: .
+      dockerfile: Services/CheckInOut/CheckInOut.API/Dockerfile
+
+volumes:
+  postgres_data:
+  pgadmin_data:
 
