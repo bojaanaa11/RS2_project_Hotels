@@ -1,7 +1,11 @@
-﻿namespace Reservations_API.Entities
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace Reservations.API.Entities
 {
     public class Reservation
     {
+        [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         public string UserId { get; set; }
         public string RoomId { get; set; }

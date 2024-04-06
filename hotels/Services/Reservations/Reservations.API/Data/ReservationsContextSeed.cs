@@ -1,14 +1,14 @@
 ﻿using MongoDB.Driver;
-using Reservations_API.Entities;
+using Reservations.API.Entities;
 
-namespace Reservations_API.Data
+namespace Reservations.API.Data
 {
     public class ReservationsContextSeed
     {
         public static void SeedData(IMongoCollection<Reservation> reservationsCollection)
         {
-            var empty = reservationsCollection.Find<Reservation>(res => true).Any<Reservation>();
-            if(empty)
+            var reservations_exist = reservationsCollection.Find(r => true).Any();
+            if(!reservations_exist)
             {
                 reservationsCollection.InsertManyAsync(GetPreconfiguredReservations());
             }
@@ -20,7 +20,7 @@ namespace Reservations_API.Data
             {
                 new Reservation()
                 {
-                    Id = "1",
+                    Id = "1CD87E5FADA714BB541B9375",
                     UserId = "1",
                     RoomId = "1",
                     BookingDateTime = "21/01/2022 21:00",
@@ -30,7 +30,7 @@ namespace Reservations_API.Data
                 },
                 new Reservation()
                 {
-                    Id = "2",
+                    Id = "F49F0FFA07D06EB6F248A883",
                     UserId = "2",
                     RoomId = "2",
                     BookingDateTime = "21/01/2022 21:00",
@@ -40,7 +40,7 @@ namespace Reservations_API.Data
                 },
                 new Reservation()
                 {
-                    Id = "2",
+                    Id = "58D15865E2E9F01C684F9D99",
                     UserId = "2",
                     RoomId = "2",
                     BookingDateTime = "21/01/2022 21:00",

@@ -1,7 +1,7 @@
 ﻿using MongoDB.Driver;
-using Reservations_API.Entities;
+using Reservations.API.Entities;
 
-namespace Reservations_API.Data
+namespace Reservations.API.Data
 {
     public interface IReservationsContext
     {
