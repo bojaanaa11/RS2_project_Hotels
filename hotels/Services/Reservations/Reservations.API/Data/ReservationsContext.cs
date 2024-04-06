@@ -6,9 +6,9 @@ namespace Reservations.API.Data
     public class ReservationsContext : IReservationsContext
     {
         public IMongoCollection<Reservation> Reservations { get; }
-        public ReservationsContext()
+        public ReservationsContext(IConfiguration configuration)
         {
-            var client = new MongoClient("mongodb://localhost:27017");
+            var client = new MongoClient(configuration.GetValue<string>("DatabaseSettings:ConnectionSettings"));
             var database = client.GetDatabase("ReservationsDB");
 
             Reservations = database.GetCollection<Reservation>("Reservations");
