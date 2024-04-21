@@ -1,6 +1,9 @@
 version: '3.4'
 
 services:
+  reservationsdb:
+    image: mongo
+
   checkinoutdb:
     image: postgres
 
@@ -49,4 +52,5 @@ services:
 volumes:
   postgres_data:
   pgadmin_data:
+  mongo_data:
 
