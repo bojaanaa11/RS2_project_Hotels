@@ -1,15 +1,5 @@
 {
   "profiles": {
-    "WSL": {
-      "commandName": "WSL2",
-      "launchBrowser": true,
-      "launchUrl": "http://localhost:5200/swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_URLS": "http://localhost:5200"
-      },
-      "distributionName": ""
-    },
     "Reservations.API": {
       "commandName": "Project",
       "launchBrowser": true,

@@ -1,6 +1,14 @@
 version: '3.4'
 
 services:
+  reservationsdb:
+    container_name: reservationsdb
+    restart: always
+    ports:
+        - "27017:27017"
+    volumes:
+        - mongo_data:/data/db
+
   checkinoutdb:
     container_name: checkinoutdb
     restart: always
@@ -25,6 +33,7 @@ services:
       - pgadmin_data:/root/.pgadmin
 
   authenticationauthorization.api:
+    container_name: authenticationauthorizationapi
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
@@ -32,14 +41,15 @@ services:
       - "8000:8080"
 
   payment.api:
+    container_name: paymentapi
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
     ports:
       - "8001:8080"
 
-
   rating.api:
+    container_name: ratingapi
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
@@ -48,14 +58,19 @@ services:
 
 
   reservations.api:
+    container_name: reservationsapi
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
+      - "DatabaseSettings:ConnectionSettings=mongodb://reservationsdb:27017" 
+    depends_on:
+      - reservationsdb
     ports:
       - "8003:8080"
 
 
   roommanaging.api:
+    container_name: roommanagingapi
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
