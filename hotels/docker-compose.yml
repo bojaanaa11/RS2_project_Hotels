@@ -43,14 +43,22 @@ services:
       context: .
       dockerfile: Services/ManagingRooms/RoomManaging.API/Dockerfile
 
+
   checkinoutapi:
     image: checkinoutapi
     build:
       context: .
       dockerfile: Services/CheckInOut/CheckInOut.API/Dockerfile
 
+  roommanaging.grpc:
+    image: ${DOCKER_REGISTRY-}roommanaginggrpc
+    build:
+      context: .
+      dockerfile: Services/ManagingRooms/RoomManaging.GRPC/Dockerfile
+
 volumes:
   postgres_data:
   pgadmin_data:
   mongo_data:
+
 
