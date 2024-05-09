@@ -22,13 +22,11 @@ services:
       context: .
       dockerfile: Services/Payment/Payment.API/Dockerfile
 
-
   rating.api:
     image: ${DOCKER_REGISTRY-}ratingapi
     build:
       context: .
       dockerfile: Services/Rating/Rating.API/Dockerfile
-
 
   reservations.api:
     image: ${DOCKER_REGISTRY-}reservationsapi
@@ -36,13 +34,11 @@ services:
       context: .
       dockerfile: Services/Reservations/Reservations.API/Dockerfile
 
-
   roommanaging.api:
     image: ${DOCKER_REGISTRY-}roommanagingapi
     build:
       context: .
       dockerfile: Services/ManagingRooms/RoomManaging.API/Dockerfile
-
 
   checkinoutapi:
     image: checkinoutapi
@@ -56,9 +52,16 @@ services:
       context: .
       dockerfile: Services/ManagingRooms/RoomManaging.GRPC/Dockerfile
 
+  reservations.grpc:
+    image: ${DOCKER_REGISTRY-}reservationsgrpc
+    build:
+      context: .
+      dockerfile: Services/Reservations/Reservations.GRPC/Dockerfile
+
 volumes:
   postgres_data:
   pgadmin_data:
   mongo_data:
+
 
 

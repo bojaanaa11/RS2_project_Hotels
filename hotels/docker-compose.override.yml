@@ -94,5 +94,13 @@ services:
     ports:
       - "8005:8080"
 
-
-
+  reservations.grpc:
+    container_name: reservationsgrpc
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - "DatabaseSettings:ConnectionSettings=mongodb://reservationsdb:27017" 
+    depends_on:
+      - reservationsdb
+    ports:
+      - "8007:8080"

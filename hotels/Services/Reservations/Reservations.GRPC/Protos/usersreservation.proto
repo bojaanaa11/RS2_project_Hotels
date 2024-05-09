@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option csharp_namespace = "Reservations.GRPC.Protos";
+
+service UsersReservationProtoService {
+	rpc GetReservation (GetReservationRequest) returns (GetReservationResponse);
+}
+
+message GetReservationRequest {
+	string UserId = 1;
+}
+
+message GetReservationResponse {
+	string Id = 1;
+    string UserId = 2;
+    string RoomId = 3;
+    string BookingDateTime = 4;
+    string StartDateTime = 5;
+    string EndDateTime = 6;
+    string Status = 7;
+}
