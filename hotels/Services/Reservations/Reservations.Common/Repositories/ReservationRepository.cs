@@ -1,8 +1,8 @@
 ﻿using MongoDB.Driver;
-using Reservations.API.Data;
-using Reservations.API.Entities;
+using Reservations.Common.Data;
+using Reservations.Common.Entities;
 
-namespace Reservations.API.Repositories
+namespace Reservations.Common.Repositories
 {
     public class ReservationRepository : IReservationRepository
     {

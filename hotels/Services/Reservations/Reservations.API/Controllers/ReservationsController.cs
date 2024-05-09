@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Reservations.API.Entities;
-using Reservations.API.Repositories;
+using Reservations.Common.Entities;
+using Reservations.Common.Repositories;
 
 namespace Reservations.API.Controllers
 {

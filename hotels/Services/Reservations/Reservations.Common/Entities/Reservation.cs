@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Reservations.API.Entities
+namespace Reservations.Common.Entities
 {
     public class Reservation
     {

@@ -1,7 +1,8 @@
-﻿using MongoDB.Driver;
-using Reservations.API.Entities;
+﻿using Microsoft.Extensions.Configuration;
+using MongoDB.Driver;
+using Reservations.Common.Entities;
 
-namespace Reservations.API.Data
+namespace Reservations.Common.Data
 {
     public class ReservationsContext : IReservationsContext
     {

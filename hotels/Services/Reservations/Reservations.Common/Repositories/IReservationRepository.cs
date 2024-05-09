@@ -1,6 +1,6 @@
-﻿using Reservations.API.Entities;
+﻿using Reservations.Common.Entities;
 
-namespace Reservations.API.Repositories
+namespace Reservations.Common.Repositories
 {
     public interface IReservationRepository
     {

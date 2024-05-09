@@ -1,5 +1,5 @@
-using Reservations.API.Data;
-using Reservations.API.Repositories;
+using Reservations.Common.Data;
+using Reservations.Common.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
