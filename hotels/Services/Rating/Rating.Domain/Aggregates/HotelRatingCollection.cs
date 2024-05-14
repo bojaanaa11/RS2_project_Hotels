@@ -11,26 +11,31 @@ namespace Rating.Domain.Aggregates
 {
     public class HotelRatingCollection(int hotelId, string hotelName) : AggregateRoot
     {
-        public int HotelId = hotelId;
-        public string HotelName = hotelName;
+        public int HotelId { get; private set; } = hotelId;
+        public string HotelName { get; private set; } = hotelName;
         private readonly List<HotelReview> _reviews = [];
 
         public IReadOnlyCollection<HotelReview> Reviews => _reviews;
 
-        public void AddRating(GuestInformation guest, int rating, string comment)
+        public void AddRating(int guestId, string guestName, string emailAddress,int reservationId, int rating, string comment)
         {
-            var existingRatingForUser = Reviews.SingleOrDefault(o => o.Guest == guest);
-            if (existingRatingForUser is null)
-            {
-                var review = new HotelReview(HotelId, guest, rating, comment);
-                _reviews.Add(review);
-            }
-            else
+            Guest guest=new Guest(guestId,guestName,emailAddress,reservationId);
+            RatingInformation ratingInfo=new RatingInformation(rating,comment,null);
+            var existingRatingForUser = Reviews.SingleOrDefault(o => o.HotelGuest == guest);
+            if (existingRatingForUser is not null)
             {
                 throw new UniqueRatingException("Can not add two reviews for the same stay");
             }
+            else
+            {
+                var review = new HotelReview(HotelId,guestId){
+                    HotelGuest = guest,
+                    HotelRating=ratingInfo
+                };
+                _reviews.Add(review);
+            }
         }
 
-        public decimal GetAverage() => (decimal)Reviews.Average(o => o.Rating);
+        public decimal GetAverage() => (decimal)Reviews.Average(o => o.GetRating());
     }
 }
