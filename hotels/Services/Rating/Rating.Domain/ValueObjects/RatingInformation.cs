@@ -11,7 +11,7 @@ namespace Rating.Domain.ValueObjects
         public int Rating { get; private set; } = rating;
         public string Comment { get; private set; } = comment ?? throw new ArgumentNullException(nameof(comment));
 
-        public DateTime? RatingDate { get; private set; } = ratingDate ?? throw new ArgumentNullException(nameof(ratingDate));
+        public DateTime? RatingDate { get; private set; } = ratingDate;
 
         protected override IEnumerable<object?> GetEqualityComponents()
         {

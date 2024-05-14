@@ -2,17 +2,32 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Rating.Domain.Aggregates;
 using Rating.Domain.Common;
 using Rating.Domain.ValueObjects;
 
 namespace Rating.Domain.Entities
 {
-    public class HotelReview(int hotelId, GuestInformation guest, int rating, string comment) : EntityBase
+    public class HotelReview : EntityBase
     {
-        public int HotelId { get; set; }  = hotelId;
-        public GuestInformation Guest { get; set; }  = guest ?? throw new ArgumentNullException(nameof(guest));
         
-        public int Rating { get; set; } = rating;
-        public string Comment { get; set; } = comment ?? throw new ArgumentNullException(nameof(comment));
+
+        public int HotelId { get; private set; }  
+        public int GuestId { get; private set; } 
+        public Guest HotelGuest { get; set; } 
+        
+        public HotelRatingCollection RatingCollection { get; set; }
+        
+        public RatingInformation HotelRating {  get; set; }
+
+        public HotelReview(int hotelId, int guestId)
+        {
+            HotelId = hotelId;
+            GuestId = guestId;
+        }
+
+        public int GetRating() => HotelRating.Rating;
+        
+
     }
 }
