@@ -6,6 +6,8 @@ namespace Reservations.Common.Repositories
     {
         Task<IEnumerable<Reservation>> GetReservations();
 
+        Task<IEnumerable<Reservation>> GetReservationsByUserId(string userid);
+
         Task<Reservation> GetReservationById(string id);
 
         Task CreateReservation(Reservation reservation);
