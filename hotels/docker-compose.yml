@@ -7,6 +7,9 @@ services:
   checkinoutdb:
     image: postgres
 
+  roommanagingdb:
+    image: redis:alpine
+
   pghoteladmin:
     image: dpage/pgadmin4
 

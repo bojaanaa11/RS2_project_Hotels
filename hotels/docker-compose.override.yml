@@ -21,6 +21,12 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
 
+  roommanagingdb:
+    container_name: rommanagingdb
+    restart: always
+    ports:
+        - "6379:6379"
+
   pghoteladmin:
     container_name: pghoteladmin
     restart: always
@@ -86,6 +92,7 @@ services:
     container_name: roommanagingapi
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - "CacheSettings:ConnectionString=roommanagingdb:6379"
       - ASPNETCORE_HTTP_PORTS=8080
     ports:
       - "8004:8080"
@@ -93,7 +100,7 @@ services:
   roommanaging.grpc:
     container_name: roommanaginggrpc
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Development 
       - ASPNETCORE_HTTP_PORTS=8080
     ports:
       - "8006:8080"

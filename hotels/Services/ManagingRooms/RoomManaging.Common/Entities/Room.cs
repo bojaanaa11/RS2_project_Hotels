@@ -2,12 +2,24 @@
 {
     public class Room
     {
-        public string ID { get;  set; }
+        public string Id { get;  set; }
+
+        public string HotelId { get; set; }
+
+        public string RoomNumber { get; set; }
 
         public bool Status { get; set; }
 
         public decimal Price { get; set; }
 
+        public List<string> FileImages { get; set; }
+
         public string Description { get; set; }
+
+        public Room()
+        {
+            FileImages = new List<string>();
+        }
+
     }
 }
