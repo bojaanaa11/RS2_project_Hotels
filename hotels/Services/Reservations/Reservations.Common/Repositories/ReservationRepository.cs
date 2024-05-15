@@ -33,5 +33,10 @@ namespace Reservations.Common.Repositories
         {
             return await _context.Reservations.Find(r => true).ToListAsync();
         }
+
+        public async Task<IEnumerable<Reservation>> GetReservationsByUserId(string userid)
+        {
+            return await _context.Reservations.Find(r => (r.UserId == userid)).ToListAsync();
+        }
     }
 }

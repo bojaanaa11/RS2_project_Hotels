@@ -11,11 +11,15 @@ message GetReservationRequest {
 }
 
 message GetReservationResponse {
-	string Id = 1;
-    string UserId = 2;
-    string RoomId = 3;
-    string BookingDateTime = 4;
-    string StartDateTime = 5;
-    string EndDateTime = 6;
-    string Status = 7;
+	message Reservation {
+        string Id = 1;
+        string UserId = 2;
+        string RoomId = 3;
+        string BookingDateTime = 4;
+        string StartDateTime = 5;
+        string EndDateTime = 6;
+        string Status = 7;
+    }
+
+    repeated Reservation Reservations = 1;
 }

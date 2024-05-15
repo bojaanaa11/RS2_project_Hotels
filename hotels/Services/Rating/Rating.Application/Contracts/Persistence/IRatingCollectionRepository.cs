@@ -13,5 +13,7 @@ namespace Rating.Application.Contracts.Persistence
         //Interfejs za rating repo
         Task<IReadOnlyCollection<HotelReview>> GetRatingsByHotel(string hotelName);
         Task AddReviewToCollection(int hotelId,CreateReviewCommand hotelReview);
+
+        Task<decimal> GetAverageRating(string hotelName);
     }
 }

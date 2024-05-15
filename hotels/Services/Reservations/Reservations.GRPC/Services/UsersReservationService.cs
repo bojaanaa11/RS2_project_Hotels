@@ -15,9 +15,16 @@ namespace Reservations.GRPC.Services
             _logger = logger ?? throw new ArgumentNullException(nameof(logger)); ;
         }
 
-        public override Task<GetReservationResponse> GetReservation(GetReservationRequest request, ServerCallContext context)
+        public override async Task<GetReservationResponse> GetReservation(GetReservationRequest request, ServerCallContext context)
         {
-            return base.GetReservation(request, context);
+            var reservations = await _repository.GetReservationsByUserId(request.UserId);
+
+            var response = new GetReservationResponse();
+            response.Reservations.AddRange((IEnumerable<GetReservationResponse.Types.Reservation>)reservations);
+
+            _logger.LogInformation("Sending reservations list for user {userid}.", request.UserId);
+
+            return response;
         }
     }
 }

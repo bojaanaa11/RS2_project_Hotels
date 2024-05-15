@@ -47,5 +47,16 @@ namespace Rating.Infrastructure.Repositories
 
             return result;
         }
+
+        public async Task<decimal> GetAverageRating(string hotelName)
+        {
+            var result = await _dbContext.Ratings
+                .Where(o => o.HotelName == hotelName)
+                .SelectMany(o => o.Reviews)
+                .AverageAsync(o => o.HotelRating.Rating);
+
+            return (decimal)result;
+
+        }
     }
 }
