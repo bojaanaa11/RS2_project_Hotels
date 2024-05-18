@@ -13,7 +13,7 @@ services:
   pghoteladmin:
     image: dpage/pgadmin4
 
-  mssql_rating:
+  mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
 
   payment.api:

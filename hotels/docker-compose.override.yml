@@ -38,8 +38,8 @@ services:
     volumes:
       - pgadmin_data:/root/.pgadmin
 
-  mssql_rating:
-    container_name: mssql_rating
+  mssql:
+    container_name: mssql
     user: root
     environment:
     - MSSQL_SA_PASSWORD=rs2_RatingMicroservice
@@ -63,9 +63,9 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
-      - "ConnectionStrings:RatingConnectionString=Server=mssql_rating;Database=RatingDb;User Id=sa;Password=rs2_RatingMicroservice;TrustServerCertificate=True;Encrypt=False;"
+      - "ConnectionStrings:RatingConnectionString=Server=mssql;Database=RatingDb;User Id=sa;Password=rs2_RatingMicroservice;TrustServerCertificate=True;Encrypt=False;"
     depends_on:
-      - mssql_rating
+      - mssql
     ports:
       - "8002:8080"
 
