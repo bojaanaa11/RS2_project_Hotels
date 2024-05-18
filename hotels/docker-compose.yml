@@ -16,12 +16,6 @@ services:
   mssql_rating:
     image: mcr.microsoft.com/mssql/server:2022-latest
 
-  authenticationauthorization.api:
-    image: ${DOCKER_REGISTRY-}authenticationauthorizationapi
-    build:
-      context: .
-      dockerfile: Services/AuthenticationAuthorization/AuthenticationAuthorization.API/Dockerfile
-
   payment.api:
     image: ${DOCKER_REGISTRY-}paymentapi
     build:
