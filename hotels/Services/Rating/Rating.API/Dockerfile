@@ -9,6 +9,9 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Services/Rating/Rating.API/Rating.API.csproj", "Services/Rating/Rating.API/"]
+COPY ["Services/Rating/Rating.Application/Rating.Application.csproj", "Services/Rating/Rating.Application/"]
+COPY ["Services/Rating/Rating.Domain/Rating.Domain.csproj", "Services/Rating/Rating.Domain/"]
+COPY ["Services/Rating/Rating.Infrastructure/Rating.Infrastructure.csproj", "Services/Rating/Rating.Infrastructure/"]
 RUN dotnet restore "./Services/Rating/Rating.API/./Rating.API.csproj"
 COPY . .
 WORKDIR "/src/Services/Rating/Rating.API"
