@@ -42,11 +42,11 @@ services:
     container_name: mssql
     user: root
     environment:
-    - MSSQL_SA_PASSWORD=rs2_RatingMicroservice
+    - MSSQL_SA_PASSWORD=rs2_HotelsProject
     - ACCEPT_EULA=Y
     restart: always
     ports:
-    - "1437:1433"
+    - "1433:1433"
     volumes:
     - mssql_data:/var/opt/mssql/data
 
@@ -63,7 +63,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
-      - "ConnectionStrings:RatingConnectionString=Server=mssql;Database=RatingDb;User Id=sa;Password=rs2_RatingMicroservice;TrustServerCertificate=True;Encrypt=False;"
+      - "ConnectionStrings:RatingConnectionString=Server=mssql;Database=RatingDb;User Id=sa;Password=rs2_HotelsProject;TrustServerCertificate=True;Encrypt=False;"
     depends_on:
       - mssql
     ports:
@@ -118,3 +118,15 @@ services:
       - reservationsdb
     ports:
       - "8007:8080"
+
+  identityserver:
+    container_name: identityserver
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - "ConnectionStrings:IdentityConnectionString=Server=mssql;Database=IdentityDb;User Id=sa;Password=rs2_HotelsProject;TrustServerCertificate=True;Encrypt=False;"
+    depends_on:
+      - mssql
+    ports:
+      - "8000:8080"
+

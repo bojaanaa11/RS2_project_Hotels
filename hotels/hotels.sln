@@ -41,6 +41,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rating.Infrastructure", "Se
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rating.Domain", "Services\Rating\Rating.Domain\Rating.Domain.csproj", "{FBCE5125-A92D-42F4-AA08-2688723F4173}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{ED91FD19-F10A-472C-B924-7939E493F753}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer", "Security\IdentityServer\IdentityServer.csproj", "{FAD7F136-BACB-42A1-AEA5-C3B7F225A5E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +103,10 @@ Global
 		{FBCE5125-A92D-42F4-AA08-2688723F4173}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBCE5125-A92D-42F4-AA08-2688723F4173}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBCE5125-A92D-42F4-AA08-2688723F4173}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAD7F136-BACB-42A1-AEA5-C3B7F225A5E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAD7F136-BACB-42A1-AEA5-C3B7F225A5E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAD7F136-BACB-42A1-AEA5-C3B7F225A5E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAD7F136-BACB-42A1-AEA5-C3B7F225A5E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -121,6 +129,7 @@ Global
 		{EC089B22-6FFD-491C-806C-279F8B908105} = {976C3EF1-CA37-4344-9F36-A356D534BC60}
 		{739788B3-7CC2-4545-99C4-B9140D949579} = {976C3EF1-CA37-4344-9F36-A356D534BC60}
 		{FBCE5125-A92D-42F4-AA08-2688723F4173} = {976C3EF1-CA37-4344-9F36-A356D534BC60}
+		{FAD7F136-BACB-42A1-AEA5-C3B7F225A5E8} = {ED91FD19-F10A-472C-B924-7939E493F753}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5ABFE2B5-BA68-46A6-9AE8-343FACA484DD}

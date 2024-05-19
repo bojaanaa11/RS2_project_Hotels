@@ -58,11 +58,18 @@ services:
       context: .
       dockerfile: Services/Reservations/Reservations.GRPC/Dockerfile
 
+  identityserver:
+    image: ${DOCKER_REGISTRY-}identityserver
+    build:
+      context: .
+      dockerfile: Security/IdentityServer/Dockerfile
+
 volumes:
   postgres_data:
   pgadmin_data:
   mongo_data:
   mssql_data:
+
 
 
 
