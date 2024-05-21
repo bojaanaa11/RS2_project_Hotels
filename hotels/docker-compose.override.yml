@@ -46,9 +46,9 @@ services:
       - ACCEPT_EULA=Y
     restart: always
     ports:
-      - "1438:1433"
+      - "1433:1433"
     volumes:
-      - mssql_data_identity:/var/opt/mssql/data_identity
+      - mssql_data_identity:/var/opt/mssql/data
         
   ratingdb:
     container_name: ratingdb
