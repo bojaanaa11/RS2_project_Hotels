@@ -11,34 +11,17 @@ namespace Rating.Infrastructure.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql(@"
-        IF NOT EXISTS (SELECT 1 FROM sys.sequences WHERE name = 'guestseq')
-        BEGIN
-            CREATE SEQUENCE [guestseq] START WITH 1 INCREMENT BY 10 NO MINVALUE NO MAXVALUE NO CYCLE;
-        END
-    ");
+            migrationBuilder.CreateSequence(
+                name: "guestseq",
+                incrementBy: 10);
 
-            migrationBuilder.Sql(@"
-        IF NOT EXISTS (SELECT 1 FROM sys.sequences WHERE name = 'hotelratingcollectionseq')
-        BEGIN
-            CREATE SEQUENCE [hotelratingcollectionseq] START WITH 1 INCREMENT BY 10 NO MINVALUE NO MAXVALUE NO CYCLE;
-        END
-    ");
-            migrationBuilder.Sql(@"
-        IF NOT EXISTS (SELECT 1 FROM sys.sequences WHERE name = 'hotelreviewseq')
-        BEGIN
-            CREATE SEQUENCE [hotelreviewseq] START WITH 1 INCREMENT BY 10 NO MINVALUE NO MAXVALUE NO CYCLE;
-        END
-    ");
-            
-            migrationBuilder.DropTable(
-                name: "HotelReview");
+            migrationBuilder.CreateSequence(
+                name: "hotelratingcollectionseq",
+                incrementBy: 10);
 
-            migrationBuilder.DropTable(
-                name: "Guest");
-
-            migrationBuilder.DropTable(
-                name: "HotelRatingCollection");
+            migrationBuilder.CreateSequence(
+                name: "hotelreviewseq",
+                incrementBy: 10);
 
             migrationBuilder.CreateTable(
                 name: "Guest",
@@ -57,6 +40,7 @@ namespace Rating.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Guest", x => x.Id);
+                    table.UniqueConstraint("AK_Guest_GuestId", x => x.GuestId);
                 });
 
             migrationBuilder.CreateTable(
@@ -82,11 +66,11 @@ namespace Rating.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
                     HotelId = table.Column<int>(type: "INTEGER", nullable: false),
-                    GuestId = table.Column<int>(type: "int", nullable: false),
+                    GuestId = table.Column<int>(type: "INTEGER", nullable: false),
+                    RatingCollectionId = table.Column<int>(type: "int", nullable: false),
                     HotelRating_Rating = table.Column<int>(type: "int", nullable: false),
                     HotelRating_Comment = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     HotelRating_RatingDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    HotelRatingCollectionId = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -99,13 +83,14 @@ namespace Rating.Infrastructure.Migrations
                         name: "FK_HotelReview_Guest_GuestId",
                         column: x => x.GuestId,
                         principalTable: "Guest",
-                        principalColumn: "Id",
+                        principalColumn: "GuestId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_HotelReview_HotelRatingCollection_HotelRatingCollectionId",
-                        column: x => x.HotelRatingCollectionId,
+                        name: "FK_HotelReview_HotelRatingCollection_RatingCollectionId",
+                        column: x => x.RatingCollectionId,
                         principalTable: "HotelRatingCollection",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -114,9 +99,9 @@ namespace Rating.Infrastructure.Migrations
                 column: "GuestId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HotelReview_HotelRatingCollectionId",
+                name: "IX_HotelReview_RatingCollectionId",
                 table: "HotelReview",
-                column: "HotelRatingCollectionId");
+                column: "RatingCollectionId");
         }
 
         /// <inheritdoc />
@@ -131,11 +116,14 @@ namespace Rating.Infrastructure.Migrations
             migrationBuilder.DropTable(
                 name: "HotelRatingCollection");
 
-            migrationBuilder.Sql("DROP SEQUENCE IF EXISTS [guestseq];");
-        
-            migrationBuilder.Sql("DROP SEQUENCE IF EXISTS [hotelratingcollectionseq];");
-            
-            migrationBuilder.Sql("DROP SEQUENCE IF EXISTS [hotelreviewseq];");
+            migrationBuilder.DropSequence(
+                name: "guestseq");
+
+            migrationBuilder.DropSequence(
+                name: "hotelratingcollectionseq");
+
+            migrationBuilder.DropSequence(
+                name: "hotelreviewseq");
         }
     }
 }

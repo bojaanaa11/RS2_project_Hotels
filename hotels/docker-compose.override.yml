@@ -49,6 +49,18 @@ services:
     - "1433:1433"
     volumes:
     - mssql_data:/var/opt/mssql/data
+        
+  ratingdb:
+    container_name: ratingdb
+    user: root
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Passw0rd
+    restart: always
+    ports:
+      - "1439:1433"
+    volumes:
+      - ratingdb_data:/var/opt/mssql/data
 
   payment.api:
     container_name: paymentapi
@@ -63,9 +75,9 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
-      - "ConnectionStrings:RatingConnectionString=Server=mssql;Database=RatingDb;User Id=sa;Password=rs2_HotelsProject;TrustServerCertificate=True;Encrypt=False;"
+      - "ConnectionStrings:RatingConnectionString=Server=ratingdb;Database=RatingDb;User Id=sa;Password=Passw0rd;TrustServerCertificate=True;Encrypt=False;"
     depends_on:
-      - mssql
+      - ratingdb
     ports:
       - "8002:8080"
 

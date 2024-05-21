@@ -16,6 +16,9 @@ services:
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
 
+  ratingdb:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+
   payment.api:
     image: ${DOCKER_REGISTRY-}paymentapi
     build:
@@ -69,6 +72,7 @@ volumes:
   pgadmin_data:
   mongo_data:
   mssql_data:
+  ratingdb_data:
 
 
 

@@ -12,7 +12,7 @@ using Rating.Infrastructure.Persistence;
 namespace Rating.Infrastructure.Migrations
 {
     [DbContext(typeof(RatingContext))]
-    [Migration("20240512120339_InitialCreate")]
+    [Migration("20240519161353_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace Rating.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.4")
+                .HasAnnotation("ProductVersion", "8.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -129,14 +129,11 @@ namespace Rating.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("GuestId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("HotelId")
                         .HasColumnType("INTEGER")
                         .HasColumnName("HotelId");
-
-                    b.Property<int?>("HotelRatingCollectionId")
-                        .HasColumnType("int");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
@@ -144,11 +141,14 @@ namespace Rating.Infrastructure.Migrations
                     b.Property<DateTime?>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("RatingCollectionId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("GuestId");
 
-                    b.HasIndex("HotelRatingCollectionId");
+                    b.HasIndex("RatingCollectionId");
 
                     b.ToTable("HotelReview", (string)null);
                 });
@@ -156,14 +156,17 @@ namespace Rating.Infrastructure.Migrations
             modelBuilder.Entity("Rating.Domain.Entities.HotelReview", b =>
                 {
                     b.HasOne("Rating.Domain.Entities.Guest", "HotelGuest")
-                        .WithMany()
+                        .WithMany("hotelReviews")
                         .HasForeignKey("GuestId")
+                        .HasPrincipalKey("GuestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Rating.Domain.Aggregates.HotelRatingCollection", null)
+                    b.HasOne("Rating.Domain.Aggregates.HotelRatingCollection", "RatingCollection")
                         .WithMany("Reviews")
-                        .HasForeignKey("HotelRatingCollectionId");
+                        .HasForeignKey("RatingCollectionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.OwnsOne("Rating.Domain.ValueObjects.RatingInformation", "HotelRating", b1 =>
                         {
@@ -192,11 +195,18 @@ namespace Rating.Infrastructure.Migrations
 
                     b.Navigation("HotelRating")
                         .IsRequired();
+
+                    b.Navigation("RatingCollection");
                 });
 
             modelBuilder.Entity("Rating.Domain.Aggregates.HotelRatingCollection", b =>
                 {
                     b.Navigation("Reviews");
+                });
+
+            modelBuilder.Entity("Rating.Domain.Entities.Guest", b =>
+                {
+                    b.Navigation("hotelReviews");
                 });
 #pragma warning restore 612, 618
         }
