@@ -485,4 +485,5 @@ $RECYCLE.BIN/
 
 hotels/obj
 hotels/.vs
+./hotels/.vs
 .vs

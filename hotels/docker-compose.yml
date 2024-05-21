@@ -13,7 +13,7 @@ services:
   pghoteladmin:
     image: dpage/pgadmin4
 
-  mssql:
+  mssql_identity:
     image: mcr.microsoft.com/mssql/server:2022-latest
 
   ratingdb:
@@ -71,8 +71,8 @@ volumes:
   postgres_data:
   pgadmin_data:
   mongo_data:
-  mssql_data:
   ratingdb_data:
+  mssql_data_identity:
 
 
 

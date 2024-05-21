@@ -3,7 +3,6 @@ using Rating.Infrastructure;
 using Rating.Application;
 using Rating_API.Extensions;
 using Rating.Infrastructure.Persistence;
-using Rating.Infrastructure.Persistence.EntityConfigurations;
 
 var builder = WebApplication.CreateBuilder(args);
 

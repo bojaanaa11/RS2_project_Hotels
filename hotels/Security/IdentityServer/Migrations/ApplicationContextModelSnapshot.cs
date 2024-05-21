@@ -120,6 +120,20 @@ namespace IdentityServer.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "bf166360-f359-4c00-a7dc-46222f211aa0",
+                            Name = "Guest",
+                            NormalizedName = "GUEST"
+                        },
+                        new
+                        {
+                            Id = "f355bed9-5d26-4b27-9f00-e9238b1caf8d",
+                            Name = "Hotel",
+                            NormalizedName = "HOTEL"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
