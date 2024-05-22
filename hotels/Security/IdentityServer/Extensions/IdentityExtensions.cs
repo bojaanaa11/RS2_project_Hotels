@@ -2,6 +2,7 @@
 using IdentityServer.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace IdentityServer.Extensions
 {
@@ -34,6 +35,13 @@ namespace IdentityServer.Extensions
             })
                 .AddEntityFrameworkStores<ApplicationContext>()
                 .AddDefaultTokenProviders();
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureObjectMapping(this IServiceCollection services)
+        {
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             return services;
         }
