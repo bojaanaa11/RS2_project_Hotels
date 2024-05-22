@@ -13,6 +13,7 @@ builder.Services.AddAuthentication();
 
 builder.Services.ConfigurePersistence(builder.Configuration);
 builder.Services.ConfigureIdentity();
+builder.Services.ConfigureObjectMapping();
 
 var app = builder.Build();
 
