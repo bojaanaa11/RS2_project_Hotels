@@ -107,18 +107,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development 
       - ASPNETCORE_HTTP_PORTS=8080
     ports:
-      - "8006:8080"
-
-  checkinoutapi:
-    container_name: checkinoutapi
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_HTTP_PORTS=8080
-      - "DatabaseSettings:ConnectionString=Server=checkinoutdb;Port=5432;Database=CheckInOutDb;User Id=isidora;Password=271020;"
-    depends_on:
-      - checkinoutdb
-    ports:
-      - "8005:8080"
+      - "8006:8080" 
 
   reservations.grpc:
     container_name: reservationsgrpc
@@ -130,6 +119,19 @@ services:
       - reservationsdb
     ports:
       - "8007:8080"
+        
+  checkinoutapi:
+    container_name: checkinoutapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - "DatabaseSettings:ConnectionString=Server=checkinoutdb;Port=5432;Database=CheckInOutDb;User Id=isidora;Password=271020;"
+      - "GrpcSettings:UserReservationsUrl=http://reservations.grpc:8080"
+    depends_on:
+      - checkinoutdb
+      - reservations.grpc
+    ports:
+      - "8005:8080"
 
   identityserver:
     container_name: identityserver
