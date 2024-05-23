@@ -8,6 +8,8 @@ namespace Reservations.Common.Entities
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         public string UserId { get; set; }
+
+        public string HotelId { get; set; }
         public string RoomId { get; set; }
         public string BookingDateTime { get; set; }
         public string StartDateTime { get; set; }

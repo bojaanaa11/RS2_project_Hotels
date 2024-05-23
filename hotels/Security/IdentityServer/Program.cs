@@ -28,7 +28,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseRouting();
 
-// app.UseAuthentication();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
