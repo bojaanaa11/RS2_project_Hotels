@@ -18,6 +18,12 @@ namespace Reservations.Common.Repositories
             await _context.Reservations.InsertOneAsync(reservation);
         }
 
+        public async Task<bool> Delete()
+        {
+            var deleteResult = await _context.Reservations.DeleteManyAsync(r => true);
+            return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0; 
+        }
+
         public async Task<bool> DeleteReservation(string id)
         {
             var deleteResult = await _context.Reservations.DeleteOneAsync(r => (r.Id == id));

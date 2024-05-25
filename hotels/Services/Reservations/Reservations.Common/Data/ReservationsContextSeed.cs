@@ -21,8 +21,8 @@ namespace Reservations.Common.Data
                 new Reservation()
                 {
                     Id = "1CD87E5FADA714BB541B9375",
-                    HotelId = "1",
                     UserId = "1",
+                    HotelId = "1",
                     RoomId = "1",
                     BookingDateTime = "21/01/2022 21:00",
                     StartDateTime = "23/02/2022 07:00",
