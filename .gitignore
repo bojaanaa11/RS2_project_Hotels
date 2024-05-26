@@ -489,3 +489,5 @@ $RECYCLE.BIN/
 ./hotels/bin/*
 ./hotels/WebApps/HotelsSPA/node_modules/*
 ./hotels/WebApps/HotelsSPA/.vscode/*
+./hotels/obj/Docker/
+./hotels/obj/Docker/*
