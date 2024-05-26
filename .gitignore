@@ -483,7 +483,9 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 
-hotels/obj
-hotels/.vs
-./hotels/.vs
-.vs
+./hotels/.vs/*
+.vs/*
+./hotels/obj/*
+./hotels/bin/*
+./hotels/WebApps/HotelsSPA/node_modules/*
+./hotels/WebApps/HotelsSPA/.vscode/*
