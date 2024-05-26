@@ -10,6 +10,6 @@ namespace IdentityServer.Entities
 
         public string LastName { get; set; }
 
-
+        public List<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
     }
 }
