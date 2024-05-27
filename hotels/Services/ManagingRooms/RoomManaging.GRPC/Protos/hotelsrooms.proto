@@ -8,26 +8,45 @@ service HotelsRoomsProtoService {
 }
 
 message GetAllHotelsRequest {
+
 }
 
 message GetAllHotelsResponse {
 	message Hotel {
-		string Id = 1;
-		string Name = 2;
+		string id = 1;
+		string name = 2;
+        string address = 3;
+		string city = 4;
+		string country = 5;
+		repeated string fileImages = 6;
+		repeated Room rooms = 7;
 	}
 	repeated Hotel hotels = 1;
 }
 
+message Room {
+    string id = 1;
+		string hotelId = 2;
+		string roomNumber = 3;
+		bool status = 4;
+		double price = 5;
+		repeated string fileImages = 6;
+		string description = 7;
+}
+
 message GetAllRoomsRequest {
-	string Id = 1;
+	string hotelId = 1;
 }
 
 message GetAllRoomsResponse {
 	message Room {
-		string Id = 1;
-		bool Status = 2;
-		double Price = 3;
-        string Description = 4;
+		string id = 1;
+		string hotelId = 2;
+		string roomNumber = 3;
+		bool status = 4;
+		double price = 5;
+		repeated string fileImages = 6;
+		string description = 7;
 	}
 	repeated Room rooms = 1;
 }

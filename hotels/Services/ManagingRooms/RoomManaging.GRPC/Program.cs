@@ -1,9 +1,11 @@
+using RoomManaging.Common.Repositories;
 using RoomManaging.GRPC.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddGrpc();
+builder.Services.AddScoped<IRoomManagingRepository, IRoomManagingRepository>();
 
 var app = builder.Build();
 
