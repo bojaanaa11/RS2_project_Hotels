@@ -16,6 +16,7 @@ builder.Services.ConfigureIdentity();
 builder.Services.ConfigureObjectMapping();
 builder.Services.ConfigureAuthenticationService();
 builder.Services.ConfigureJWT(builder.Configuration);
+builder.Services.ConfigureCORS();
 
 var app = builder.Build();
 
@@ -26,6 +27,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("CorsPolicy");
 app.UseRouting();
 
 app.UseAuthentication();

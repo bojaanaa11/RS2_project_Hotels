@@ -85,5 +85,17 @@ namespace IdentityServer.Extensions
 
             return services;
         }
+
+        public static IServiceCollection ConfigureCORS(this IServiceCollection services)
+        {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder => 
+                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
+
+            return services;
+        }
+
     }
 }
