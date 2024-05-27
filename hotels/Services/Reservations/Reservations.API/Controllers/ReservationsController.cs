@@ -40,9 +40,16 @@ namespace Reservations.API.Controllers
             return CreatedAtRoute("GetReservation", new { id = reservation.Id }, reservation);
         }
 
+        [HttpDelete("[action]")]
+        [ProducesResponseType(typeof(Reservation), StatusCodes.Status200OK)]
+        public async Task<IActionResult> DeleteReservation()
+        {
+            return Ok(await _repository.Delete());
+        }
+
         [HttpDelete("{id}", Name = "DeleteReservation")]
         [ProducesResponseType(typeof(Reservation), StatusCodes.Status200OK)]
-        public async Task<IActionResult> DeleteProductById(string id)
+        public async Task<IActionResult> DeleteReservationById(string id)
         {
             return Ok(await _repository.DeleteReservation(id));
         }

@@ -2,11 +2,11 @@ namespace CheckInOut.API.DTOs;
 
 public class BaseHotelStayDTO
 {
-    public string GuestName { get; set; }
+    public string GuestId { get; set; }
     
-    public int RoomNumber { get; set; }
+    public string RoomId { get; set; }
     
-    public DateTime CheckInDate { get; set; }
+    public string StartDateTime { get; set; }
 
-    public DateTime? CheckOutDate { get; set; }
+    public string? EndDateTime { get; set; }
 }

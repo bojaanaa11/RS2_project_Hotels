@@ -13,14 +13,11 @@ services:
   pghoteladmin:
     image: dpage/pgadmin4
 
-  mssql_rating:
+  mssql_identity:
     image: mcr.microsoft.com/mssql/server:2022-latest
 
-  authenticationauthorization.api:
-    image: ${DOCKER_REGISTRY-}authenticationauthorizationapi
-    build:
-      context: .
-      dockerfile: Services/AuthenticationAuthorization/AuthenticationAuthorization.API/Dockerfile
+  ratingdb:
+    image: mcr.microsoft.com/mssql/server:2022-latest
 
   payment.api:
     image: ${DOCKER_REGISTRY-}paymentapi
@@ -64,11 +61,19 @@ services:
       context: .
       dockerfile: Services/Reservations/Reservations.GRPC/Dockerfile
 
+  identityserver:
+    image: ${DOCKER_REGISTRY-}identityserver
+    build:
+      context: .
+      dockerfile: Security/IdentityServer/Dockerfile
+
 volumes:
   postgres_data:
   pgadmin_data:
   mongo_data:
-  mssql_data:
+  ratingdb_data:
+  mssql_data_identity:
+
 
 
 

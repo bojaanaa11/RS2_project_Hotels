@@ -22,6 +22,7 @@ namespace Reservations.Common.Data
                 {
                     Id = "1CD87E5FADA714BB541B9375",
                     UserId = "1",
+                    HotelId = "1",
                     RoomId = "1",
                     BookingDateTime = "21/01/2022 21:00",
                     StartDateTime = "23/02/2022 07:00",
@@ -32,6 +33,7 @@ namespace Reservations.Common.Data
                 {
                     Id = "F49F0FFA07D06EB6F248A883",
                     UserId = "2",
+                    HotelId = "1",
                     RoomId = "2",
                     BookingDateTime = "21/01/2022 21:00",
                     StartDateTime = "23/02/2022 07:00",
@@ -42,6 +44,7 @@ namespace Reservations.Common.Data
                 {
                     Id = "58D15865E2E9F01C684F9D99",
                     UserId = "2",
+                    HotelId = "2",
                     RoomId = "2",
                     BookingDateTime = "21/01/2022 21:00",
                     StartDateTime = "23/02/2022 07:00",

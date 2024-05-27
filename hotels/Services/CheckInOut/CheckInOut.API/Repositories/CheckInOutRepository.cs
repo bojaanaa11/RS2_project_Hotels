@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -23,58 +24,58 @@ namespace CheckInOut.API.Repositories
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        async Task<bool> ICheckInOutRepository.CreateCheckInOut(HotelStayDTO StayDTO)
+        async Task<bool> ICheckInOutRepository.CreateCheckInOut(HotelStayDTO stayDto)
         {
-            using var connection = _context.GetConnection();
+            await using var connection = _context.GetConnection();
 
-            var stay=_mapper.Map<HotelStay>(StayDTO);
+            var stay=_mapper.Map<HotelStay>(stayDto);
             if(stay is null)
                 return false;
 
             var affected = await connection.ExecuteAsync(
-            "INSERT INTO HotelStay (ReservationId,GuestName,RoomNumber,CheckInDate,CheckOutDate) VALUES (@ReservationId,@GuestName,@RoomNumber,@CheckInDate,@CheckOutDate)",
-            new { ReservationId = stay.ReservationId,GuestName=stay.GuestName,RoomNumber=stay.RoomNumber,CheckInDate=stay.CheckInDate,CheckOutDate=stay.CheckOutDate});
-            _logger.LogInformation(affected+" "+stay.GuestName);
+            "INSERT INTO HotelStay (ReservationId,GuestId,RoomId,StartDateTime,EndDateTime) VALUES (@ReservationId,@GuestName,@RoomNumber,@CheckInDate,@CheckOutDate)",
+            new { ReservationId = stay.ReservationId,GuestName=stay.GuestId,RoomNumber=stay.RoomId,CheckInDate=stay.StartDateTime,CheckOutDate=stay.EndDateTime});
+            _logger.LogInformation(affected+" "+stay.GuestId);
             return affected != 0;
         }
 
-        async Task<bool> ICheckInOutRepository.DeleteCheckInOut(int ReservationId)
+        async Task<bool> ICheckInOutRepository.DeleteCheckInOut(string reservationId)
         {
-            using var connection = _context.GetConnection();
+            await using var connection = _context.GetConnection();
 
             var affected=await connection.ExecuteAsync("DELETE FROM HotelStay WHERE ReservationId=@id",
-                new {id=ReservationId});
+                new {id=reservationId});
             _logger.LogInformation(affected.ToString());
 
             return affected!=0;
         }
 
-        async Task<IEnumerable<HotelStayDTO>?> ICheckInOutRepository.GetCheckInOut(string GuestName)
+        async Task<IEnumerable<HotelStayDTO>?> ICheckInOutRepository.GetCheckInOut(string guestId)
         {
-            using var connection = _context.GetConnection();
+            await using var connection = _context.GetConnection();
 
-            var Stay =await connection.QueryAsync<HotelStay>("SELECT * FROM HotelStay WHERE GuestName = @name",
-                new { name = GuestName });
+            var stay =await connection.QueryAsync<HotelStay>("SELECT ReservationId, GuestId, RoomId, StartDateTime, EndDateTime FROM HotelStay WHERE GuestId = @name",
+                new { name = guestId });
         
-            var StayDTO=_mapper.Map<IEnumerable<HotelStayDTO>?>(Stay);
-            return StayDTO;
+            var stayDto=_mapper.Map<IEnumerable<HotelStayDTO>?>(stay);
+            return stayDto;
         }
 
-        async Task<bool> ICheckInOutRepository.SetCheckOutDate(int ReservationId,DateTime CheckOutDate)
+        async Task<bool> ICheckInOutRepository.SetCheckOutDate(string reservationId,string endDateTime)
         {
-            using var connection = _context.GetConnection();
-            var affected=await connection.ExecuteAsync("UPDATE HotelStay SET CheckOutDate=@date WHERE ReservationId=@id AND CheckInDate < @date",
-                new {id=ReservationId,date=CheckOutDate});
+            await using var connection = _context.GetConnection();
+            var affected=await connection.ExecuteAsync("UPDATE HotelStay SET EndDateTime=@date WHERE ReservationId=@id AND to_date(StartDateTime, 'DD/MM/YYYY') < to_date(@date, 'DD/MM/YYYY')",
+                new {id=reservationId,date=endDateTime});
             _logger.LogInformation(affected.ToString());
 
             return affected!=0;
         }
 
-        async Task<bool> ICheckInOutRepository.UpdateCheckInOut(HotelStayDTO Stay)
+        async Task<bool> ICheckInOutRepository.UpdateCheckInOut(HotelStayDTO stay)
         {
-            using var connection = _context.GetConnection();
-            var affected=await connection.ExecuteAsync("UPDATE HotelStay SET GuestName=@name, RoomNumber=@room, CheckInDate=@datein, CheckOutDate=@dateout WHERE ReservationId=@id",
-                new {id=Stay.ReservationId, name=Stay.GuestName, room=Stay.RoomNumber ,datein=Stay.CheckInDate,dateout=Stay.CheckOutDate});
+            await using var connection = _context.GetConnection();
+            var affected=await connection.ExecuteAsync("UPDATE HotelStay SET GuestId=@name, RoomId=@room, StartDateTime=@datein, EndDateTime=@dateout WHERE ReservationId=@id",
+                new {id=stay.ReservationId, name=stay.GuestId, room=stay.RoomId ,datein=stay.StartDateTime,dateout=stay.EndDateTime});
             _logger.LogInformation(affected.ToString());
 
             return affected!=0;

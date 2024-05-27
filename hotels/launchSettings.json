@@ -10,7 +10,8 @@
         "reservations.api": "StartDebugging",
         "roommanaging.api": "StartDebugging",
         "roommanaging.grpc": "StartDebugging",
-        "reservations.grpc": "StartDebugging"
+        "reservations.grpc": "StartDebugging",
+        "identityserver": "StartDebugging"
       }
     }
   }

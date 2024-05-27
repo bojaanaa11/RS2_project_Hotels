@@ -6,7 +6,10 @@ using AutoMapper;
 using CheckInOut.API.DTOs;
 using CheckInOut.API.Entities;
 using CheckInOut.API.Repositories;
+using Grpc.Core;
 using Microsoft.AspNetCore.Mvc;
+using Rating_API.GrpcService;
+using Reservations.GRPC.Protos;
 
 namespace CheckInOut.API.Controllers
 {
@@ -16,19 +19,23 @@ namespace CheckInOut.API.Controllers
     {
         private readonly ICheckInOutRepository _checkInOutRepository;
         private readonly IMapper _mapper;
+        private readonly ILogger<CheckInOutController> _logger;
+        private readonly UsersReservationsGrpcService _usersReservation;
 
-        public CheckInOutController(ICheckInOutRepository checkInOutRepository, IMapper mapper)
+        public CheckInOutController(ICheckInOutRepository checkInOutRepository, IMapper mapper,ILogger<CheckInOutController> logger,UsersReservationsGrpcService usersReservation)
         {
             _checkInOutRepository = checkInOutRepository ?? throw new ArgumentNullException(nameof(checkInOutRepository));
-            _mapper = mapper ?? throw new ArgumentException(nameof(mapper));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _usersReservation = usersReservation ?? throw new ArgumentNullException((nameof(usersReservation)));
         }
 
-        [HttpGet("HotelStayByGuestName")]
+        [HttpGet("HotelStayByGuestId")]
         [ProducesResponseType(typeof(IEnumerable<HotelStayDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<IEnumerable<HotelStayDTO>>> GetHotelStay(string GuestName)
+        public async Task<ActionResult<IEnumerable<HotelStayDTO>>> GetHotelStay(string GuestId)
         {
-            var stay = await _checkInOutRepository.GetCheckInOut(GuestName);
+            var stay = await _checkInOutRepository.GetCheckInOut(GuestId);
             if (stay is null)
                 return NotFound();
             
@@ -36,23 +43,69 @@ namespace CheckInOut.API.Controllers
             return Ok(stayDTO);
         }
 
+        [HttpGet("GetUserReservations")]
+        [ProducesResponseType(typeof(GetReservationResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetUserReservations(string userId)
+        {
+            try
+            {
+                var reservations = await _usersReservation.GetReservation(userId);
+                return Ok(reservations);
+            }
+            catch (RpcException e)
+            {
+                _logger.LogInformation("Error while retrieving reservations for guest {userId} : {message}",userId,  e.Message);
+                return StatusCode(500, "An error occurred while retrieving reservations.");
+            }
+        }
+
         [HttpPut]
         [ProducesResponseType(typeof(void), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(void),StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateHotelStay([FromBody] HotelStayDTO Stay)
+        public async Task<IActionResult> CreateHotelStay(string userId, string reservationId)
         {
-            bool created = await _checkInOutRepository.CreateCheckInOut(Stay);
+            GetReservationResponse reservations = null;
+            try
+            {
+                reservations = await _usersReservation.GetReservation(userId);
+                
+            }
+            catch (RpcException e)
+            {
+                _logger.LogInformation("Error while retrieving reservations for guest {userId} : {message}",userId,  e.Message);
+                return StatusCode(500, "An error occurred while retrieving reservations.");
+            }
 
-            if(created)
+            var reservation = reservations.Reservations.First(r => r.UserId == userId && r.Id==reservationId);
+
+            var stay = new HotelStayDTO();
+            stay.ReservationId = reservation.Id;
+            stay.GuestId = reservation.UserId;
+            stay.RoomId = reservation.RoomId;
+            stay.StartDateTime = reservation.StartDateTime;
+            stay.EndDateTime = null;
+            
+            
+            
+            bool created = await _checkInOutRepository.CreateCheckInOut(stay);
+
+            if (created)
+            {
+                _logger.LogInformation("Checking in successfull for this guest: "+stay.ReservationId+" "+stay.RoomId+" "+stay.StartDateTime);
                 return Created();
-            else 
+            }
+            else
+            {
+                _logger.LogInformation("Checking in not successfull for this guest: "+stay.ReservationId+" "+stay.RoomId+" "+stay.StartDateTime);
                 return BadRequest();
+            }
         }
 
         [HttpDelete("DeleteHotelStay")]
         [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void),StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> DeleteHotelStay(int ReservationId)
+        public async Task<IActionResult> DeleteHotelStay(string ReservationId)
         {
             bool deleted = await _checkInOutRepository.DeleteCheckInOut(ReservationId);
 
@@ -65,9 +118,9 @@ namespace CheckInOut.API.Controllers
         [HttpPut("CheckOutDate")]
         [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void),StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> SetCheckOutDate(int ReservationId, DateTime CheckOutDate)
+        public async Task<IActionResult> SetCheckOutDate(string ReservationId, String EndDateTime)
         {
-            bool updated = await _checkInOutRepository.SetCheckOutDate(ReservationId,CheckOutDate);
+            bool updated = await _checkInOutRepository.SetCheckOutDate(ReservationId,EndDateTime);
 
             if(updated)
                 return Ok();

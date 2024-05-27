@@ -1,5 +1,7 @@
 using Reservations.Common.Data;
+using Reservations.Common.Entities;
 using Reservations.Common.Repositories;
+using Reservations.GRPC.Protos;
 using Reservations.GRPC.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,10 @@ builder.Services.AddGrpc();
 
 builder.Services.AddScoped<IReservationsContext, ReservationsContext>();
 builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
+
+builder.Services.AddAutoMapper(configuration => {
+    configuration.CreateMap<Reservation, GetReservationResponse.Types.Reservation>().ReverseMap();
+});
 
 var app = builder.Build();
 

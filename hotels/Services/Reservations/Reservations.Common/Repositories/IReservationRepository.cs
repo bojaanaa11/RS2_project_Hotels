@@ -13,5 +13,7 @@ namespace Reservations.Common.Repositories
         Task CreateReservation(Reservation reservation);
 
         Task<bool> DeleteReservation(string id);
+
+        Task<bool> Delete();
     }
 }
