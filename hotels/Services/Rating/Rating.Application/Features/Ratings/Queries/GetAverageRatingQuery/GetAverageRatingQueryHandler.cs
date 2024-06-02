@@ -23,7 +23,7 @@ namespace Rating.Application.Features.Ratings.Queries.GetAverageRatingQuery
         
         public async Task<decimal> Handle(GetAverageRatingQuery request, CancellationToken cancellationToken)
         {
-            var result = await _repository.GetAverageRating(request.HotelName);
+            var result = await _repository.GetAverageRating(request.HotelId);
             return result;
         }
     }

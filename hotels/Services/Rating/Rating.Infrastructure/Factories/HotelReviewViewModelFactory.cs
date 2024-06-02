@@ -18,8 +18,7 @@ namespace Rating.Infrastructure.Factories
             {
                 Id=hotelReview.Id,
                 HotelId=hotelReview.HotelId,
-                GuestId=hotelReview.GuestId,  
-                //HotelGuest=hotelReview.HotelGuest,
+                GuestId=hotelReview.GuestId,
                 Rating=hotelReview.HotelRating.Rating,
                 Comment=hotelReview.HotelRating.Comment,
                 RatingDate=hotelReview.HotelRating.RatingDate

@@ -9,6 +9,6 @@ namespace Rating.Application.Contracts.Factories
 {
     public interface IHotelRatingCollectionViewModelFactory
     {
-        HotelRatingCollectionViewModel CreateHotelRatingCollectionViewModel (HotelRatingCollection ratings);
+        //HotelRatingCollectionViewModel CreateHotelRatingCollectionViewModel (HotelRatingCollection ratings);
     }
 }

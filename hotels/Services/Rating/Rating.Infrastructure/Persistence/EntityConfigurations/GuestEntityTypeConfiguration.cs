@@ -1,9 +1,10 @@
-using System;
+/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Rating.Domain.Aggregates;
 using Rating.Domain.Entities;
 
 namespace Rating.Infrastructure.Persistence.EntityConfigurations
@@ -16,25 +17,22 @@ namespace Rating.Infrastructure.Persistence.EntityConfigurations
             builder.HasKey(o => o.Id);
             builder.Property(o => o.Id).UseHiLo("guestseq");
 
-            builder.Property<int>("GuestId")
-                .HasColumnType("INTEGER")
+            builder.Property<string>("GuestId")
+                .HasColumnType("VARCHAR(100)")
                 .HasColumnName("GuestId")
                 .IsRequired();
-
+            
+            builder.HasIndex(g => g.GuestId).IsUnique();
+            
             builder.Property<string>("GuestName")
                 .HasColumnType("VARCHAR(50)")
                 .HasColumnName("GuestName")
-                .IsRequired();
-            
+                .IsRequired(false);
+
             builder.Property<string>("EmailAddress")
                 .HasColumnType("VARCHAR(50)")
                 .HasColumnName("EmailAddress")
-                .IsRequired();
-
-            builder.Property<int>("ReservationId")
-                .HasColumnType("INTEGER")
-                .HasColumnName("ReservationId")
-                .IsRequired();
+                .IsRequired(false);
         }
     }
-}
+}*/

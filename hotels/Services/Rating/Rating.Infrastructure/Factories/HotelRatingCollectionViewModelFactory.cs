@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,12 +15,7 @@ namespace Rating.Infrastructure.Factories
 
         public HotelRatingCollectionViewModel CreateHotelRatingCollectionViewModel(HotelRatingCollection ratings)
         {
-            var viewModel = new HotelRatingCollectionViewModel
-            {
-                Id = ratings.Id,
-                HotelId = ratings.HotelId,
-                HotelName = ratings.HotelName
-            };
+            var viewModel = new HotelRatingCollectionViewModel(ratings.Id, ratings.HotelId,null);
 
             var reviewList = new List<HotelReviewViewModel>();
 
@@ -34,4 +29,4 @@ namespace Rating.Infrastructure.Factories
                 
         }
     }
-}
+}*/

@@ -11,18 +11,15 @@ namespace Rating.Application.Features.Ratings.Commands.CreateReview
 {
     public class CreateReviewCommandHandler(IHotelReviewFactory factory,
         IRatingRepository repository,
-        ILogger<CreateReviewCommandHandler> logger) : IRequestHandler<CreateReviewCommand, int>
+        ILogger<CreateReviewCommandHandler> logger) : IRequestHandler<CreateReviewCommand, bool>
     {
-        private readonly IHotelReviewFactory _factory = factory;
-        private readonly IRatingRepository _repository = repository;
-        private readonly ILogger<CreateReviewCommandHandler> _logger = logger;
-        public async Task<int> Handle(CreateReviewCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(CreateReviewCommand request, CancellationToken cancellationToken)
         {
-            await _repository.AddReviewToCollection(request.HotelId,request);
+            var success=await repository.AddReviewToCollection(request.HotelId,request);
 
-            _logger.LogInformation("Review is successfully added to collection.");
+            logger.LogInformation("Review is successfully added to collection.");
                        
-            return request.HotelId;
+            return success;
         }
     }
 }

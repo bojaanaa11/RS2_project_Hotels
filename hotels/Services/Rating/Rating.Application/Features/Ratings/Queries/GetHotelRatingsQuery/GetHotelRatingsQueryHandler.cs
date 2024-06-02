@@ -24,7 +24,7 @@ namespace Rating.Application.Features.Ratings.Queries.GetHotelRatingsQuery
         }
         public async Task<List<HotelReviewViewModel>> Handle(GetHotelRatingsQuery request, CancellationToken cancellationToken)
         {
-            var ratings = await _repository.GetRatingsByHotel(request.HotelName);
+            var ratings = await _repository.GetRatingsByHotel(request.HotelId);
             var result = ratings.Select(rating => _factory.CreateHotelReviewViewModel(rating)).ToList();
             return result;
         }

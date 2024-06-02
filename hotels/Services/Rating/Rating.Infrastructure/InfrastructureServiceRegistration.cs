@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Rating.Application.Contracts.Factories;
 using Rating.Application.Contracts.Infrastructure;
 using Rating.Application.Contracts.Persistence;
+using Rating.Application.Features.Ratings.Queries.ViewModels;
 using Rating.Application.Models;
 using Rating.Infrastructure.Factories;
 using Rating.Infrastructure.Mail;
@@ -26,12 +27,15 @@ namespace Rating.Infrastructure
 
             services.AddScoped(typeof(IAsyncRepository<>), typeof(RepositoryBase<>));
             services.AddScoped<IRatingRepository, RatingRepository>();
+            services.AddScoped<IRatingProcessRepository, RatingProcessRepository>();
 
-            services.AddScoped<IHotelRatingCollectionFactory, HotelRatingCollectionFactory>();
-            services.AddScoped<IHotelRatingCollectionViewModelFactory, HotelRatingCollectionViewModelFactory>();
+            //services.AddScoped<IHotelRatingCollectionFactory, HotelRatingCollectionFactory>();
+            //services.AddScoped<IHotelRatingCollectionViewModelFactory, HotelRatingCollectionViewModelFactory>();
             services.AddScoped<IHotelReviewFactory,HotelReviewFactory>();
             services.AddScoped<IHotelReviewViewModelFactory,HotelReviewViewModelFactory>();
-
+            services.AddScoped<IRatingProcessFactory, RatingProcessFactory>();
+            services.AddScoped<IRatingProcessViewModelFactory, RatingProcessViewModelFactory>();
+            
             services.Configure<EmailSettings>(c =>
             {
                 var config = configuration.GetSection("EmailSettings");

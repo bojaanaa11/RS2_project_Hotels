@@ -13,9 +13,10 @@ namespace Rating.Application.Features.Ratings.Queries.ViewModels
         //entitybase
         public int Id { get; set; }
         //hotel
-        public int HotelId { get; set; }
+        public string HotelId { get; set; }
         //guest
-        public int GuestId { get; set; }
+        public string GuestId { get; set; }
+        public string ReservationId { get; set; }
         //public Guest HotelGuest { get; set; }
         //public HotelRatingCollection RatingCollection {  get; set;  }  
         

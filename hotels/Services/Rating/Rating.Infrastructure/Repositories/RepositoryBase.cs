@@ -11,7 +11,7 @@ using Rating.Infrastructure.Persistence;
 
 namespace Rating.Infrastructure.Repositories
 {
-    public class RepositoryBase<T> : IAsyncRepository<T> where T : AggregateRoot
+    public class RepositoryBase<T> : IAsyncRepository<T> where T : class
     {
         protected readonly RatingContext _dbContext;
 

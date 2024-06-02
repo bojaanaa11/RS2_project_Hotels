@@ -12,7 +12,7 @@ using Rating.Infrastructure.Persistence;
 namespace Rating.Infrastructure.Migrations
 {
     [DbContext(typeof(RatingContext))]
-    [Migration("20240519161353_InitialCreate")]
+    [Migration("20240530212443_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -25,22 +25,19 @@ namespace Rating.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.HasSequence("guestseq")
-                .IncrementsBy(10);
-
-            modelBuilder.HasSequence("hotelratingcollectionseq")
-                .IncrementsBy(10);
-
             modelBuilder.HasSequence("hotelreviewseq")
                 .IncrementsBy(10);
 
-            modelBuilder.Entity("Rating.Domain.Aggregates.HotelRatingCollection", b =>
+            modelBuilder.HasSequence("ratingprocessseq")
+                .IncrementsBy(10);
+
+            modelBuilder.Entity("Rating.Domain.Aggregates.RatingProcess", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseHiLo(b.Property<int>("Id"), "hotelratingcollectionseq");
+                    SqlServerPropertyBuilderExtensions.UseHiLo(b.Property<int>("Id"), "ratingprocessseq");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -49,14 +46,13 @@ namespace Rating.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("HotelId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("HotelId");
-
-                    b.Property<string>("HotelName")
+                    b.Property<string>("GuestId")
                         .IsRequired()
-                        .HasColumnType("VARCHAR(50)")
-                        .HasColumnName("HotelName");
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.Property<string>("HotelId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
@@ -64,53 +60,22 @@ namespace Rating.Infrastructure.Migrations
                     b.Property<DateTime?>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("HotelRatingCollection", (string)null);
-                });
-
-            modelBuilder.Entity("Rating.Domain.Entities.Guest", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseHiLo(b.Property<int>("Id"), "guestseq");
-
-                    b.Property<string>("CreatedBy")
+                    b.Property<string>("ReservationId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("EmailAddress")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(50)")
-                        .HasColumnName("EmailAddress");
-
-                    b.Property<int>("GuestId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("GuestId");
-
-                    b.Property<string>("GuestName")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(50)")
-                        .HasColumnName("GuestName");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("LastModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ReservationId")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("VARCHAR(100)")
                         .HasColumnName("ReservationId");
 
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(100)")
+                        .HasColumnName("Status");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Guest", (string)null);
+                    b.HasIndex("ReservationId")
+                        .IsUnique();
+
+                    b.ToTable("RatingProcess", (string)null);
                 });
 
             modelBuilder.Entity("Rating.Domain.Entities.HotelReview", b =>
@@ -128,11 +93,13 @@ namespace Rating.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("GuestId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("GuestId")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(100)");
 
-                    b.Property<int>("HotelId")
-                        .HasColumnType("INTEGER")
+                    b.Property<string>("HotelId")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(100)")
                         .HasColumnName("HotelId");
 
                     b.Property<string>("LastModifiedBy")
@@ -141,30 +108,24 @@ namespace Rating.Infrastructure.Migrations
                     b.Property<DateTime?>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("RatingCollectionId")
-                        .HasColumnType("int");
+                    b.Property<string>("ReservationId")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(100)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GuestId");
-
-                    b.HasIndex("RatingCollectionId");
+                    b.HasIndex("GuestId", "ReservationId")
+                        .IsUnique();
 
                     b.ToTable("HotelReview", (string)null);
                 });
 
             modelBuilder.Entity("Rating.Domain.Entities.HotelReview", b =>
                 {
-                    b.HasOne("Rating.Domain.Entities.Guest", "HotelGuest")
-                        .WithMany("hotelReviews")
-                        .HasForeignKey("GuestId")
-                        .HasPrincipalKey("GuestId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Rating.Domain.Aggregates.HotelRatingCollection", "RatingCollection")
-                        .WithMany("Reviews")
-                        .HasForeignKey("RatingCollectionId")
+                    b.HasOne("Rating.Domain.Aggregates.RatingProcess", "RatingProcess")
+                        .WithOne("Review")
+                        .HasForeignKey("Rating.Domain.Entities.HotelReview", "GuestId", "ReservationId")
+                        .HasPrincipalKey("Rating.Domain.Aggregates.RatingProcess", "GuestId", "ReservationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -191,22 +152,15 @@ namespace Rating.Infrastructure.Migrations
                                 .HasForeignKey("HotelReviewId");
                         });
 
-                    b.Navigation("HotelGuest");
-
                     b.Navigation("HotelRating")
                         .IsRequired();
 
-                    b.Navigation("RatingCollection");
+                    b.Navigation("RatingProcess");
                 });
 
-            modelBuilder.Entity("Rating.Domain.Aggregates.HotelRatingCollection", b =>
+            modelBuilder.Entity("Rating.Domain.Aggregates.RatingProcess", b =>
                 {
-                    b.Navigation("Reviews");
-                });
-
-            modelBuilder.Entity("Rating.Domain.Entities.Guest", b =>
-                {
-                    b.Navigation("hotelReviews");
+                    b.Navigation("Review");
                 });
 #pragma warning restore 612, 618
         }

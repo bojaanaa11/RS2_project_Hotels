@@ -76,7 +76,9 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - "ConnectionStrings:RatingConnectionString=Server=ratingdb;Database=RatingDb;User Id=sa;Password=Passw0rd;TrustServerCertificate=True;Encrypt=False;"
+      - "EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672"
     depends_on:
+      - rabbitmq
       - ratingdb
     ports:
       - "8002:8080"
@@ -127,7 +129,9 @@ services:
       - ASPNETCORE_HTTP_PORTS=8080
       - "DatabaseSettings:ConnectionString=Server=checkinoutdb;Port=5432;Database=CheckInOutDb;User Id=isidora;Password=271020;"
       - "GrpcSettings:UserReservationsUrl=http://reservations.grpc:8080"
+      - "EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672"
     depends_on:
+      - rabbitmq
       - checkinoutdb
       - reservations.grpc
     ports:
@@ -143,4 +147,10 @@ services:
       - mssql_identity
     ports:
       - "8000:8080"
-
+  
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"

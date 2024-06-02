@@ -13,6 +13,9 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="MassTransit" Version="8.2.3-develop.1831" />
+    <PackageReference Include="MassTransit.AspNetCore" Version="7.3.1" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.3-develop.1831" />
     <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.5">
@@ -28,6 +31,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Rating.Application\Rating.Application.csproj" />
     <ProjectReference Include="..\Rating.Infrastructure\Rating.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\Common\EventBus.Messages\EventBus.Messages.csproj" />
   </ItemGroup>
 
 </Project>

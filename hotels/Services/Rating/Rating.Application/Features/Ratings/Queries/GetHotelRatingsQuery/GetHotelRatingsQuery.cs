@@ -9,10 +9,10 @@ namespace Rating.Application.Features.Ratings.Queries.GetHotelRatingsQuery
 {
     public class GetHotelRatingsQuery : IRequest<List<HotelReviewViewModel>>
     {
-        public string HotelName { get; set; }
+        public string HotelId { get; set; }
 
-        public GetHotelRatingsQuery(string hotelName){
-            HotelName = hotelName ?? throw new ArgumentNullException(nameof(hotelName));
+        public GetHotelRatingsQuery(string hotelId){
+            HotelId = hotelId?? throw new ArgumentNullException(nameof(hotelId));
         }
     }
 }

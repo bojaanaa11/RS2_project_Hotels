@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Update.Internal;
+using Microsoft.IdentityModel.Tokens;
 using Rating.Application.Contracts.Persistence;
 using Rating.Application.Features.Ratings.Commands.CreateReview;
+using Rating.Application.Features.Ratings.Queries.ViewModels;
 using Rating.Domain.Aggregates;
 using Rating.Domain.Entities;
 using Rating.Infrastructure.Persistence;
@@ -13,50 +15,58 @@ using Rating.Infrastructure.Persistence.EntityConfigurations;
 
 namespace Rating.Infrastructure.Repositories
 {
-    public class RatingRepository : RepositoryBase<HotelRatingCollection>, IRatingRepository
+    public class RatingRepository : RepositoryBase<HotelReview>, IRatingRepository
     {
         public RatingRepository(RatingContext dbContext) : base(dbContext)
         {
         }
 
-        public async Task AddReviewToCollection(int hotelId, CreateReviewCommand hotelReview)
+        public async Task<bool> AddReviewToCollection(string hotelId, CreateReviewCommand hotelReview)
         {
-            HotelRatingCollection? hotel = await _dbContext.FindAsync<HotelRatingCollection>(hotelId);
-            if(hotel == null){
-                return;
-            } else {
-                hotel.AddRating(hotelReview.HotelGuest.GuestId,
-                    hotelReview.HotelGuest.GuestName,
-                    hotelReview.HotelGuest.EmailAddress,
-                    hotelReview.HotelGuest.ReservationId,
-                    hotelReview.HotelRating.Rating,
-                    hotelReview.HotelRating.Comment
-                    );
-            }
-            
+            var ratingprocesses = _dbContext.RatingProcesses
+                .Where(t => t.GuestId == hotelReview.GuestId && t.ReservationId == hotelReview.ReservationId && t.Status == "Pending")
+                .ToListAsync();
+
+            if (ratingprocesses.Result.IsNullOrEmpty())
+                return false;
+
+            var review = new HotelReview(hotelId, hotelReview.GuestId, hotelReview.ReservationId,
+                ratingprocesses.Result[0], hotelReview.HotelRating);
+            await _dbContext.Ratings.AddAsync(review);
+            ratingprocesses.Result[0].Status = "Rated";
             await _dbContext.SaveChangesAsync();
+            return true;
         }
 
-        public async Task<IReadOnlyCollection<HotelReview>> GetRatingsByHotel(string hotelName)
+        public async Task<IReadOnlyCollection<HotelReview>> GetRatingsByHotel(string hotelId)
         {
             var result =await _dbContext.Ratings
-                .Where(o => o.HotelName == hotelName)
-                .SelectMany(o => o.Reviews)
+                .Where(o => o.HotelId == hotelId)
                 .ToListAsync();
 
 
             return result;
         }
 
-        public async Task<decimal> GetAverageRating(string hotelName)
+        public async Task<decimal> GetAverageRating(string hotelId)
         {
-            var result = await _dbContext.Ratings
-                .Where(o => o.HotelName == hotelName)
-                .SelectMany(o => o.Reviews)
-                .AverageAsync(o => o.HotelRating.Rating);
+            try
+            {
+                var result = await _dbContext.Ratings
+                    .Where(o => o.HotelId == hotelId)
+                    .AverageAsync(o => o.HotelRating.Rating);
+                return (decimal)result;
+            }
+            catch (InvalidOperationException e)
+            {
+                return (decimal)0.0;
+            }
+        }
 
-            return (decimal)result;
-
+        public async Task<bool> DeleteHotelReview(string requestGuestId, string requestReservationId)
+        {
+            var res = await _dbContext.Ratings.Where(o => o.GuestId==requestGuestId && o.ReservationId==requestReservationId).ExecuteDeleteAsync();
+            return res != 0;
         }
     }
 }

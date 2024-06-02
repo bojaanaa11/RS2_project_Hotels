@@ -12,15 +12,14 @@ namespace Rating.Infrastructure.Factories
     public class HotelReviewFactory : IHotelReviewFactory
     {
         public HotelReview CreateHotelReview(CreateReviewCommand command)
-        {            
+        {
             var hotelReview = new HotelReview
             (
                 command.HotelId,
-                command.GuestId                
-            ){
-                HotelGuest=command.HotelGuest,
-                HotelRating=command.HotelRating
-            };
+                command.GuestId,
+                command.ReservationId
+            );
+            hotelReview.SetRating(command.HotelRating);
 
             return hotelReview;
         }

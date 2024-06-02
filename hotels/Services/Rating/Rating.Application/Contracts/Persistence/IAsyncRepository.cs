@@ -7,7 +7,7 @@ using Rating.Domain.Common;
 
 namespace Rating.Application.Contracts.Persistence
 {
-    public interface IAsyncRepository<T> where T: AggregateRoot
+    public interface IAsyncRepository<T>
     {
         //Svaki repo bi trebao da impelemntira ovaj interfejs
         Task<IReadOnlyList<T>> GetAllAsync();

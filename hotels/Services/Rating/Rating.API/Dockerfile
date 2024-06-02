@@ -11,6 +11,7 @@ WORKDIR /src
 COPY ["Services/Rating/Rating.API/Rating.API.csproj", "Services/Rating/Rating.API/"]
 COPY ["Services/Rating/Rating.Application/Rating.Application.csproj", "Services/Rating/Rating.Application/"]
 COPY ["Services/Rating/Rating.Domain/Rating.Domain.csproj", "Services/Rating/Rating.Domain/"]
+COPY ["Common/EventBus.Messages/EventBus.Messages.csproj", "Common/EventBus.Messages/"]
 COPY ["Services/Rating/Rating.Infrastructure/Rating.Infrastructure.csproj", "Services/Rating/Rating.Infrastructure/"]
 RUN dotnet restore "./Services/Rating/Rating.API/./Rating.API.csproj"
 COPY . .

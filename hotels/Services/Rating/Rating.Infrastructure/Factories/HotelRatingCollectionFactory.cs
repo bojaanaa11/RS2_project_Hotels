@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,8 +14,7 @@ namespace Rating.Infrastructure.Factories
         {
             var hotelRatingCollection = new HotelRatingCollection
                 (
-                    command.HotelId,
-                    command.HotelName
+                    command.HotelId
                 );
 
             foreach (var review in command.Reviews)
@@ -26,4 +25,4 @@ namespace Rating.Infrastructure.Factories
             return hotelRatingCollection;
         }
     }
-}
+}*/

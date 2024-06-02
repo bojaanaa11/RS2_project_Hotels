@@ -10,12 +10,12 @@ namespace Rating.Application.Features.Ratings.Commands.DTOs
     public class HotelReviewDTO
     {
         //hotel
-        public int HotelId { get; set; }
+        public string HotelId { get; set; }
         //guest
-        public int GuestId { get; set; } 
-        public string GuestName { get; set; } 
-        public string EmailAddress { get; set; }
-        public int ReservationId {  get; set;  } 
+        public string GuestId { get; set; } 
+        //public string GuestName { get; set; } 
+        //public string EmailAddress { get; set; }
+        public string ReservationId {  get; set;  } 
         //rating
         public int Rating { get; set; }
         public string Comment { get; set; }

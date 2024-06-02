@@ -1,4 +1,8 @@
 using System.Reflection;
+using Common.EventBus.Messages.Constants;
+using MassTransit;
+using Rating_API.EventBusConsumers;
+//using Rating_API.EventBusConsumers;
 using Rating.Infrastructure;
 using Rating.Application;
 using Rating_API.Extensions;
@@ -23,6 +27,23 @@ builder.MigrateDatabase<RatingContext>((context, services) =>
 });
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+builder.Services.AddMassTransit(config =>
+{
+    config.AddConsumer<GuestCheckoutConsumer>();
+    config.AddMediator(med => med.AddConsumer(typeof(GuestCheckoutConsumer)));
+    config.UsingRabbitMq((ctx, cfg) =>
+    {
+        
+        cfg.Host(builder.Configuration["EventBusSettings:HostAddress"]);
+        cfg.ReceiveEndpoint(EventBusConstants.guestcheckoutqueue, c =>
+        {
+            c.ConfigureConsumer<GuestCheckoutConsumer>(ctx);
+        });
+    });
+    
+});
+
 
 var app = builder.Build();
 

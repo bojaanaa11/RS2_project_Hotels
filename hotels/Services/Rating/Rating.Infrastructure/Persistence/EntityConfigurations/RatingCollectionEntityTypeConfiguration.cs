@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,19 +17,17 @@ namespace Rating.Infrastructure.Persistence.EntityConfigurations
             builder.HasKey(o => o.Id);
             builder.Property(o => o.Id).UseHiLo("hotelratingcollectionseq");
 
-            builder.Property<int>("HotelId")
-                .HasColumnType("INTEGER")
+            builder.Property<string>("HotelId")
+                .HasColumnType("VARCHAR(100)")
                 .HasColumnName("HotelId")
-                .IsRequired();      
-
+                .IsRequired();
+            
             builder.Property<string>("HotelName")
-                .HasColumnType("VARCHAR(50)")
+                .HasColumnType("VARCHAR(100)")
                 .HasColumnName("HotelName")
-                .IsRequired();     
-
-           var navigation = builder.Metadata.FindNavigation(nameof(HotelRatingCollection.Reviews))
-                        ?? throw new UniqueRatingException($"No navigation property found on {nameof(HotelRatingCollection.Reviews)}");
-                        navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
+                .IsRequired(false);
+            
+            builder.HasIndex(h => h.HotelId).IsUnique();
         }
     }
-}
+}*/

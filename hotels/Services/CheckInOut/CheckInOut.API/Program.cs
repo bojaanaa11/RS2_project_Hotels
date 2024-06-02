@@ -1,7 +1,9 @@
+using System.Reflection;
 using CheckInOut.API.Context;
 using CheckInOut.API.DTOs;
 using CheckInOut.API.Entities;
 using CheckInOut.API.Repositories;
+using MassTransit;
 using Rating_API.GrpcService;
 using Reservations.GRPC.Protos;
 
@@ -20,6 +22,17 @@ builder.Services.AddGrpcClient<UsersReservationProtoService.UsersReservationProt
         o => o.Address = new Uri(builder.Configuration["GrpcSettings:UserReservationsUrl"])
     );
 builder.Services.AddScoped<UsersReservationsGrpcService>();
+
+// EventBus
+builder.Services.AddMassTransit(config =>
+{
+    config.UsingRabbitMq((_, cfg) =>
+    {
+        cfg.Host(builder.Configuration["EventBusSettings:HostAddress"]);
+    });
+});
+
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

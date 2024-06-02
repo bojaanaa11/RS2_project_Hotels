@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,20 +11,16 @@ namespace Rating.Application.Features.Ratings.Commands.CreateRating
 {
     public class CreateRatingCollectionCommandHandler(IHotelRatingCollectionFactory factory,
         IRatingRepository repository,
-        ILogger<CreateRatingCollectionCommandHandler> logger) : IRequestHandler<CreateRatingCollectionCommand, int>
+        ILogger<CreateRatingCollectionCommandHandler> logger) : IRequestHandler<CreateRatingCollectionCommand, string>
     {
-        private readonly IHotelRatingCollectionFactory _factory = factory;
-        private readonly IRatingRepository _repository = repository;
-        private readonly ILogger<CreateRatingCollectionCommandHandler> _logger = logger;
-
-        public async Task<int> Handle(CreateRatingCollectionCommand request, CancellationToken cancellationToken)
+        public async Task<string> Handle(CreateRatingCollectionCommand request, CancellationToken cancellationToken)
         {
-            var rating = _factory.CreateHotelRatingCollection(request);
-            var newRating = await _repository.AddAsync(rating);
+            var rating = factory.CreateHotelRatingCollection(request);
+            var newRating = await repository.AddAsync(rating);
 
-            _logger.LogInformation("Rating {HotelId} is successfully created.", newRating.HotelId);
+            logger.LogInformation("Rating {HotelId} is successfully created.", newRating.HotelId);
                        
             return newRating.HotelId;
         }
     }
-}
+}*/
