@@ -16,13 +16,13 @@ namespace Room_Managing_API.Controllers
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        /*[HttpGet]
+        [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<Hotel>), StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<Hotel>>> GetHotels()
         {
-            var hotels = await _repository.getHotels();
+            var hotels = await _repository.GetHotels();
             return Ok(hotels);
-        } */
+        }
 
         [HttpGet("{id}", Name = "GetHotel")]
         [ProducesResponseType(typeof(Hotel), StatusCodes.Status200OK)]
@@ -33,14 +33,16 @@ namespace Room_Managing_API.Controllers
             return hotel == null ? NotFound(null) : Ok(hotel);
         }
 
-        /*[HttpGet]
+        [Route("[action]/{hotelId}")]
+        [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<Room>), StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<Room>>> GetRoomsInHotel(string hotelId)
         {
-            var rooms = await _repository.getRoomsInHotel(hotelId);
+            var rooms = await _repository.GetRoomsInHotel(hotelId);
             return Ok(rooms);
-        } */
+        }
 
+        [Route("[action]/{hotelId}/{roomId}")]
         [HttpGet]
         [ProducesResponseType(typeof(Room), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Room), StatusCodes.Status404NotFound)]
@@ -65,11 +67,11 @@ namespace Room_Managing_API.Controllers
             return Ok(await _repository.UpdateHotel(hotel));
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteHotel")]
         [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
-        public async Task<IActionResult> DeleteHotelById(string id)
+        public async Task<IActionResult> DeleteHotel(Hotel hotel)
         {
-            await _repository.DeleteHotelById(id);
+            await _repository.DeleteHotel(hotel);
             return Ok();
         }
 

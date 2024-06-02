@@ -9,12 +9,12 @@ namespace RoomManaging.Common.Repositories
 {
     public interface IRoomManagingRepository
     {
-        //Task<IEnumerable<Hotel>> GetHotels();
+        Task<IEnumerable<Hotel>> GetHotels();
         // dohvatanje hotela svih
         Task<Hotel> GetHotelById(string id);
         // dohvatanje hotela po id
         
-        //Task<IEnumerable<Room>> GetRoomsInHotel(string hotelId);
+        Task<IEnumerable<Room>> GetRoomsInHotel(string hotelId);
         // dohvatanje svih soba iz hotela
 
         Task<Room> GetRoomById(string hotelId, string roomId);
@@ -24,7 +24,7 @@ namespace RoomManaging.Common.Repositories
 
         Task<Hotel> UpdateHotel(Hotel hotel);
 
-        Task DeleteHotelById(string id);
+        Task DeleteHotel(Hotel hotel);
 
         Task<Room> UpdateRoom(Room room);
             // update sobe - promena statusa

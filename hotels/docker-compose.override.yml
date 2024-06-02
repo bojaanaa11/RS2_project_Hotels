@@ -100,16 +100,21 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - "CacheSettings:ConnectionString=roommanagingdb:6379"
       - ASPNETCORE_HTTP_PORTS=8080
+    depends_on:
+      - roommanagingdb
     ports:
       - "8004:8080"
 
   roommanaging.grpc:
     container_name: roommanaginggrpc
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "CacheSettings:ConnectionString=roommanagingdb:6379"
       - ASPNETCORE_HTTP_PORTS=8080
+    depends_on:
+      - roommanagingdb
     ports:
-      - "8006:8080" 
+      - "8006:8080"
 
   reservations.grpc:
     container_name: reservationsgrpc
