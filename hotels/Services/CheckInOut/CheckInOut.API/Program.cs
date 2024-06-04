@@ -2,6 +2,7 @@ using System.Reflection;
 using CheckInOut.API.Context;
 using CheckInOut.API.DTOs;
 using CheckInOut.API.Entities;
+using CheckInOut.API.Extensions;
 using CheckInOut.API.Repositories;
 using MassTransit;
 using Rating_API.GrpcService;
@@ -32,6 +33,8 @@ builder.Services.AddMassTransit(config =>
     });
 });
 
+builder.Services.ConfigureJWT(builder.Configuration);
+
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 builder.Services.AddControllers();
@@ -48,7 +51,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllers();
 

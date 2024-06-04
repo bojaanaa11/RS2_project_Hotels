@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rating.Application.Features.Ratings.Commands.CreateRatingProcess;
 using Rating.Application.Features.Ratings.Commands.CreateReview;
@@ -28,6 +29,7 @@ namespace Rating_API.Controllers
         }
 
         [HttpGet("pendingRatings/{guestId}")]
+        [Authorize(Roles = "Guest")]
         [ProducesResponseType(typeof(IEnumerable<HotelReviewViewModel>), StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<HotelReviewViewModel>>> GetPendingRatings(string guestId)
         {
@@ -37,6 +39,7 @@ namespace Rating_API.Controllers
         }
 
         [HttpGet("reviews/{hotelId}")]
+        [Authorize(Roles = "Guest")]
         [ProducesResponseType(typeof(IEnumerable<HotelReviewViewModel>), StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<HotelReviewViewModel>>> GetHotelReviews(string hotelId)
         {
@@ -46,6 +49,7 @@ namespace Rating_API.Controllers
         }
 
         [HttpGet("rating/{hotelId}")]
+        [Authorize(Roles = "Guest")]
         [ProducesResponseType(typeof(double), StatusCodes.Status200OK)]
         public async Task<ActionResult<decimal>> GetAverageRating(string hotelId)
         {
@@ -55,6 +59,7 @@ namespace Rating_API.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Guest")]
         [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> AddReviewToCollection([FromBody] CreateReviewCommand hotelReview)
@@ -66,6 +71,7 @@ namespace Rating_API.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Hotel")]
         [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteHotelReview(string guestId, string reservationId)

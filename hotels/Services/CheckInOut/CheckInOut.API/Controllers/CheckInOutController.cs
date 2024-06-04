@@ -9,6 +9,7 @@ using CheckInOut.API.Repositories;
 using Common.EventBus.Messages.Events;
 using Grpc.Core;
 using MassTransit;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rating_API.GrpcService;
 using Reservations.GRPC.Protos;
@@ -16,6 +17,7 @@ using Reservations.GRPC.Protos;
 namespace CheckInOut.API.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/v1/[controller]")]
     public class CheckInOutController : ControllerBase
     {
@@ -35,6 +37,7 @@ namespace CheckInOut.API.Controllers
         }
 
         [HttpGet("HotelStayByGuestId")]
+        [Authorize(Roles = "Hotel")]
         [ProducesResponseType(typeof(IEnumerable<HotelStayDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IEnumerable<HotelStayDTO>>> GetHotelStay(string guestId)
@@ -48,6 +51,7 @@ namespace CheckInOut.API.Controllers
         }
 
         [HttpGet("GetUserReservations")]
+        [Authorize(Roles = "Hotel")]
         [ProducesResponseType(typeof(GetReservationResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetUserReservations(string userId)
@@ -65,6 +69,7 @@ namespace CheckInOut.API.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Hotel")]
         [ProducesResponseType(typeof(void), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(void),StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateHotelStay(string userId, string reservationId)
@@ -108,6 +113,7 @@ namespace CheckInOut.API.Controllers
         }
 
         [HttpDelete("DeleteHotelStay")]
+        [Authorize(Roles = "Hotel")]
         [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void),StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> DeleteHotelStay(string reservationId)
@@ -120,6 +126,7 @@ namespace CheckInOut.API.Controllers
                 return BadRequest();
         }
         [HttpPut("CheckOutDate")]
+        [Authorize(Roles = "Hotel")]
         [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void),StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> SetCheckOutDate(string reservationId, String endDateTime)
@@ -132,6 +139,7 @@ namespace CheckInOut.API.Controllers
             return Ok();
         }
         [HttpPut("UpdateCheckInOut")]
+        [Authorize(Roles = "Hotel")]
         [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void),StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateCheckInOut(HotelStayDTO stay)
