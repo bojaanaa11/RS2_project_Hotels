@@ -12,6 +12,6 @@ export class AuthenticationService {
   constructor(private httpClient: HttpClient) { }
 
   public login(request: ILoginRequest): Observable<ILoginResponse> {
-    return this.httpClient.post<ILoginResponse>("http://localhost:8000/api/vi/Authentication/Login", request);
+    return this.httpClient.post<ILoginResponse>("http://localhost:8000/api/v1/Authentication/LogIn", request);
   }
 }
