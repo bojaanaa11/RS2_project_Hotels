@@ -26,12 +26,12 @@ message GetAllHotelsResponse {
 
 message Room {
     string id = 1;
-		string hotelId = 2;
-		string roomNumber = 3;
-		bool status = 4;
-		double price = 5;
-		repeated string fileImages = 6;
-		string description = 7;
+	string hotelId = 2;
+	string roomNumber = 3;
+	bool status = 4;
+	double price = 5;
+	repeated string fileImages = 6;
+	string description = 7;
 }
 
 message GetAllRoomsRequest {

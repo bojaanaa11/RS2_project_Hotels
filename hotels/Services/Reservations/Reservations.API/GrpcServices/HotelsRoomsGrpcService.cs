@@ -20,7 +20,7 @@ namespace Reservations.API.GrpcServices
         public async Task<GetAllRoomsResponse> GetAllRooms(string Id)
         {
             var roomsRequest = new GetAllRoomsRequest();
-            roomsRequest.Id = Id;
+            roomsRequest.HotelId = Id;
             return await _hotelsroomsProtoServiceClient.GetAllRoomsAsync(roomsRequest);
         }
     }
