@@ -16,6 +16,9 @@ services:
   mssql_identity:
     image: mcr.microsoft.com/mssql/server:2022-latest
     
+  identitydb:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    
   rabbitmq:
     image: rabbitmq:3-management-alpine
 
@@ -76,6 +79,7 @@ volumes:
   mongo_data:
   ratingdb_data:
   mssql_data_identity:
+  identitydb_data:
 
 
 

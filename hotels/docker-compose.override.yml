@@ -61,6 +61,18 @@ services:
       - "1439:1433"
     volumes:
       - ratingdb_data:/var/opt/mssql/data
+        
+  identitydb:
+    container_name: identitydb
+    user: root
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Passw0rd
+    restart: always
+    ports:
+      - "1440:1433"
+    volumes:
+      - identitydb_data:/var/opt/mssql/data
 
   payment.api:
     container_name: paymentapi
@@ -147,9 +159,9 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
-      - "ConnectionStrings:IdentityConnectionString=Server=mssql_identity;Database=IdentityDb;User Id=sa;Password=rs2_IdentityMicroservice;TrustServerCertificate=True;Encrypt=False;"
+      - "ConnectionStrings:IdentityConnectionString=Server=identitydb;Database=IdentityDb;User Id=sa;Password=Passw0rd;TrustServerCertificate=True;Encrypt=False;"
     depends_on:
-      - mssql_identity
+      - identitydb
     ports:
       - "8000:8080"
   
