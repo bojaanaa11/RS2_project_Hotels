@@ -34,8 +34,7 @@ namespace IdentityServer.Controllers
             return Ok(_mapper.Map<IEnumerable<UserDetailsDto>>(users));
         }
 
-        [Authorize(Roles = "Hotel")]
-        [Authorize(Roles = "Guest")]
+        [Authorize(Roles = "Hotel,Guest")]
         [HttpGet("{username}")]
         [ProducesResponseType(typeof(IEnumerable<UserDetailsDto>), StatusCodes.Status200OK)]
         public async Task<ActionResult<UserDetailsDto>> GetUser(string username)
