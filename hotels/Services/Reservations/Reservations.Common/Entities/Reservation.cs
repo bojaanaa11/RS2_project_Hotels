@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.Serializers;
 
 namespace Reservations.Common.Entities
 {
@@ -9,6 +10,7 @@ namespace Reservations.Common.Entities
         public string Id { get; set; }
         public string UserId { get; set; }
         public string HotelId { get; set; }
+        public string HotelName { get; set; }
         public string RoomId { get; set; }
         public string BookingDateTime { get; set; }
         public string StartDateTime { get; set; }
