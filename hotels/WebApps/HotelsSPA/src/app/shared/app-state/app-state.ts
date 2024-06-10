@@ -12,6 +12,7 @@ export interface IAppState {
 
     hasRole(role: Role): boolean;
     clone(): IAppState;
+    isEmpty(): boolean;
 }
 
 export class AppState implements IAppState {
@@ -25,6 +26,7 @@ export class AppState implements IAppState {
     public userId?: string;
 
     public constructor();
+   
     public constructor(accessToken?: string, refreshToken?: string, username?: string, email?: string, roles?: Role | Role[], 
         firstName?: string, lastName?: string, userId?: string
     );
@@ -61,5 +63,16 @@ export class AppState implements IAppState {
         const newState = new AppState();
         Object.assign(newState, this);        
         return newState;
+    }
+
+    isEmpty(): boolean {
+        return this.accessToken === undefined &&
+            this.refreshToken === undefined &&
+            this.username === undefined &&
+            this.email === undefined &&
+            this.roles === undefined &&
+            this.firstName === undefined &&
+            this.lastName === undefined &&
+            this.userId === undefined;
     }
 }
