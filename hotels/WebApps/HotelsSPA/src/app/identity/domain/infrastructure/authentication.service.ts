@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { ILogoutRequest } from '../models/logout-request';
 import { IRefreshTokenRequest } from '../models/refresh-token-request';
 import { IRefreshTokenResponse } from '../models/refresh-token-response';
+import { IRegisterGuestRequest } from '../models/register-guest-request';
+import { IRegisterHotelRequest } from '../models/register-hotel-request';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +27,13 @@ export class AuthenticationService {
 
   public refreshToken(request: IRefreshTokenRequest): Observable<IRefreshTokenResponse> {
     return this.httpClient.post<IRefreshTokenResponse>(`${this.url}/Refresh`, request);
+  }
+
+  public registerAsGuest(request: IRegisterGuestRequest): Observable<Object> {
+    return this.httpClient.post(`${this.url}/RegisterGuest`, request);
+  }
+
+  public registerAsHotel(request: IRegisterHotelRequest): Observable<Object> {
+    return this.httpClient.post(`${this.url}/RegisterHotel`, request);
   }
 }

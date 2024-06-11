@@ -12,6 +12,8 @@ import { IAppState } from '../../../shared/app-state/app-state';
 import { ILogoutRequest } from '../models/logout-request';
 import { IRefreshTokenRequest } from '../models/refresh-token-request';
 import { IRefreshTokenResponse } from '../models/refresh-token-response';
+import { IRegisterGuestRequest } from '../models/register-guest-request';
+import { IRegisterHotelRequest } from '../models/register-hotel-request';
 
 @Injectable({
   providedIn: 'root'
@@ -88,6 +90,50 @@ export class AuthenticationFacadeService {
         console.log(err);
         this.appStateService.clearAppState();
         return of(null);
+      })
+    );
+  }
+
+  public registerAsGuest(firstName: string, lastName: string, username: string, password: string, email: string, phoneNumber: string): Observable<boolean> {
+    const request: IRegisterGuestRequest = { 
+      firstName,
+      lastName,
+      username, 
+      password,
+      email,
+      phoneNumber
+    };
+
+    return this.authenticationService.registerAsGuest(request).pipe(
+      map(() => {
+        return true;
+      }),
+      catchError((err) => {
+          console.log(err);
+          this.appStateService.clearAppState();
+          return of(false);
+      })
+    );
+  }
+
+  public registerAsHotel(firstName: string, lastName: string, username: string, password: string, email: string, phoneNumber: string): Observable<boolean> {
+    const request: IRegisterHotelRequest = { 
+      firstName,
+      lastName,
+      username, 
+      password,
+      email,
+      phoneNumber
+    };
+
+    return this.authenticationService.registerAsHotel(request).pipe(
+      map(() => {
+        return true;
+      }),
+      catchError((err) => {
+          console.log(err);
+          this.appStateService.clearAppState();
+          return of(false);
       })
     );
   }
