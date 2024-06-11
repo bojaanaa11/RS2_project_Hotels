@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', component: IdentityComponent },
   { path: 'login', component: LoginFormComponent},
   { path: 'profile', component: UserProfileComponent, canActivate: [NotAuthenticatedGuard]},
-  { path: 'logout', component: LogoutComponent}
+  { path: 'logout', component: LogoutComponent},
 ];
 
 @NgModule({
