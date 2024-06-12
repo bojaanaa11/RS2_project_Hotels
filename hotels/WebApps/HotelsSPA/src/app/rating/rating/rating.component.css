@@ -1,0 +1,4 @@
+.stays-container {
+    display: flex; /* Use Flexbox */
+    gap: 30px
+}

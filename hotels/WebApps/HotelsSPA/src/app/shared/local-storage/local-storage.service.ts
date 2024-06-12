@@ -9,11 +9,14 @@ export class LocalStorageService {
   constructor() { }
 
   public set(key: LocalStorageKeys, value: any): void {
+    console.log("set key for "+key+" to local storage")
     localStorage.setItem(key, JSON.stringify(value));
   }
 
   public get(key: LocalStorageKeys): any | null {
+    console.log("get key for "+key.length+" to local storage")
     const value: string | null = localStorage.getItem(key);
+    console.log(value);
     if(value === null) {
       return null;
     }

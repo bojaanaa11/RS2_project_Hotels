@@ -13,6 +13,9 @@
           <li class="nav-item" *ngIf="canShowAdminPanel(appState)">
             <a class="nav-link" [routerLink]="['/admin']">Administrator Panel</a>
           </li>
+          <li class="nav-item" *ngIf="canShowRatingPanel(appState)">
+            <a class="nav-link" [routerLink]="['/rating']">My recent stays</a>
+          </li>
         </ul>
       </div>
   

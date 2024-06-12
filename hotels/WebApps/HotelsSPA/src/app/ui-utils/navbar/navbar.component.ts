@@ -35,6 +35,10 @@ export class NavbarComponent implements OnInit {
     return appState.hasRole(Role.Hotel);
   }
 
+  public canShowRatingPanel(appState: IAppState): boolean {
+    return appState.hasRole(Role.Guest);
+  }
+
   public userLoggedIn(appState: IAppState): boolean {
     return !appState.isEmpty();
   }
