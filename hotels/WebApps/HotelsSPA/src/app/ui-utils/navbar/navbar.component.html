@@ -9,10 +9,16 @@
           </li>
           <li class="nav-item" *ngIf="canShowReservations(appState)">
             <a class="nav-link" [routerLink]="['/reservations']">My Reservations</a>
-          </li>
-          <li class="nav-item" *ngIf="canShowAdminPanel(appState)">
-            <a class="nav-link" [routerLink]="['/admin']">Administrator Panel</a>
-          </li>
+          </li>      
+          <div class="dropdown">
+            <a class="nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+              Administrator Panel
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li><a class="dropdown-item" [routerLink]="['/admin/checkin']">Check in guest</a></li>
+              <li><a class="dropdown-item" [routerLink]="['/admin/checkout']">Check out guest</a></li>
+            </ul>
+          </div>          
           <li class="nav-item" *ngIf="canShowRatingPanel(appState)">
             <a class="nav-link" [routerLink]="['/rating']">My recent stays</a>
           </li>
