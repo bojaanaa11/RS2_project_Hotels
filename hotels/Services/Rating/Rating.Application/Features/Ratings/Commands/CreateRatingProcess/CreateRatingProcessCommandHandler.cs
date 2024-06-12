@@ -14,7 +14,7 @@ public class CreateRatingProcessCommandHandler(IRatingProcessFactory factory,
     {
         var rating = factory.CreateRatingProcess(request);
         logger.LogInformation("Created from factory");
-        var newRating = await repository.AddRatingProcess(rating.ReservationId, rating.GuestId, rating.HotelId);
+        var newRating = await repository.AddRatingProcess(rating.ReservationId, rating.GuestId, rating.HotelId,rating.HotelName);
 
         logger.LogInformation("Rating process for reservation {HotelId} is successfully created.", newRating.ReservationId);
                        

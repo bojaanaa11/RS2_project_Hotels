@@ -25,10 +25,12 @@ public class GetPendingRatingsQueryHandler : IRequestHandler<GetPendingRatingsQu
         var ratings = await _repository.GetRatingProcesses(request.GuestId);
         if (ratings != null)
         {
-            var result = ratings.Select(rating => _factory.CreateRatingProcessViewModel(rating)).ToList();
+            _logger.LogInformation("Rating processes : " + ratings.Count);
+            var result = ratings.Select(_factory.CreateRatingProcessViewModel).ToList();
+            _logger.LogInformation("Rating processes : " + ratings.Count);
             return result;
         }
-
+        _logger.LogInformation("No rating process for this user");
         return [];
     }
 }

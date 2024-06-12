@@ -32,20 +32,9 @@ namespace Rating.Infrastructure.Persistence
         {
             //Guest guest = new Guest("1", "Marko", "marko");
             //var hotelRatings=new HotelRatingCollection("1");
-            var ratingProcess = new RatingProcess("1", "1", "1", "Pending");
+            var ratingProcess = new RatingProcess("1","Hotel Fontana", "1", "1", "Pending");
             
             return new List<RatingProcess> { ratingProcess };
-        }
-
-        private static IEnumerable<HotelReview> GetPreconfiguredRatings(RatingProcess process)
-        {
-            //Guest guest = new Guest("1", "Marko", "marko", "1");
-            //var hotelRatings=new HotelRatingCollection("2");
-            var hotelRating = new RatingInformation(10, "Great stay!", DateTime.Now);
-            var rating = new HotelReview("1", "1", "1", process, hotelRating);
-          
-
-            return new List<HotelReview> { rating };
-        }
+        }       
     }
 }

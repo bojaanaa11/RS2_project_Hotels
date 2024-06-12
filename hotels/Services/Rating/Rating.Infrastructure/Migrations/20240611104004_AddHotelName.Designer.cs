@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Rating.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using Rating.Infrastructure.Persistence;
 namespace Rating.Infrastructure.Migrations
 {
     [DbContext(typeof(RatingContext))]
-    partial class RatingContextModelSnapshot : ModelSnapshot
+    [Migration("20240611104004_AddHotelName")]
+    partial class AddHotelName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

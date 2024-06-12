@@ -16,18 +16,18 @@ public class RatingProcessRepository  : RepositoryBase<RatingProcess>, IRatingPr
         _factory = factory;
     }
 
-    public async Task<RatingProcessViewModel> AddRatingProcess(string reservationId, string guestId, string hotelId)
+    public async Task<RatingProcessViewModel> AddRatingProcess(string reservationId, string guestId, string hotelId,string hotelName)
     {
-        RatingProcess process = new RatingProcess(hotelId, reservationId, guestId, "Pending");
+        RatingProcess process = new RatingProcess(hotelId,hotelName, reservationId, guestId, "Pending");
         var res=await _dbContext.RatingProcesses.AddAsync(process);
         await _dbContext.SaveChangesAsync();
 
         return _factory.CreateRatingProcessViewModel(res.Entity);
     }
 
-    public async Task<bool> UpdateRatingProcess(string reservationId, string guestId,string hotelId, string status)
+    public async Task<bool> UpdateRatingProcess(string reservationId, string guestId,string hotelId,string hotelName, string status)
     {
-        RatingProcess process = new RatingProcess(hotelId, reservationId, guestId, status,null);
+        RatingProcess process = new RatingProcess(hotelId, hotelName,reservationId, guestId, status,null);
         _dbContext.Entry(process).State = EntityState.Modified;
         var res =await _dbContext.SaveChangesAsync();
 
