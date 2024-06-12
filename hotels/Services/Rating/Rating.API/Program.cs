@@ -1,6 +1,9 @@
 using System.Reflection;
+using System.Text;
 using Common.EventBus.Messages.Constants;
 using MassTransit;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Rating_API.EventBusConsumers;
 //using Rating_API.EventBusConsumers;
 using Rating.Infrastructure;
@@ -45,6 +48,11 @@ builder.Services.AddMassTransit(config =>
 });
 
 builder.Services.ConfigureJWT(builder.Configuration);
+builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder => 
+                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
 
 var app = builder.Build();
 
@@ -55,6 +63,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("CorsPolicy");
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();

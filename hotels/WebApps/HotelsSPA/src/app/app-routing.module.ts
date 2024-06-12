@@ -5,6 +5,7 @@ import { HomeComponent } from './ui-utils/home/home.component';
 const routes: Routes = [
   { path: 'identity', loadChildren: () => import('./identity/identity.module').then(m => m.IdentityModule)},
   { path: '', component: HomeComponent},
+  { path: 'rating', loadChildren: () => import('./rating/rating/rating.module').then(m => m.RatingModule) }
 ];
 
 @NgModule({

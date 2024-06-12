@@ -93,6 +93,7 @@ namespace CheckInOut.API.Controllers
             stay.GuestId = reservation.UserId;
             stay.RoomId = reservation.RoomId;
             stay.HotelId = reservation.HotelId;
+            stay.HotelName = reservation.HotelName;
             stay.StartDateTime = reservation.StartDateTime;
             stay.EndDateTime = null;
             

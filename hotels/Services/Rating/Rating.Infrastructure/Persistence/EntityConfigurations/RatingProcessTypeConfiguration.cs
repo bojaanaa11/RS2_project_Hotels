@@ -28,6 +28,11 @@ public class RatingProcessTypeConfiguration : IEntityTypeConfiguration<RatingPro
             .HasColumnType("VARCHAR(100)")
             .IsRequired();
 
+        builder.Property<string>("HotelName")
+                .HasColumnType("VARCHAR(100)")
+                .HasColumnName("HotelName")
+                .IsRequired();
+
         // Configure the foreign key to point to Guest.GuestId
         /*builder.HasOne(rp => rp.Guest)
             .WithMany(g => g.RatingProcesses)

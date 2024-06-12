@@ -8,7 +8,7 @@ public class RatingProcessFactory : IRatingProcessFactory
 {
     public RatingProcess CreateRatingProcess(CreateRatingProcessCommand command)
     {
-        var ratingProcess = new RatingProcess(command.HotelId,command.ReservationId,command.GuestId,"Pending");
+        var ratingProcess = new RatingProcess(command.HotelId,command.HotelName,command.ReservationId,command.GuestId,"Pending");
         return ratingProcess;
     }
 }
