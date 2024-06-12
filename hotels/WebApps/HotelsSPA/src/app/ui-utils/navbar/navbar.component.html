@@ -10,7 +10,7 @@
           <li class="nav-item" *ngIf="canShowReservations(appState)">
             <a class="nav-link" [routerLink]="['/reservations']">My Reservations</a>
           </li>      
-          <div class="dropdown">
+          <div class="dropdown" *ngIf="canShowAdminPanel(appState)">
             <a class="nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
               Administrator Panel
             </a>
