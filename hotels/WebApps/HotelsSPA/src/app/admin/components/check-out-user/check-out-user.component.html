@@ -1,1 +1,22 @@
-<p>check-out-user works!</p>
+<div class="container">
+    <label for="textbox">Enter Guest ID to get his current stays</label>
+    <input type="text" id="textbox" [(ngModel)]="guestId" class="textbox">
+    <button (click)="getHotelStay()" class="button">Search</button>
+  </div>
+
+  <div class="container" *ngIf="loading">Loading...</div>
+  <div class="container" *ngIf="error">{{ error }}</div>
+  <div *ngIf="!loading && !error">
+    <div class="stays-container">
+      <div *ngFor="let stay of stays ?? []">
+        <app-hotel-stay 
+            [ReservationId]="stay.reservationId"
+            [GuestId]="guestId"
+            [HotelName]="stay.hotelName" 
+            [Room] = "stay.roomId"
+            [StartDate] = "stay.startDateTime"
+            ></app-hotel-stay>
+      </div>
+      <div class="container" *ngIf="(stays?.length ?? 0) === 0 && !loading">No guest stays available.</div>
+    </div>
+  </div>

@@ -10,12 +10,11 @@ export class GuestReservationsService {
   constructor(private httpClient: HttpClient) {}
 
   public guestReservations(GuestId:string): Observable<IReservations[]> {
-    return this.httpClient.get<{reservations: IReservations[]}>(`http://localhost:8005/api/v1/CheckInOut/GetUserReservations`,{
+    return this.httpClient.get< IReservations[]>(`http://localhost:8005/api/v1/CheckInOut/GetUserReservations`,
+    {
         params: {
             userId: GuestId
         }
-    }).pipe(
-      map(response => response.reservations)
-    );
+    });
   }
 }

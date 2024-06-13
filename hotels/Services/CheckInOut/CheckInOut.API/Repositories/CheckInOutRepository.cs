@@ -8,6 +8,7 @@ using CheckInOut.API.Context;
 using CheckInOut.API.DTOs;
 using CheckInOut.API.Entities;
 using Dapper;
+using Reservations.GRPC.Protos;
 
 namespace CheckInOut.API.Repositories
 {
@@ -24,11 +25,11 @@ namespace CheckInOut.API.Repositories
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task<IEnumerable<HotelStayDTO>?> GetCheckInOutByGuest(string guestId)
+        public async Task<IEnumerable<HotelStayDTO>?> GetCurrentStayByGuest(string guestId)
         {
             await using var connection = _context.GetConnection();
 
-            var stay =await connection.QueryAsync<HotelStay>("SELECT ReservationId, GuestId,HotelId,HotelName, RoomId, StartDateTime, EndDateTime FROM HotelStay WHERE GuestId = @name",
+            var stay =await connection.QueryAsync<HotelStay>("SELECT ReservationId, GuestId,HotelId,HotelName, RoomId, StartDateTime, EndDateTime FROM HotelStay WHERE GuestId = @name AND EndDateTime is null",
                 new { name = guestId });
         
             var stayDto=_mapper.Map<IEnumerable<HotelStayDTO>?>(stay);
@@ -95,6 +96,19 @@ namespace CheckInOut.API.Repositories
             _logger.LogInformation(affected.ToString());
 
             return affected!=0;
+        }
+
+        public async Task<IEnumerable<string>> stayIds()
+        {
+            await using var connection = _context.GetConnection();
+
+            var reservationIds =await connection.QueryAsync<string>("SELECT reservationId FROM HotelStay");
+             foreach (var reservationId in reservationIds)
+                {
+                    _logger.LogInformation($"Retrieved reservation ID: 3 {reservationId}");
+                }
+        
+            return reservationIds;
         }
     }
 }
