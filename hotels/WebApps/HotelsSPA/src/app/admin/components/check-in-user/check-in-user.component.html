@@ -1,1 +1,22 @@
-<p>check-in-user works!</p>
+<div class="container">
+    <label for="textbox">Enter Guest ID to get his reservations</label>
+    <input type="text" id="textbox" [(ngModel)]="guestId" class="textbox">
+    <button (click)="getReservations()" class="button">Search</button>
+  </div>
+
+  <div *ngIf="loading">Loading...</div>
+  <div *ngIf="error">{{ error }}</div>
+  <div *ngIf="!loading && !error">
+    <div class="stays-container">
+      <div *ngFor="let reservation of reservations ?? []">
+        <app-reservation 
+            [GuestId]="guestId"
+            [ReservationId]="reservation.id"
+            [HotelName]="reservation.hotelName" 
+            [Room] = "reservation.roomId"
+            [StartDate] = "reservation.startDateTime"
+            [EndDate]="reservation.endDateTime"></app-reservation>
+      </div>
+      <div class="container" *ngIf="(reservations?.length ?? 0) === 0 && !loading">No reservations available.</div>
+    </div>
+  </div>
