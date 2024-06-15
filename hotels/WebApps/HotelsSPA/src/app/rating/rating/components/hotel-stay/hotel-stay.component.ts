@@ -59,12 +59,12 @@ export class HotelStayComponent {
 
     this.appStateService.getAppState().subscribe({
       next: (response: IAppState) => {
-        if (!response.userId) {
+        if (!response.username) {
           this.error = "Undefined user id";
           this.loading = false;          
           return;
         }
-        this.userId = response.userId;
+        this.userId = response.username;
         console.log(response.userId);
 
         this.addRatingFacadeService.AddRating({

@@ -22,14 +22,14 @@ export class RatingComponent implements OnInit {
   ngOnInit(): void {
     this.appStateService.getAppState().subscribe({
       next: (response: IAppState) => {
-        if (!response.userId) {
-          this.error = "Undefined user id";
+        if (!response.username) {
+          this.error = "Undefined username";
           this.loading = false;
           return;
         }
 
         console.log(response.userId);
-        this.pendingRatingService.getUserDetails(response.userId).subscribe({
+        this.pendingRatingService.getUserDetails(response.username).subscribe({
           next: (pendingRatingsResponse: IPendingReviews[]) => {
             this.pendingRatingsResponse = pendingRatingsResponse;
             this.loading = false;
