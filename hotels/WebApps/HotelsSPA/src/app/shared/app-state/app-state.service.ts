@@ -77,6 +77,10 @@ export class AppStateService {
     this.localStorageService.set(LocalStorageKeys.AppState, this.appState);
   }
 
+  public getUserName(): string | undefined {
+    return this.localStorageService.get(LocalStorageKeys.AppState).username;
+  }
+
   public clearAppState(): void {
     this.localStorageService.clear(LocalStorageKeys.AppState);
     this.appState = new AppState();

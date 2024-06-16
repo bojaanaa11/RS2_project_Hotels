@@ -1,0 +1,49 @@
+<div class="container">
+
+<h3>Reserve Your Room</h3>
+    
+<form [formGroup]="createReservationForm" (ngSubmit)="onCreateReservationSubmit()">
+    <div class="form-group">
+        <label class="form-label">Reservation ID</label>
+        <input type="text" formControlName="id" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Username</label>
+        <input type="text" formControlName="userId" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Hotel ID</label>
+        <input type="text" formControlName="hotelId" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Hotel Name</label>
+        <input type="text" formControlName="hotelName" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Room ID</label>
+        <input type="text" formControlName="roomId" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Booking Date And Time</label>
+        <input type="text" formControlName="bookingDateTime" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Start Date And Time</label>
+        <input type="text" formControlName="startDateTime" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">End Date And Time</label>
+        <input type="text" formControlName="endDateTime" class="form-control">
+    </div>
+    
+    <button type="submit" class="btn btn-primary mt-3">Confirm</button>
+    </form>
+    
+</div>
