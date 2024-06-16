@@ -14,7 +14,7 @@ namespace RoomManaging.Common.Repositories
     public class RoomManagingRepository : IRoomManagingRepository
     {
         private readonly IDistributedCache _cache;
-        private string ListOfAllHotels = "#listofallhotels#";
+        private readonly string ListOfAllHotels = "#listofallhotels#";
 
         public RoomManagingRepository(IDistributedCache cache)
         {

@@ -22,7 +22,7 @@ services:
       - postgres_data:/var/lib/postgresql/data/
 
   roommanagingdb:
-    container_name: rommanagingdb
+    container_name: roommanagingdb
     restart: always
     ports:
         - "6379:6379"

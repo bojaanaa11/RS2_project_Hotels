@@ -5,7 +5,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddGrpc();
-builder.Services.AddScoped<IRoomManagingRepository, IRoomManagingRepository>();
+builder.Services.AddScoped<IRoomManagingRepository, RoomManagingRepository>();
+builder.Services.AddStackExchangeRedisCache(
+    opt =>
+    {
+        opt.Configuration = builder.Configuration.GetValue<string>("CacheSettings:ConnectionString");
+    }
+    );
 
 var app = builder.Build();
 

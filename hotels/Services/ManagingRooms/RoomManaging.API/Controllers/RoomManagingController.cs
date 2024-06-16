@@ -16,7 +16,7 @@ namespace Room_Managing_API.Controllers
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        [HttpGet]
+        [HttpGet("[action]")]
         [ProducesResponseType(typeof(IEnumerable<Hotel>), StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<Hotel>>> GetHotels()
         {

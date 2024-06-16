@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Grpc.Core;
 using RoomManaging.Common.Repositories;
-using RoomManaging.GRPC;
+// using RoomManaging.GRPC;
 using RoomManaging.GRPC.Protos;
 
 namespace RoomManaging.GRPC.Services
