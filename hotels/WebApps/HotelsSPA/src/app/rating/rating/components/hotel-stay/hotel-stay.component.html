@@ -1,0 +1,19 @@
+<div *ngIf="show; else elseblock">
+<div class="rating-container">
+  <h4>Rate your recent stay in {{HotelName}}</h4>
+  <div class="star-rating">
+    <span class="star"
+          *ngFor="let star of [1, 2, 3, 4, 5]"
+          [class.selected]="star <= selectedRating"
+          [class.hover]="star <= hoverRating"
+          (click)="selectRating(star)"
+          (mouseover)="setHoverRating(star)"
+          (mouseleave)="resetHoverRating()">
+      &#9733;
+    </span>
+  </div>
+  <textarea [(ngModel)]="comment" placeholder="Write your comment here..."></textarea>
+  <button (click)="submitRating()">Submit</button>
+</div>
+</div>
+<ng-template #elseblock></ng-template>

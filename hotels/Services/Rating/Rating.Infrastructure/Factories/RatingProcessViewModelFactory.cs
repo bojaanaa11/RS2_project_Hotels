@@ -13,6 +13,7 @@ public class RatingProcessViewModelFactory : IRatingProcessViewModelFactory
             ReservationId = ratings.ReservationId,
             GuestId = ratings.GuestId,
             HotelId = ratings.HotelId,
+            HotelName = ratings.HotelName,
             Status = ratings.Status
         };
         return ratingProcessViewModel;

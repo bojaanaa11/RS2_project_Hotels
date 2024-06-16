@@ -8,6 +8,7 @@ using CheckInOut.API.Context;
 using CheckInOut.API.DTOs;
 using CheckInOut.API.Entities;
 using Dapper;
+using Reservations.GRPC.Protos;
 
 namespace CheckInOut.API.Repositories
 {
@@ -24,11 +25,11 @@ namespace CheckInOut.API.Repositories
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task<IEnumerable<HotelStayDTO>?> GetCheckInOutByGuest(string guestId)
+        public async Task<IEnumerable<HotelStayDTO>?> GetCurrentStayByGuest(string guestId)
         {
             await using var connection = _context.GetConnection();
 
-            var stay =await connection.QueryAsync<HotelStay>("SELECT ReservationId, GuestId,HotelId, RoomId, StartDateTime, EndDateTime FROM HotelStay WHERE GuestId = @name",
+            var stay =await connection.QueryAsync<HotelStay>("SELECT ReservationId, GuestId,HotelId,HotelName, RoomId, StartDateTime, EndDateTime FROM HotelStay WHERE GuestId = @name AND EndDateTime is null",
                 new { name = guestId });
         
             var stayDto=_mapper.Map<IEnumerable<HotelStayDTO>?>(stay);
@@ -39,7 +40,7 @@ namespace CheckInOut.API.Repositories
         {
             await using var connection = _context.GetConnection();
 
-            var stay =await connection.QueryFirstAsync<HotelStay>("SELECT ReservationId, GuestId,HotelId, RoomId, StartDateTime, EndDateTime FROM HotelStay WHERE ReservationId = @name",
+            var stay =await connection.QueryFirstAsync<HotelStay>("SELECT ReservationId, GuestId,HotelId,HotelName, RoomId, StartDateTime, EndDateTime FROM HotelStay WHERE ReservationId = @name",
                 new { name = reservationId });
         
             var stayDto=_mapper.Map<HotelStayDTO?>(stay);
@@ -55,8 +56,8 @@ namespace CheckInOut.API.Repositories
                 return false;
 
             var affected = await connection.ExecuteAsync(
-            "INSERT INTO HotelStay (ReservationId,GuestId,HotelId,RoomId,StartDateTime,EndDateTime) VALUES (@ReservationId,@GuestName,@HotelId,@RoomNumber,@CheckInDate,@CheckOutDate)",
-            new { ReservationId = stay.ReservationId,GuestName=stay.GuestId,HotelId=stay.HotelId,RoomNumber=stay.RoomId,CheckInDate=stay.StartDateTime,CheckOutDate=stay.EndDateTime});
+            "INSERT INTO HotelStay (ReservationId,GuestId,HotelId,HotelName,RoomId,StartDateTime,EndDateTime) VALUES (@ReservationId,@GuestName,@HotelId,@HotelName,@RoomNumber,@CheckInDate,@CheckOutDate)",
+            new { ReservationId = stay.ReservationId,GuestName=stay.GuestId,HotelId=stay.HotelId,HotelName=stay.HotelName,RoomNumber=stay.RoomId,CheckInDate=stay.StartDateTime,CheckOutDate=stay.EndDateTime});
             _logger.LogInformation(affected+" "+stay.GuestId);
             return affected != 0;
         }
@@ -90,11 +91,24 @@ namespace CheckInOut.API.Repositories
         async Task<bool> ICheckInOutRepository.UpdateCheckInOut(HotelStayDTO stay)
         {
             await using var connection = _context.GetConnection();
-            var affected=await connection.ExecuteAsync("UPDATE HotelStay SET GuestId=@name, HotelId = @hotelId, RoomId=@room, StartDateTime=@datein WHERE ReservationId=@id",
-                new {id=stay.ReservationId, name=stay.GuestId,hotelId=stay.HotelId, room=stay.RoomId ,datein=stay.StartDateTime,dateout=stay.EndDateTime});
+            var affected=await connection.ExecuteAsync("UPDATE HotelStay SET GuestId=@name, HotelId = @hotelId,HotelName=@hotelName, RoomId=@room, StartDateTime=@datein WHERE ReservationId=@id",
+                new {id=stay.ReservationId, name=stay.GuestId,hotelId=stay.HotelId, hotelName=stay.HotelName, room=stay.RoomId ,datein=stay.StartDateTime,dateout=stay.EndDateTime});
             _logger.LogInformation(affected.ToString());
 
             return affected!=0;
+        }
+
+        public async Task<IEnumerable<string>> stayIds()
+        {
+            await using var connection = _context.GetConnection();
+
+            var reservationIds =await connection.QueryAsync<string>("SELECT reservationId FROM HotelStay");
+             foreach (var reservationId in reservationIds)
+                {
+                    _logger.LogInformation($"Retrieved reservation ID: 3 {reservationId}");
+                }
+        
+            return reservationIds;
         }
     }
 }

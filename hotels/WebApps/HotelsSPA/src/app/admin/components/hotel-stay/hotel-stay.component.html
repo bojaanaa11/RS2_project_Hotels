@@ -1,0 +1,17 @@
+<div *ngIf="!checkedOut" class="container">
+    <h3>Guest Stay Information</h3>
+    <div>
+      <label for="textbox">Hotel name: {{HotelName}}</label>
+    </div>
+    <div>
+      <label for="textbox">Room: {{Room}}</label>
+    </div>
+    <div>
+      <label for="textbox">Start date: {{StartDate}}</label>
+    </div>
+    <div>
+      <label for="textbox">End date: </label>
+      <input type="text" id="textbox" [(ngModel)]="checkoutdate" class="textbox">
+    </div>
+    <button (click)="checkOutUser()" class="button">Check Out Guest</button>
+  </div>

@@ -30,7 +30,7 @@ namespace Rating.Infrastructure.Repositories
             if (ratingprocesses.Result.IsNullOrEmpty())
                 return false;
 
-            var review = new HotelReview(hotelId, hotelReview.GuestId, hotelReview.ReservationId,
+            var review = new HotelReview(hotelId,hotelReview.HotelName, hotelReview.GuestId, hotelReview.ReservationId,
                 ratingprocesses.Result[0], hotelReview.HotelRating);
             await _dbContext.Ratings.AddAsync(review);
             ratingprocesses.Result[0].Status = "Rated";

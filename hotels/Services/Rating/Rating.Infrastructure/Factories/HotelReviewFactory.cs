@@ -16,6 +16,7 @@ namespace Rating.Infrastructure.Factories
             var hotelReview = new HotelReview
             (
                 command.HotelId,
+                command.HotelName,
                 command.GuestId,
                 command.ReservationId
             );

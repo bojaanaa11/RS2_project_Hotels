@@ -1,0 +1,19 @@
+<div *ngIf="!checkedIn" class="container">
+  <h3>Reservation</h3>
+  <div>
+    <label for="textbox">Reservation id: {{ReservationId}}</label>
+  </div>
+  <div>
+    <label for="textbox">Hotel name: {{HotelName}}</label>
+  </div>
+  <div>
+    <label for="textbox">Room: {{Room}}</label>
+  </div>
+  <div>
+    <label for="textbox">Start date: {{StartDate}}</label>
+  </div>
+  <div>
+    <label for="textbox">End date: {{EndDate}}</label>
+  </div>
+  <button (click)="checkInUser()" class="button">Check In Guest</button>
+</div>

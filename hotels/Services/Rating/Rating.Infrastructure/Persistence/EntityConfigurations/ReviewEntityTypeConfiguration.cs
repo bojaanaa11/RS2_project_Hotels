@@ -21,6 +21,11 @@ namespace Rating.Infrastructure.Persistence.EntityConfigurations
                 .HasColumnType("VARCHAR(100)")
                 .HasColumnName("HotelId")
                 .IsRequired();
+
+            builder.Property<string>("HotelName")
+                .HasColumnType("VARCHAR(100)")
+                .HasColumnName("HotelName")
+                .IsRequired();
             
             /*builder.HasOne(hr => hr.Hotel)
                 .WithMany(h => h.Reviews)

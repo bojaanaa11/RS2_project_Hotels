@@ -51,6 +51,11 @@ namespace Rating.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("HotelName")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(100)")
+                        .HasColumnName("HotelName");
+
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -98,6 +103,11 @@ namespace Rating.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(100)")
                         .HasColumnName("HotelId");
+
+                    b.Property<string>("HotelName")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(100)")
+                        .HasColumnName("HotelName");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
@@ -149,8 +159,7 @@ namespace Rating.Infrastructure.Migrations
                                 .HasForeignKey("HotelReviewId");
                         });
 
-                    b.Navigation("HotelRating")
-                        .IsRequired();
+                    b.Navigation("HotelRating");
 
                     b.Navigation("RatingProcess");
                 });

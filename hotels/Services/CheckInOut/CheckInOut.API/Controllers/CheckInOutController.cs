@@ -11,6 +11,7 @@ using Grpc.Core;
 using MassTransit;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Rating_API.GrpcService;
 using Reservations.GRPC.Protos;
 
@@ -42,7 +43,7 @@ namespace CheckInOut.API.Controllers
         [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IEnumerable<HotelStayDTO>>> GetHotelStay(string guestId)
         {
-            var stay = await _checkInOutRepository.GetCheckInOutByGuest(guestId);
+            var stay = await _checkInOutRepository.GetCurrentStayByGuest(guestId);
             if (stay is null)
                 return NotFound();
             
@@ -52,13 +53,26 @@ namespace CheckInOut.API.Controllers
 
         [HttpGet("GetUserReservations")]
         [Authorize(Roles = "Hotel")]
-        [ProducesResponseType(typeof(GetReservationResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<GetReservationResponse.Types.Reservation>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetUserReservations(string userId)
         {
             try
             {
-                var reservations = await _usersReservation.GetReservation(userId);
+                var allReservations = await _usersReservation.GetReservation(userId);
+                _logger.LogInformation(allReservations.Reservations.ToString());
+                var checkedInRservations=await _checkInOutRepository.stayIds();
+                 foreach (var reservationId in checkedInRservations)
+                {
+                    _logger.LogInformation($"Retrieved reservation ID: 1 {reservationId}");
+                }
+                var reservations=
+                allReservations.Reservations.Where(r => !checkedInRservations.Contains(r.Id));
+                 foreach (var reservationId in reservations)
+                {
+                    _logger.LogInformation($"Retrieved reservation ID: 2 {reservationId}");
+                }
+            
                 return Ok(reservations);
             }
             catch (RpcException e)
@@ -88,16 +102,19 @@ namespace CheckInOut.API.Controllers
 
             var reservation = reservations.Reservations.First(r => r.UserId == userId && r.Id==reservationId);
 
-            var stay = new HotelStayDTO();
-            stay.ReservationId = reservation.Id;
-            stay.GuestId = reservation.UserId;
-            stay.RoomId = reservation.RoomId;
-            stay.HotelId = reservation.HotelId;
-            stay.StartDateTime = reservation.StartDateTime;
-            stay.EndDateTime = null;
-            
-            
-            
+            var stay = new HotelStayDTO
+            {
+                ReservationId = reservation.Id,
+                GuestId = reservation.UserId,
+                RoomId = reservation.RoomId,
+                HotelId = reservation.HotelId,
+                HotelName = reservation.HotelName,
+                StartDateTime = reservation.StartDateTime,
+                EndDateTime = null
+            };
+
+
+
             bool created = await _checkInOutRepository.CreateCheckInOut(stay);
 
             if (created)
@@ -129,7 +146,7 @@ namespace CheckInOut.API.Controllers
         [Authorize(Roles = "Hotel")]
         [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void),StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> SetCheckOutDate(string reservationId, String endDateTime)
+        public async Task<IActionResult> SetCheckOutDate(string reservationId, string endDateTime)
         {
             var stay = await _checkInOutRepository.SetCheckOutDate(reservationId,endDateTime);
 
