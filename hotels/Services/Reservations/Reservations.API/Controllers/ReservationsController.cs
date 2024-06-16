@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Reservations.Common.Entities;
 using Reservations.Common.Repositories;
 
 namespace Reservations.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/v1/[controller]")]
     public class ReservationsController : ControllerBase
@@ -15,6 +17,7 @@ namespace Reservations.API.Controllers
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
+        [Authorize(Roles = "Hotel")]
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<Reservation>), StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations()
@@ -23,6 +26,7 @@ namespace Reservations.API.Controllers
             return Ok(reservations);
         }
 
+        [Authorize(Roles = "Hotel,Guest")]
         [HttpGet("{id}", Name = "GetReservation")]
         [ProducesResponseType(typeof(Reservation), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Reservation), StatusCodes.Status404NotFound)]
@@ -32,6 +36,7 @@ namespace Reservations.API.Controllers
             return reservation == null ? NotFound(null) : Ok(reservation);
         }
 
+        [Authorize(Roles = "Hotel,Guest")]
         [HttpPost]
         [ProducesResponseType(typeof(Reservation), StatusCodes.Status201Created)]
         public async Task<ActionResult<Reservation>> CreateReservation([FromBody] Reservation reservation)
@@ -40,6 +45,7 @@ namespace Reservations.API.Controllers
             return CreatedAtRoute("GetReservation", new { id = reservation.Id }, reservation);
         }
 
+        [Authorize(Roles = "Hotel")]
         [HttpDelete("[action]")]
         [ProducesResponseType(typeof(Reservation), StatusCodes.Status200OK)]
         public async Task<IActionResult> DeleteReservation()
@@ -47,6 +53,7 @@ namespace Reservations.API.Controllers
             return Ok(await _repository.Delete());
         }
 
+        [Authorize(Roles = "Hotel,Guest")]
         [HttpDelete("{id}", Name = "DeleteReservation")]
         [ProducesResponseType(typeof(Reservation), StatusCodes.Status200OK)]
         public async Task<IActionResult> DeleteReservationById(string id)
