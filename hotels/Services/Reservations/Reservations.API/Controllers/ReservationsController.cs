@@ -27,7 +27,7 @@ namespace Reservations.API.Controllers
         }
 
         [Authorize(Roles = "Hotel,Guest")]
-        [HttpGet("{id}", Name = "GetReservation")]
+        [HttpGet("{id}", Name = "GetReservationById")]
         [ProducesResponseType(typeof(Reservation), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Reservation), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Reservation>> GetReservationById(string id)
@@ -37,12 +37,21 @@ namespace Reservations.API.Controllers
         }
 
         [Authorize(Roles = "Hotel,Guest")]
-        [HttpPost]
+        [HttpGet("[action]")]
+        [ProducesResponseType(typeof(IEnumerable<Reservation>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<IEnumerable<Reservation>>> GetReservationsByUserId(string userId)
+        {
+            var reservations = await _repository.GetReservationsByUserId(userId);
+            return Ok(reservations);
+        }
+
+        [Authorize(Roles = "Hotel,Guest")]
+        [HttpPost("[action]")]
         [ProducesResponseType(typeof(Reservation), StatusCodes.Status201Created)]
         public async Task<ActionResult<Reservation>> CreateReservation([FromBody] Reservation reservation)
         {
             await _repository.CreateReservation(reservation);
-            return CreatedAtRoute("GetReservation", new { id = reservation.Id }, reservation);
+            return CreatedAtRoute("GetReservationById", new { id = reservation.Id }, reservation);
         }
 
         [Authorize(Roles = "Hotel")]

@@ -12,6 +12,10 @@ export class ManageReservationsService {
   constructor(private httpClient: HttpClient) { }
 
   public create(request: IAddReservationRequest): Observable<Object> {
-    return this.httpClient.post(`${this.url}`, request);
+    return this.httpClient.post(`${this.url}/CreateReservation`, request);
+  }
+
+  public getReservations(username: string): Observable<any[]> {
+    return this.httpClient.get<any[]>(`${this.url}/GetReservationsByUserId?userId=${username}`);
   }
 }

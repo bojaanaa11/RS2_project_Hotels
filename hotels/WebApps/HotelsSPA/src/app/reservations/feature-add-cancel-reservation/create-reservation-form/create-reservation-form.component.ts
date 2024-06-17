@@ -15,7 +15,7 @@ export class CreateReservationFormComponent implements OnInit {
   constructor(private route: ActivatedRoute, private appStateService: AppStateService, private manageReservationsService: ManageReservationsFacadeService) {
     this.createReservationForm = new FormGroup({
       id: new FormControl(this.generateReservationId()),
-      userId: new FormControl(this.appStateService.getUserName()),
+      userId: new FormControl(this.appStateService.getUserId()),
       hotelId: new FormControl(""),
       hotelName: new FormControl(""),   
       roomId: new FormControl(""),

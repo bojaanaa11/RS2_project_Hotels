@@ -10,16 +10,8 @@ export class ManageReservationsFacadeService {
 
   constructor(private manageReservationsService: ManageReservationsService) { }
 
-  public create(
-    id: string,
-    userId: string, 
-    hotelId: string, 
-    hotelName: string, 
-    roomId: string,
-    bookingDateTime: string,
-    startDateTime: string, 
-    endDateTime: string, 
-    status: string): Observable<boolean> {
+  public create( id: string, userId: string, hotelId: string, hotelName: string, roomId: string, bookingDateTime: string,
+    startDateTime: string, endDateTime: string, status: string): Observable<boolean> {
     const request: IAddReservationRequest = {
       id,
       userId,
@@ -42,5 +34,14 @@ export class ManageReservationsFacadeService {
         return of(false);
       })
     );
+  }
+
+  public getReservations(username: string): Observable<any[]> {
+    return this.manageReservationsService.getReservations(username).pipe(
+      catchError((err) => {
+        console.log(err);
+        return of(err);
+      })
+    )
   }
 }

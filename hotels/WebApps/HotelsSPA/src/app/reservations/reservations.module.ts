@@ -5,12 +5,14 @@ import { ReservationsRoutingModule } from './reservations-routing.module';
 import { ReservationsComponent } from './reservations.component';
 import { CreateReservationFormComponent } from './feature-add-cancel-reservation/create-reservation-form/create-reservation-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ListReservationsComponent } from './feature-list-reservations/list-reservations/list-reservations.component';
 
 
 @NgModule({
   declarations: [
     ReservationsComponent,
-    CreateReservationFormComponent
+    CreateReservationFormComponent,
+    ListReservationsComponent
   ],
   imports: [
     CommonModule,

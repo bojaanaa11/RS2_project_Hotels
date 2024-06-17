@@ -1,0 +1,17 @@
+<div class="container">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let reservation of reservations">
+        <div class="d-flex flex-column">
+          <span class="font-weight-bold">Reservation ID:</span> {{ reservation.id }}
+          <span class="mt-2 font-weight-bold">Hotel ID:</span> {{ reservation.hotelId }}
+          <span class="mt-2 font-weight-bold">Hotel Name:</span> {{ reservation.hotelName }}
+          <span class="mt-2 font-weight-bold">Room ID:</span> {{ reservation.roomId }}
+          <span class="mt-2 font-weight-bold">Hotel Name:</span> {{ reservation.hotelName }}
+          <span class="mt-2 font-weight-bold">Booking Date And Time:</span> {{ reservation.bookingDateTime }}
+          <span class="mt-2 font-weight-bold">Start Date And Time:</span> {{ reservation.startDateTime }}
+          <span class="mt-2 font-weight-bold">End Date And Time:</span> {{ reservation.endDateTime }}
+          <span class="mt-2 font-weight-bold">Status:</span> {{ reservation.status }}
+        </div>
+      </li>
+    </ul>
+</div>
