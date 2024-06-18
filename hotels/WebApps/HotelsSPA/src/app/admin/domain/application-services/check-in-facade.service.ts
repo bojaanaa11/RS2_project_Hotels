@@ -8,7 +8,7 @@ import { CheckInService } from '../infrastructure/check-in.service';
 export class CheckInFacadeService {
   constructor(private checkInService: CheckInService) {}
 
-  public CheckIn(GuestId : string, ReservationId: string): Observable<void> {
-    return this.checkInService.checkIn(GuestId,ReservationId);
+  public CheckIn(GuestId : string, ReservationId: string, Date: string): Observable<void> {
+    return this.checkInService.checkIn(GuestId,ReservationId,Date);
   }
 }

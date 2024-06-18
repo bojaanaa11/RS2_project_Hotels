@@ -25,7 +25,7 @@ export class ReservationComponent {
   public checkInUser() {
     console.log(this.GuestId)
     console.log(this.ReservationId)
-    this.checkInFacadeService.CheckIn(this.GuestId,this.ReservationId).subscribe(
+    this.checkInFacadeService.CheckIn(this.GuestId,this.ReservationId,this.generateCurrentDateTime()).subscribe(
       {
         next: () => {
           console.log('Checked in!');
@@ -37,5 +37,18 @@ export class ReservationComponent {
           console.error(err);
         }
       });
+  }
+
+  generateCurrentDateTime(): string {
+    const now = new Date();
+
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const year = now.getFullYear();
+  
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+  
+    return `${day}/${month}/${year} ${hours}:${minutes}`;
   }
 }

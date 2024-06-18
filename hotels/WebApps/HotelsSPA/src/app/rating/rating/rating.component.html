@@ -5,6 +5,6 @@
     <div *ngFor="let rating of pendingRatingsResponse ?? []">
       <app-hotel-stay [HotelId]="rating.hotelId" [ReservationId]="rating.reservationId" [HotelName]="rating.hotelName"></app-hotel-stay>
     </div>
-    <div *ngIf="(pendingRatingsResponse?.length ?? 0) === 0">No ratings available.</div>
+    <div class="container" *ngIf="(pendingRatingsResponse?.length ?? 0) === 0">No ratings available.</div>
   </div>
 </div>

@@ -7,11 +7,10 @@
       <label for="textbox">Room: {{Room}}</label>
     </div>
     <div>
-      <label for="textbox">Start date: {{StartDate}}</label>
+      <label for="textbox">Check in date: {{StartDate}}</label>
     </div>
     <div>
-      <label for="textbox">End date: </label>
-      <input type="text" id="textbox" [(ngModel)]="checkoutdate" class="textbox">
+      <label for="textbox">Check out date: {{this.generateCurrentDateTime()}}</label>      
     </div>
     <button (click)="checkOutUser()" class="button">Check Out Guest</button>
   </div>

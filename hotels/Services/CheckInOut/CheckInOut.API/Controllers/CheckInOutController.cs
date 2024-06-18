@@ -86,7 +86,7 @@ namespace CheckInOut.API.Controllers
         [Authorize(Roles = "Hotel")]
         [ProducesResponseType(typeof(void), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(void),StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateHotelStay(string userId, string reservationId)
+        public async Task<IActionResult> CreateHotelStay(string userId, string reservationId, string startDateTime)
         {
             GetReservationResponse reservations;
             try
@@ -109,7 +109,7 @@ namespace CheckInOut.API.Controllers
                 RoomId = reservation.RoomId,
                 HotelId = reservation.HotelId,
                 HotelName = reservation.HotelName,
-                StartDateTime = reservation.StartDateTime,
+                StartDateTime = startDateTime,
                 EndDateTime = null
             };
 

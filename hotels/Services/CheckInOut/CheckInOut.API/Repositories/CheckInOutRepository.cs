@@ -65,7 +65,7 @@ namespace CheckInOut.API.Repositories
         public async Task<HotelStayDTO?> SetCheckOutDate(string reservationId, string endDateTime)
         {
             await using var connection = _context.GetConnection();
-            var affected=await connection.ExecuteAsync("UPDATE HotelStay SET EndDateTime=@date WHERE ReservationId=@id AND to_date(StartDateTime, 'DD/MM/YYYY') < to_date(@date, 'DD/MM/YYYY')",
+            var affected=await connection.ExecuteAsync("UPDATE HotelStay SET EndDateTime=@date WHERE ReservationId=@id",
                 new {id=reservationId,date=endDateTime});
             _logger.LogInformation(affected.ToString());
 

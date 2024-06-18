@@ -8,10 +8,11 @@ import { Observable, map } from 'rxjs';
 export class CheckInService {
   constructor(private httpClient: HttpClient) {}
 
-  public checkIn(GuestId:string, ReservationId:string): Observable<void> {
+  public checkIn(GuestId:string, ReservationId:string, Date: string): Observable<void> {
     const params = new HttpParams()
       .set('userId', GuestId)
-      .set('reservationId', ReservationId);
+      .set('reservationId', ReservationId)
+      .set('startDateTime',Date);
     return this.httpClient.put<void>(`http://localhost:8005/api/v1/CheckInOut`,
         null,
         {params}

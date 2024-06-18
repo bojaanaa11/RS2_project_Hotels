@@ -15,5 +15,8 @@
   <div>
     <label for="textbox">End date: {{EndDate}}</label>
   </div>
+  <div>
+    <label for="textbox">Check in date: {{this.generateCurrentDateTime()}}</label>
+  </div>
   <button (click)="checkInUser()" class="button">Check In Guest</button>
 </div>
