@@ -7,7 +7,8 @@ const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'rating', loadChildren: () => import('./rating/rating/rating.module').then(m => m.RatingModule) },
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
-  { path: 'reservations', loadChildren: () => import('./reservations/reservations.module').then(m => m.ReservationsModule) }
+  { path: 'reservations', loadChildren: () => import('./reservations/reservations.module').then(m => m.ReservationsModule) },
+  { path: 'managingrooms', loadChildren: () => import('./managingrooms/managingrooms.module').then(m => m.ManagingroomsModule) }
 ];
 
 @NgModule({

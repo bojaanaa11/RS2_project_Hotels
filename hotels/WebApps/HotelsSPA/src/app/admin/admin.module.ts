@@ -7,6 +7,7 @@ import { CheckInUserComponent } from './components/check-in-user/check-in-user.c
 import { CheckOutUserComponent } from './components/check-out-user/check-out-user.component';
 import { ReservationComponent } from './components/reservation/reservation.component';
 import { HotelStayComponent } from './components/hotel-stay/hotel-stay.component';
+import { ManagingroomsComponent } from './components/managingrooms/managingrooms.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { HotelStayComponent } from './components/hotel-stay/hotel-stay.component
     CheckInUserComponent,
     CheckOutUserComponent,
     ReservationComponent,
-    HotelStayComponent
+    HotelStayComponent,
+    ManagingroomsComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,43 @@
+<!-- <div>
+    <h2>Hotel List</h2>
+    <ul>
+      <li *ngFor="let hotel of hotels">
+        <a [routerLink]="['/hotels', hotel.id]">{{ hotel.name }}</a>
+        <button (click)="deleteHotel(hotel.id)">Delete</button>
+      </li>
+    </ul>
+    <button routerLink="/hotels/new">Add Hotel</button>
+  </div>
+   -->
+
+   <!-- <div>
+    <h2>Hotel List</h2>
+    <ul>
+      <li *ngFor="let hotel of hotels">
+        <input [(ngModel)]="hotel.name" placeholder="Name">
+        <input [(ngModel)]="hotel.address" placeholder="Address">
+        <button (click)="updateHotel(hotel)">Update</button>
+        <button (click)="deleteHotel(hotel.id)">Delete</button>
+      </li>
+    </ul>
+    <div>
+      <h3>Add New Hotel</h3>
+      <input [(ngModel)]="newHotel.name" placeholder="Name">
+      <input [(ngModel)]="newHotel.address" placeholder="Address">
+      <button (click)="addHotel()">Add</button>
+    </div>
+  </div> -->
+
+  <div>
+    <h2>Hotel List</h2>
+    <div *ngFor="let hotel of hotels" class="hotel-card">
+      <img [src]="hotel.fileImages[0]" alt="{{ hotel.name }}" class="hotel-image">
+      <h3>{{ hotel.name }}</h3>
+      <p>{{ hotel.address }}, {{ hotel.city }}, {{ hotel.country }}</p>
+      <p>{{ hotel.description }}</p>
+      <button (click)="updateHotel(hotel)">Update</button>
+      <button (click)="deleteHotel(hotel.id)">Delete</button>
+    </div>
+    <button (click)="addHotel()">Add Hotel</button>
+  </div>
+  

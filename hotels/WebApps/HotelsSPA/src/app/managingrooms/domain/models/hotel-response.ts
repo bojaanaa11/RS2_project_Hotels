@@ -8,4 +8,5 @@ export interface IHotelResponse {
     country: string;
     fileimages: Array<string>;
     rooms: Array<IRoomResponse>;
+    description: string;
 }

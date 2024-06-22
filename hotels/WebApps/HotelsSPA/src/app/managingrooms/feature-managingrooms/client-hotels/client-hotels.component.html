@@ -6,8 +6,26 @@
     <title>Document</title>
 </head>
 <body>
-    <div *ngFor="let hotel of hotels">
-        <label (click)="goToRoomComponent(hotel.id)">{{hotel.name}}</label>
-    </div>
+    <div class="container my-5">
+        <div class="column">
+          <div class="col-md-4" *ngFor="let hotel of hotels">
+            <div class="card mb-4 shadow-sm">
+              <img [src]="hotel.fileImages" class="card-img-top" alt="{{ hotel.name }}">
+              <div class="card-body">
+                <h5 class="card-title">{{ hotel.name }}</h5>
+                <p class="card-text">{{ hotel.description }}</p>
+                <label class="btn btn-primary" (click)="goToRoomComponent(hotel.id)">Rooms</label>
+                <a [routerLink]="['/reservations', hotel.id]" class="btn btn-primary">Reserve</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+        
+   
 </body>
 </html>
+
+
+
