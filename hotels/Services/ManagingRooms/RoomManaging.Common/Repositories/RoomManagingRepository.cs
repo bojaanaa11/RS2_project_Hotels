@@ -1,13 +1,6 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 using Room_Managing_API.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Nodes;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace RoomManaging.Common.Repositories
 {
@@ -28,7 +21,8 @@ namespace RoomManaging.Common.Repositories
             {
                 return null;
             }
-            return JsonConvert.DeserializeObject<IEnumerable<Hotel>>(hotels);
+            IEnumerable<Hotel> allHotels = JsonConvert.DeserializeObject<IEnumerable<Hotel>>(hotels);
+            return allHotels;
         }
 
         public async Task<Hotel> GetHotelById(string id)
@@ -89,13 +83,13 @@ namespace RoomManaging.Common.Repositories
             if (string.IsNullOrEmpty(list))
             {
                 IEnumerable<Hotel> hotels = new List<Hotel>();
-                hotels.Append(hotel);
+                hotels = hotels.Append(hotel);
                 var hotelsString = JsonConvert.SerializeObject(hotels);
                 await _cache.SetStringAsync(ListOfAllHotels, hotelsString);
             }
 
-            IEnumerable<Hotel> allHotels = JsonConvert.DeserializeObject<List<Hotel>>(list);
-            allHotels.Append(hotel);
+            IEnumerable<Hotel> allHotels = JsonConvert.DeserializeObject<List<Hotel>>(list);        
+            allHotels = allHotels.Append(hotel);
             var allHotelsString = JsonConvert.SerializeObject(allHotels);
             await _cache.SetStringAsync(ListOfAllHotels, allHotelsString);
         }

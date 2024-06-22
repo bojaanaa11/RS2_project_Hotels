@@ -11,6 +11,8 @@ export class ClientHotelsComponent implements OnInit {
   
   constructor(private hotelService: HotelFacadeService, private router: Router) {}
 
+  url = 'http://localhost:4200/managingrooms';
+
   ngOnInit(): void {
     this.hotelService.getAllHotels().subscribe((response:any) => {
       this.hotels = response;
@@ -82,7 +84,7 @@ export class ClientHotelsComponent implements OnInit {
 
   goToRoomComponent(hotelId: string) {
     sessionStorage.setItem('hotelId', hotelId);
-    this.router.navigate(['client-rooms'])
+    this.router.navigate([this.url + '/client-rooms'])
   }
 
 }

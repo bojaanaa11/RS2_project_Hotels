@@ -11,6 +11,6 @@ export class RoomService {
   constructor(private httpClient: HttpClient) { }
 
   public getAllRooms(hotelId: string): Observable<Array<IRoomResponse>> {
-    return this.httpClient.get<Array<IRoomResponse>>(`http://localhost:8004/api/vi/ManagingRooms/GetRoomsInHotel?hotelId=${hotelId}`);
+    return this.httpClient.get<Array<IRoomResponse>>(`http://localhost:8004/api/v1/RoomManaging/GetRoomsInHotel/${hotelId}`);
   }
 }

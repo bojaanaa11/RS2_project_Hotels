@@ -7,6 +7,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthenticationInterceptor } from './shared/interceptors/authentication.interceptor';
 import { NavbarComponent } from './ui-utils/navbar/navbar.component';
 import { HomeComponent } from './ui-utils/home/home.component';
+import { ManagingroomsModule } from './managingrooms/managingrooms.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HomeComponent } from './ui-utils/home/home.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ManagingroomsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}

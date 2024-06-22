@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { ManagingroomsComponent } from './managingrooms.component';
 import { ClientHotelsComponent } from './feature-managingrooms/client-hotels/client-hotels.component';
 import { CreateReservationFormComponent } from '../reservations/feature-add-cancel-reservation/create-reservation-form/create-reservation-form.component';
+import { ClientRoomsComponent } from './feature-managingrooms/client-rooms/client-rooms.component';
 
 const routes: Routes = [
   { path: '', component: ClientHotelsComponent },
-  { path: 'reservations/:hotelId', loadChildren: () => import('../reservations/reservations.module').then(m => m.ReservationsModule) }
+  { path: 'reservations/:hotelId', loadChildren: () => import('../reservations/reservations.module').then(m => m.ReservationsModule) },
+  { path: 'client-rooms', component: ClientRoomsComponent}
 ];
 
 @NgModule({
