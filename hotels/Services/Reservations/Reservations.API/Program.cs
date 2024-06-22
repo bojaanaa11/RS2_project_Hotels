@@ -4,6 +4,10 @@ using Microsoft.IdentityModel.Tokens;
 using Reservations.Common.Data;
 using Reservations.Common.Repositories;
 using System.Text;
+using MassTransit;
+using Reservations.EventBusConsumers;
+using Common.EventBus.Messages.Constants;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +38,24 @@ builder.Services.AddAuthentication(options =>
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("JwtSettings").GetSection("secretKey").Value))
         };
     });
+
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+builder.Services.AddMassTransit(config =>
+{
+    config.AddConsumer<GuestCheckoutConsumer>();
+    config.AddMediator(med => med.AddConsumer(typeof(GuestCheckoutConsumer)));
+    config.UsingRabbitMq((ctx, cfg) =>
+    {
+        
+        cfg.Host(builder.Configuration["EventBusSettings:HostAddress"]);
+        cfg.ReceiveEndpoint(EventBusConstants.guestcheckoutqueue, c =>
+        {
+            c.ConfigureConsumer<GuestCheckoutConsumer>(ctx);
+        });
+    });
+    
+});
 
 
 builder.Services.AddCors(options =>
