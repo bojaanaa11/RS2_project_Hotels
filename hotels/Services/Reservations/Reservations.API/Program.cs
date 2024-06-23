@@ -49,8 +49,12 @@ builder.Services.AddMassTransit(config =>
     {
         
         cfg.Host(builder.Configuration["EventBusSettings:HostAddress"]);
-        cfg.ReceiveEndpoint(EventBusConstants.guestcheckoutqueue, c =>
+        cfg.ReceiveEndpoint(EventBusConstants.guestcheckout_reservations_queue, c =>
         {
+            c.Bind(EventBusConstants.guestcheckout_exchangename, x => 
+            {
+                x.ExchangeType = "fanout";
+            });
             c.ConfigureConsumer<GuestCheckoutConsumer>(ctx);
         });
     });

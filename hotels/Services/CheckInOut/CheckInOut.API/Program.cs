@@ -7,6 +7,8 @@ using CheckInOut.API.Repositories;
 using MassTransit;
 using Rating_API.GrpcService;
 using Reservations.GRPC.Protos;
+using Common.EventBus.Messages.Constants;
+using Common.EventBus.Messages.Events;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +32,11 @@ builder.Services.AddMassTransit(config =>
     config.UsingRabbitMq((_, cfg) =>
     {
         cfg.Host(builder.Configuration["EventBusSettings:HostAddress"]);
+
+        cfg.Publish<GuestCheckoutEvent>(p =>
+        {
+            p.ExchangeType = EventBusConstants.guestcheckout_exchangename;
+        });
     });
 });
 
