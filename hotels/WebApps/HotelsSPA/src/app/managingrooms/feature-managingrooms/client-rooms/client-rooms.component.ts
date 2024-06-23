@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RoomFacadeService } from '../../domain/application-services/room-facade.service';
 import { HotelFacadeService } from '../../domain/application-services/hotel-facade.service';
 import { IRoomResponse } from '../../domain/models/room-response';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-rooms',
@@ -10,9 +11,11 @@ import { IRoomResponse } from '../../domain/models/room-response';
 })
 export class ClientRoomsComponent implements OnInit{
 
-  //rooms: IRoomResponse[] = []
-  rooms;
-  constructor(private roomService: RoomFacadeService) {}
+  rooms: IRoomResponse[] = [];
+  hotelId: string;
+  url = 'http://localhost:4200/managingrooms';
+
+  constructor(private roomService: RoomFacadeService, private router: Router) {}
 
   ngOnInit(): void {
     this.hotelId = sessionStorage.getItem('hotelId');
@@ -21,11 +24,11 @@ export class ClientRoomsComponent implements OnInit{
       console.log(this.rooms);
     })
   }
-  
-  hotelId;
 
-  goToReservationsComponent() {
-    
+  goToReservationsComponent(roomId: string) {
+    sessionStorage.setItem('hotelId', this.hotelId);
+    sessionStorage.setItem('roomId', roomId);
+    this.router.navigate([this.url + '/reservations'])
   }
 
 }

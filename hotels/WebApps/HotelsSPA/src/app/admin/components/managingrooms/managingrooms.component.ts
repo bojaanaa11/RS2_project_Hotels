@@ -42,11 +42,11 @@ export class ManagingroomsComponent implements OnInit {
     });
   }
 
- /* updateHotel(hotel: Hotel): void {
+  updateHotel(hotel: IHotel): void {
     this.hotelFacadeService.UpdateHotel(hotel).subscribe(() => {
       this.loadHotels();
     });
-  } */
+  }
 
   deleteHotel(id: string): void {
     this.hotelFacadeService.DeleteHotel(id).subscribe(() => {

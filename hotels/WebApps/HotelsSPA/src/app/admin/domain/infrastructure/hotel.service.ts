@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, ObservedValueOf } from 'rxjs';
 import { IHotel } from '../models/hotel';
 
 @Injectable({
@@ -25,7 +25,17 @@ export class HotelService {
   }
 
   addHotel(Hotel: IHotel): Observable<IHotel> {
-    return this.httpClient.post<IHotel>('http://localhost:8004/api/v1/ManagingRooms/CreateHotel',
+    return this.httpClient.post<IHotel>(`http://localhost:8004/api/v1/ManagingRooms/CreateHotel`,
+      {
+        params: {
+          hotel: Hotel
+        }
+      }
+    );
+  }
+
+  updateHotel(Hotel: IHotel): Observable<IHotel> {
+    return this.httpClient.put<IHotel>(`http://localhost:8004/api/v1/ManagingRooms/UpdateHotel`,
       {
         params: {
           hotel: Hotel
@@ -35,7 +45,7 @@ export class HotelService {
   }
 
   deleteHotel(Id:string): Observable<void> {
-    return this.httpClient.delete<void>('http://localhost:8004/api/v1/ManagingRooms/DeleteHotel',
+    return this.httpClient.delete<void>(`http://localhost:8004/api/v1/ManagingRooms/DeleteHotel`,
       {
         params: {
           id: Id

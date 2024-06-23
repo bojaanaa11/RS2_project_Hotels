@@ -22,6 +22,10 @@ export class HotelFacadeService {
     return this.hotelService.addHotel(Hotel);
   }
 
+  public UpdateHotel(Hotel: IHotel): Observable<IHotel> {
+    return this.hotelService.updateHotel(Hotel);
+  }
+
   public DeleteHotel(Id: string): Observable<void> {
     return this.hotelService.deleteHotel(Id);
   }

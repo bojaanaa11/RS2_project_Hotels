@@ -20,11 +20,11 @@ namespace RoomManaging.Common.Repositories
         Task<Room> GetRoomById(string hotelId, string roomId);
             // get sobe po id
 
-        Task CreateHotel(Hotel hotel);
+        Task<string> CreateHotel(Hotel hotel);
 
         Task<Hotel> UpdateHotel(Hotel hotel);
 
-        Task DeleteHotel(Hotel hotel);
+        Task DeleteHotel(string id);
 
         Task<Room> UpdateRoom(Room room);
             // update sobe - promena statusa

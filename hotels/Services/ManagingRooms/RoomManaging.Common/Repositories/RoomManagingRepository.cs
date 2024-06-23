@@ -12,6 +12,60 @@ namespace RoomManaging.Common.Repositories
         public RoomManagingRepository(IDistributedCache cache)
         {
             _cache = cache ?? throw new ArgumentNullException(nameof(cache));
+            
+            /*Room r1 = new Room
+            {
+                Id = "1",
+                HotelId = "1",
+                RoomNumber = "100",
+                Status = true,
+                Price = 7143.00,
+                FileImages = ["https://images.app.goo.gl/XRnygPLBtMLnbnmp7", "https://images.app.goo.gl/feV7ApuADavBGtvp6"],
+                Description = "Dvokrevetna soba sa terasom, klima uredjajem i pogledom na jednu od najlepsih ulica u Beogradu."
+            };
+
+            Room r2 = new Room 
+            {
+                Id = "2",
+                HotelId = "2",
+                RoomNumber = "101",
+                Status = false,
+                Price = 14643.00,
+                FileImages = ["https://images.app.goo.gl/UXBZGMXtZAizRCFA8", "https://images.app.goo.gl/n1qZ8ZhNXGfbT2Bg7"],
+                Description = "Apartman sa terasom, klima uredjajem i pogledom na reku."
+            };
+
+
+            IEnumerable<Hotel> hotels = new List<Hotel>();
+            Hotel h1 = new Hotel
+            {
+                Id = "1",
+                Name = "Metropol Palace",
+                Address = "Bulevar Kralja Aleksandra 69",
+                City = "Belgrade",
+                Country = "Serbia",
+                FileImages = ["https://images.app.goo.gl/7uTXNFpcjf4X1Bcd8", "https://images.app.goo.gl/vX3FbqFPbefHWnof7"],
+                Rooms = [r1]
+            };
+            //h1.Rooms = []; //new List<Room>();
+            
+            hotels = hotels.Append(h1);
+
+            Hotel h2 = new Hotel
+            {
+                Id = "2",
+                Name = "Jugoslavija",
+                Address = "Bulevar Nikole Tesle 3",
+                City = "Belgrade",
+                Country = "Serbia",
+                FileImages = ["https://images.app.goo.gl/5SwYqTHJJjeeEe3c8", "https://images.app.goo.gl/r58JYvLU1YS3xcWX7"],
+                Rooms = [r2]
+            };
+            
+            hotels = hotels.Append(h2);
+
+            var hotelsString = JsonConvert.SerializeObject(hotels);
+            _cache.SetStringAsync(ListOfAllHotels, hotelsString);*/
         }
 
         public async Task<IEnumerable<Hotel>> GetHotels()
@@ -28,6 +82,7 @@ namespace RoomManaging.Common.Repositories
         public async Task<Hotel> GetHotelById(string id)
         {
             var hotel = await _cache.GetStringAsync(id);
+            
             if (string.IsNullOrEmpty(hotel))
             {
                 return null;
@@ -74,24 +129,35 @@ namespace RoomManaging.Common.Repositories
             return await GetRoomById(room.HotelId, room.Id);
         }
 
-        public async Task CreateHotel(Hotel hotel)
+        public async Task<string> CreateHotel(Hotel hotel)
         { 
-            var hotelString = JsonConvert.SerializeObject(hotel);
-            await _cache.SetStringAsync(hotel.Id, hotelString);
-
-            var list = await _cache.GetStringAsync(ListOfAllHotels);
-            if (string.IsNullOrEmpty(list))
+            Hotel existingHotel = await GetHotelById(hotel.Id);
+            if (existingHotel == null)
             {
-                IEnumerable<Hotel> hotels = new List<Hotel>();
-                hotels = hotels.Append(hotel);
-                var hotelsString = JsonConvert.SerializeObject(hotels);
-                await _cache.SetStringAsync(ListOfAllHotels, hotelsString);
+                var hotelString = JsonConvert.SerializeObject(hotel);
+                await _cache.SetStringAsync(hotel.Id, hotelString);
+
+                var list = await _cache.GetStringAsync(ListOfAllHotels);
+                if (string.IsNullOrEmpty(list))
+                {
+                    IEnumerable<Hotel> hotels = new List<Hotel>();
+                    hotels = hotels.Append(hotel);
+                    var hotelsString = JsonConvert.SerializeObject(hotels);
+                    await _cache.SetStringAsync(ListOfAllHotels, hotelsString);
+                }
+
+                IEnumerable<Hotel> allHotels = JsonConvert.DeserializeObject<List<Hotel>>(list);
+                allHotels = allHotels.Append(hotel);
+                var allHotelsString = JsonConvert.SerializeObject(allHotels);
+                await _cache.SetStringAsync(ListOfAllHotels, allHotelsString);
+            }
+            else
+            {
+                return "Hotel with id=" + hotel.Id + " already exists in database!";
             }
 
-            IEnumerable<Hotel> allHotels = JsonConvert.DeserializeObject<List<Hotel>>(list);        
-            allHotels = allHotels.Append(hotel);
-            var allHotelsString = JsonConvert.SerializeObject(allHotels);
-            await _cache.SetStringAsync(ListOfAllHotels, allHotelsString);
+            return "Hotel successfully added to database";
+            
         }
 
         public async Task<Hotel> UpdateHotel(Hotel hotel)
@@ -101,6 +167,8 @@ namespace RoomManaging.Common.Repositories
             {
                 return null;
             }
+
+            
             var hotelString = JsonConvert.SerializeObject(hotel);
             await _cache.SetStringAsync(hotel.Id, hotelString);
 
@@ -112,8 +180,8 @@ namespace RoomManaging.Common.Repositories
             {
                 return null;
             }
-            allHotels.ToList().Remove(hasHotel);
-            allHotels.Append(hotel);
+            allHotels = allHotels.Where(h => h.Id != hotel.Id).ToList();
+            allHotels = allHotels.Append(hotel);
 
             var allHotelsString = JsonConvert.SerializeObject(allHotels);
             await _cache.SetStringAsync(ListOfAllHotels, allHotelsString);
@@ -121,13 +189,14 @@ namespace RoomManaging.Common.Repositories
             return await GetHotelById(hotel.Id);
         }
 
-        public async Task DeleteHotel(Hotel hotel)
+        public async Task DeleteHotel(string id)
         {
-            await _cache.RemoveAsync(hotel.Id);
+            Hotel hotel = await GetHotelById(id);
+            await _cache.RemoveAsync(id);
 
             var list = await _cache.GetStringAsync(ListOfAllHotels);
             IEnumerable<Hotel> allHotels = JsonConvert.DeserializeObject<List<Hotel>>(list);
-            allHotels.ToList().Remove(hotel);
+            allHotels = allHotels.Where(h => h.Id != id).ToList();
 
             var allHotelsString = JsonConvert.SerializeObject(allHotels);
             await _cache.SetStringAsync(ListOfAllHotels, allHotelsString);

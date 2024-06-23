@@ -10,7 +10,7 @@
 
         public bool Status { get; set; }
 
-        public decimal Price { get; set; }
+        public double Price { get; set; }
 
         public List<string> FileImages { get; set; }
 
@@ -18,7 +18,7 @@
 
         public Room()
         {
-            FileImages = new List<string>();
+            FileImages = [];
         }
 
     }

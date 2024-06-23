@@ -54,7 +54,7 @@ namespace Room_Managing_API.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(void), StatusCodes.Status201Created)]
-        public async Task<IActionResult> CreateHotel([FromBody] Hotel hotel)
+        public async Task<ActionResult<string>> CreateHotel([FromBody] Hotel hotel)
         {
             await _repository.CreateHotel(hotel);
             return CreatedAtRoute("GetHotel", new { id = hotel.Id }, hotel);
@@ -69,9 +69,9 @@ namespace Room_Managing_API.Controllers
 
         [HttpDelete("DeleteHotel")]
         [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
-        public async Task<IActionResult> DeleteHotel(Hotel hotel)
+        public async Task<IActionResult> DeleteHotel(string id)
         {
-            await _repository.DeleteHotel(hotel);
+            await _repository.DeleteHotel(id);
             return Ok();
         }
 
