@@ -7,7 +7,7 @@ import { ClientRoomsComponent } from './feature-managingrooms/client-rooms/clien
 
 const routes: Routes = [
   { path: '', component: ClientHotelsComponent },
-  { path: 'reservations/:hotelId', loadChildren: () => import('../reservations/reservations.module').then(m => m.ReservationsModule) },
+  { path: 'reservations', loadChildren: () => import('../reservations/reservations.module').then(m => m.ReservationsModule) },
   { path: 'client-rooms', component: ClientRoomsComponent}
 ];
 

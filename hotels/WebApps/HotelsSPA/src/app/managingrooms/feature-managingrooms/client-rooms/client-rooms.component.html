@@ -8,13 +8,12 @@
 <body>
     <div class="container my-5">
         <div class="column">
-          <div class="col-md-4" *ngFor="let hotel of hotels">
+          <div class="col-md-4" *ngFor="let room of rooms">
             <div class="card mb-4 shadow-sm">
-              <img [src]="room.fileimages" class="card-img-top" alt="{{ hotel.name }}">
+              <img [src]="room.fileimages" class="card-img-top">
               <div class="card-body">
-                <h5 class="card-title">{{ hotel.name }}</h5>
                 <p class="card-text">{{ room.description }}</p>
-                <a [routerLink]="['/reservations', hotel.id]" class="btn btn-primary">Reserve</a>
+                <button class="btn btn-primary" (click)="goToReservationsComponent(room.id)">Reserve</button>
               </div>
             </div>
           </div>
