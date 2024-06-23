@@ -6,21 +6,17 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container my-5">
-        <div class="column">
-          <div class="col-md-4" *ngFor="let hotel of hotels">
-            <div class="card mb-4 shadow-sm">
-              <img [src]="hotel.fileimages" class="card-img-top" alt="{{ hotel.name }}">
-              <div class="card-body">
-                <h5 class="card-title">{{ hotel.name }}</h5>
-                <p class="card-text">{{ hotel.description }}</p>
-                <label class="btn btn-primary" (click)="goToRoomComponent(hotel.id)">Rooms</label>
-              </div>
-            </div>
-          </div>
-        </div>
+  <div class="content">
+    <div class="hotel" *ngFor="let hotel of hotels">
+      <img [src]="hotel.fileimages" alt="{{ hotel.name }}">
+      <div >
+        <h5 >{{ hotel.name }}</h5>
+        <p >{{ hotel.description }}</p>
+        <label class="btn btn-primary" (click)="goToRoomComponent(hotel.id)">Rooms</label>
       </div>
-    
+    </div>
+  </div>
+     
         
    
 </body>

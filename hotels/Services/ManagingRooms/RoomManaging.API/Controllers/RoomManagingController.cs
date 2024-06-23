@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Room_Managing_API.Entities;
 using RoomManaging.Common.Repositories;
 using System.Security.Claims;
@@ -16,6 +17,7 @@ namespace Room_Managing_API.Controllers
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
+        [Authorize(Roles = "Hotel,Guest")]
         [HttpGet("[action]")]
         [ProducesResponseType(typeof(IEnumerable<Hotel>), StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<Hotel>>> GetHotels()
@@ -24,6 +26,7 @@ namespace Room_Managing_API.Controllers
             return Ok(hotels);
         }
 
+        [Authorize(Roles = "Hotel")]
         [HttpGet("{id}", Name = "GetHotel")]
         [ProducesResponseType(typeof(Hotel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Hotel), StatusCodes.Status404NotFound)]
@@ -33,6 +36,7 @@ namespace Room_Managing_API.Controllers
             return hotel == null ? NotFound(null) : Ok(hotel);
         }
 
+        [Authorize(Roles = "Hotel,Guest")]
         [Route("[action]/{hotelId}")]
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<Room>), StatusCodes.Status200OK)]
@@ -42,6 +46,7 @@ namespace Room_Managing_API.Controllers
             return Ok(rooms);
         }
 
+        [Authorize(Roles = "Hotel")]
         [Route("[action]/{hotelId}/{roomId}")]
         [HttpGet]
         [ProducesResponseType(typeof(Room), StatusCodes.Status200OK)]
@@ -52,6 +57,7 @@ namespace Room_Managing_API.Controllers
             return room == null ? NotFound(null) : Ok(room);
         }
 
+        [Authorize(Roles = "Hotel")]
         [HttpPost]
         [ProducesResponseType(typeof(void), StatusCodes.Status201Created)]
         public async Task<ActionResult<string>> CreateHotel([FromBody] Hotel hotel)
@@ -60,6 +66,7 @@ namespace Room_Managing_API.Controllers
             return CreatedAtRoute("GetHotel", new { id = hotel.Id }, hotel);
         }
 
+        [Authorize(Roles = "Hotel")]
         [HttpPut]
         [ProducesResponseType(typeof(Hotel), StatusCodes.Status200OK)]
         public async Task<ActionResult<Hotel>> UpdateHotel([FromBody] Hotel hotel)
@@ -67,6 +74,7 @@ namespace Room_Managing_API.Controllers
             return Ok(await _repository.UpdateHotel(hotel));
         }
 
+        [Authorize(Roles = "Hotel")]
         [HttpDelete("DeleteHotel")]
         [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
         public async Task<IActionResult> DeleteHotel(string id)
@@ -75,6 +83,7 @@ namespace Room_Managing_API.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Hotel")]
         [Route("[action]")]
         [HttpPut]
         [ProducesResponseType(typeof(Room),  StatusCodes.Status200OK)]

@@ -11,11 +11,11 @@ export class HotelService {
   constructor(private httpClient: HttpClient) { }
 
   public getHotels(): Observable<IHotel[]> {
-    return this.httpClient.get<IHotel[]>(`http://localhost:8004/api/v1/ManagingRooms/GetHotels`)
+    return this.httpClient.get<IHotel[]>(`http://localhost:8004/api/v1/RoomManaging/GetHotels`)
   }
 
   getHotel(Id: string): Observable<IHotel> {
-    return this.httpClient.get<IHotel>(`http://localhost:8004/api/v1/ManagingRooms/GetHotel`,
+    return this.httpClient.get<IHotel>(`http://localhost:8004/api/v1/RoomManaging/GetHotel`,
       {
         params: {
             id: Id
@@ -25,7 +25,7 @@ export class HotelService {
   }
 
   addHotel(Hotel: IHotel): Observable<IHotel> {
-    return this.httpClient.post<IHotel>(`http://localhost:8004/api/v1/ManagingRooms/CreateHotel`,
+    return this.httpClient.post<IHotel>(`http://localhost:8004/api/v1/RoomManaging/CreateHotel`,
       {
         params: {
           hotel: Hotel
@@ -35,7 +35,7 @@ export class HotelService {
   }
 
   updateHotel(Hotel: IHotel): Observable<IHotel> {
-    return this.httpClient.put<IHotel>(`http://localhost:8004/api/v1/ManagingRooms/UpdateHotel`,
+    return this.httpClient.put<IHotel>(`http://localhost:8004/api/v1/RoomManaging/UpdateHotel`,
       {
         params: {
           hotel: Hotel
@@ -45,7 +45,7 @@ export class HotelService {
   }
 
   deleteHotel(Id:string): Observable<void> {
-    return this.httpClient.delete<void>(`http://localhost:8004/api/v1/ManagingRooms/DeleteHotel`,
+    return this.httpClient.delete<void>(`http://localhost:8004/api/v1/RoomManaging/DeleteHotel`,
       {
         params: {
           id: Id
