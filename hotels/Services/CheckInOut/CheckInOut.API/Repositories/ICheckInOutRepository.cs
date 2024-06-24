@@ -16,6 +16,5 @@ namespace CheckInOut.API.Repositories
         public Task<bool> UpdateCheckInOut(HotelStayDTO stay);
         public Task<HotelStayDTO?> SetCheckOutDate(string reservationId,string endDateTime);
         public Task<bool> DeleteCheckInOut(string reservationId);
-        public Task<IEnumerable<string>> stayIds();
     }
 }

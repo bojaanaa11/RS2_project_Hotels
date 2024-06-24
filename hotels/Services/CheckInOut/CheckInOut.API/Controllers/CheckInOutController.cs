@@ -59,21 +59,8 @@ namespace CheckInOut.API.Controllers
         {
             try
             {
-                var allReservations = await _usersReservation.GetReservation(userId);
-                _logger.LogInformation(allReservations.Reservations.ToString());
-                var checkedInRservations=await _checkInOutRepository.stayIds();
-                 foreach (var reservationId in checkedInRservations)
-                {
-                    _logger.LogInformation($"Retrieved reservation ID: 1 {reservationId}");
-                }
-                var reservations=
-                allReservations.Reservations.Where(r => !checkedInRservations.Contains(r.Id));
-                 foreach (var reservationId in reservations)
-                {
-                    _logger.LogInformation($"Retrieved reservation ID: 2 {reservationId}");
-                }
-            
-                return Ok(reservations);
+                var reservations = await _usersReservation.GetReservation(userId);            
+                return Ok(reservations.Reservations);
             }
             catch (RpcException e)
             {

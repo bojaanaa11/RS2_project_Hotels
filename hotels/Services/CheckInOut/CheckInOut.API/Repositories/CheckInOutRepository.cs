@@ -97,18 +97,5 @@ namespace CheckInOut.API.Repositories
 
             return affected!=0;
         }
-
-        public async Task<IEnumerable<string>> stayIds()
-        {
-            await using var connection = _context.GetConnection();
-
-            var reservationIds =await connection.QueryAsync<string>("SELECT reservationId FROM HotelStay");
-             foreach (var reservationId in reservationIds)
-                {
-                    _logger.LogInformation($"Retrieved reservation ID: 3 {reservationId}");
-                }
-        
-            return reservationIds;
-        }
     }
 }
