@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HotelFacadeService } from '../../domain/application-services/hotel-facade.service';
 import { IHotel } from '../../domain/models/hotel';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-managingrooms',
@@ -21,7 +22,7 @@ export class ManagingroomsComponent implements OnInit {
     description: ''
   };
 
-  constructor(private hotelFacadeService: HotelFacadeService) {}
+  constructor(private hotelFacadeService: HotelFacadeService, private router: Router) {}
   
   ngOnInit(): void {
     this.loadHotels();
@@ -37,14 +38,14 @@ export class ManagingroomsComponent implements OnInit {
   public addHotel(): void {
     console.log("adding new hotel")
     this.hotelFacadeService.AddHotel(this.newHotel).subscribe(() => {
-      //this.loadHotels();
-      //next: ()
+      this.router.navigate(['add-hotel'])
     });
   }
 
   updateHotel(hotel: IHotel): void {
     this.hotelFacadeService.UpdateHotel(hotel).subscribe(() => {
-      this.loadHotels();
+      sessionStorage.setItem('hotelId', hotel.id);
+      this.router.navigate(['update-hotel'])
     });
   }
 

@@ -6,6 +6,7 @@ using System.Security.Claims;
 
 namespace Room_Managing_API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/v1/[controller]")]
     public class RoomManagingController : ControllerBase
@@ -17,8 +18,8 @@ namespace Room_Managing_API.Controllers
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        [Authorize(Roles = "Hotel,Guest")]
         [HttpGet("[action]")]
+        [Authorize(Roles = "Hotel,Guest")]
         [ProducesResponseType(typeof(IEnumerable<Hotel>), StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<Hotel>>> GetHotels()
         {
@@ -57,8 +58,8 @@ namespace Room_Managing_API.Controllers
             return room == null ? NotFound(null) : Ok(room);
         }
 
-        [Authorize(Roles = "Hotel")]
         [HttpPost]
+        [Authorize(Roles = "Hotel")]
         [ProducesResponseType(typeof(void), StatusCodes.Status201Created)]
         public async Task<ActionResult<string>> CreateHotel([FromBody] Hotel hotel)
         {

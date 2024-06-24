@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { CheckInUserComponent } from './components/check-in-user/check-in-user.component';
@@ -8,6 +8,8 @@ import { CheckOutUserComponent } from './components/check-out-user/check-out-use
 import { ReservationComponent } from './components/reservation/reservation.component';
 import { HotelStayComponent } from './components/hotel-stay/hotel-stay.component';
 import { ManagingroomsComponent } from './components/managingrooms/managingrooms.component';
+import { AddHotelComponent } from './components/add-hotel/add-hotel.component';
+import { UpdateHotelComponent } from './components/update-hotel/update-hotel.component';
 
 
 @NgModule({
@@ -17,12 +19,15 @@ import { ManagingroomsComponent } from './components/managingrooms/managingrooms
     CheckOutUserComponent,
     ReservationComponent,
     HotelStayComponent,
-    ManagingroomsComponent
+    ManagingroomsComponent,
+    AddHotelComponent,
+    UpdateHotelComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   bootstrap: [AdminComponent]
 })

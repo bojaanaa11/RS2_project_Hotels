@@ -1,0 +1,50 @@
+<div class="container">
+
+    <h3>Create Hotel</h3>
+    
+    <!-- <form [formGroup]="hotelForm" (ngSubmit)="onAddHotelFormSubmit()"> -->
+        <div class="form-group">
+            <label class="form-label">Hotel Id</label>
+            <input type="text" formControlName="id" [ngModel]="Id" class="form-control">
+        </div>
+    
+        <div class="form-group">
+            <label class="form-label">Hotel Name</label>
+            <input type="text" formControlName="name" [ngModel]="Name" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Hotel Address</label>
+            <input type="text" formControlName="address" [ngModel]="Address" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">City</label>
+            <input type="text" formControlName="city" [ngModel]="City" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Country</label>
+            <input type="text" formControlName="country" [ngModel]="Country" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Hotel Images</label>
+            <input type="file" formControlName="name" [ngModel]="FileImages" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Rooms</label>
+            <input type="text" formControlName="rooms" [ngModel]="Rooms" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Hotel Description</label>
+            <input type="text" formControlName="description" [ngModel]="Description" class="form-control">
+        </div>
+    
+        <button type="submit" class="btn btn-primary mt-3">Create</button>
+    <!-- </form> -->
+    
+</div>
+

@@ -15,7 +15,7 @@ export class HotelService {
   }
 
   getHotel(Id: string): Observable<IHotel> {
-    return this.httpClient.get<IHotel>(`http://localhost:8004/api/v1/RoomManaging/GetHotel`,
+    return this.httpClient.get<IHotel>(`http://localhost:8004/api/v1/RoomManaging/${Id}`,
       {
         params: {
             id: Id
@@ -25,7 +25,7 @@ export class HotelService {
   }
 
   addHotel(Hotel: IHotel): Observable<IHotel> {
-    return this.httpClient.post<IHotel>(`http://localhost:8004/api/v1/RoomManaging/CreateHotel`,
+    return this.httpClient.post<IHotel>(`http://localhost:8004/api/v1/RoomManaging`,
       {
         params: {
           hotel: Hotel

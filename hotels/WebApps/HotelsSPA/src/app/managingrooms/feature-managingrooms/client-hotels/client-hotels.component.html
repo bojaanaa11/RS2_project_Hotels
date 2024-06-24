@@ -12,7 +12,9 @@
       <div >
         <h5 >{{ hotel.name }}</h5>
         <p >{{ hotel.description }}</p>
-        <label class="btn btn-primary" (click)="goToRoomComponent(hotel.id)">Rooms</label>
+        <label class="btn btn-primary" (click)="goToRoomComponent(hotel.id)">View rooms</label>
+        <!-- <a class="btn btn-primary btn-lg" [routerLink]="['/rating/show-reviews/hotel.id']">Browse Rooms</a> -->
+        <!-- <label class="btn btn-primary" (click)="goToRatingComponent(hotel.id)">View rating</label> -->
       </div>
     </div>
   </div>
