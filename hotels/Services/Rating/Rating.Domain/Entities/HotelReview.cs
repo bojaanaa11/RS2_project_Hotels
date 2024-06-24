@@ -14,9 +14,6 @@ namespace Rating.Domain.Entities
         public string HotelName {get; private set; }
         public string GuestId { get; private set; } 
         public string ReservationId { get; private set; }
-        
-        //public Guest Guest { get; private set; }
-        //public HotelRatingCollection Hotel { get;private set; }
         public RatingProcess? RatingProcess { get; private set; }
         public RatingInformation? HotelRating {  get; private set; }
 

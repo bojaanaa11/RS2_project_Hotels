@@ -9,7 +9,7 @@ using Rating.Application.Contracts.Persistence;
 
 namespace Rating.Application.Features.Ratings.Commands.CreateReview
 {
-    public class CreateReviewCommandHandler(IHotelReviewFactory factory,
+    public class CreateReviewCommandHandler(
         IRatingRepository repository,
         ILogger<CreateReviewCommandHandler> logger) : IRequestHandler<CreateReviewCommand, bool>
     {

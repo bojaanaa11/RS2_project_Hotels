@@ -11,12 +11,10 @@ namespace Rating.Application.Contracts.Persistence
 {
     public interface IRatingRepository : IAsyncRepository<HotelReview>
     {
-        //Interfejs za rating repo
         Task<IReadOnlyCollection<HotelReview>> GetRatingsByHotel(string hotelId);
         Task<bool> AddReviewToCollection(string hotelId, CreateReviewCommand hotelReview);
 
         Task<decimal> GetAverageRating(string hotelId);
-
-        Task<bool> DeleteHotelReview(string requestGuestId, string requestReservationId);
+        Task<bool> DeleteHotelReview(string hotelId);
     }
 }

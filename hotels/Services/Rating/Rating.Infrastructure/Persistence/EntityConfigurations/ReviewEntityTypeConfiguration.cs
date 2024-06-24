@@ -26,16 +26,6 @@ namespace Rating.Infrastructure.Persistence.EntityConfigurations
                 .HasColumnType("VARCHAR(100)")
                 .HasColumnName("HotelName")
                 .IsRequired();
-            
-            /*builder.HasOne(hr => hr.Hotel)
-                .WithMany(h => h.Reviews)
-                .HasForeignKey(hr => hr.HotelId)
-                .HasPrincipalKey(h => h.HotelId);*/
-
-            /*builder.HasOne(hr => hr.Guest)
-                .WithMany(g => g.HotelReviews)
-                .HasForeignKey(hr => hr.GuestId)
-                .HasPrincipalKey(g => g.GuestId);*/
 
             builder.HasOne(hr => hr.RatingProcess)
                 .WithOne(rp => rp.Review)

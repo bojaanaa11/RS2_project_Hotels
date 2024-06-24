@@ -18,8 +18,6 @@ namespace Rating.Application.Features.Ratings.Queries.ViewModels
         //guest
         public string GuestId { get; set; }
         public string ReservationId { get; set; }
-        //public Guest HotelGuest { get; set; }
-        //public HotelRatingCollection RatingCollection {  get; set;  }  
         
         //rating
         public int Rating { get; set;}

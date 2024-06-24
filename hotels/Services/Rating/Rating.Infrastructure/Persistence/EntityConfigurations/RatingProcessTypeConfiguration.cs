@@ -33,19 +33,8 @@ public class RatingProcessTypeConfiguration : IEntityTypeConfiguration<RatingPro
                 .HasColumnName("HotelName")
                 .IsRequired();
 
-        // Configure the foreign key to point to Guest.GuestId
-        /*builder.HasOne(rp => rp.Guest)
-            .WithMany(g => g.RatingProcesses)
-            .HasForeignKey(rp => rp.GuestId)
-            .HasPrincipalKey(g => g.GuestId);*/
-
         builder.Property<string>("HotelId")
             .IsRequired();
-
-       /* builder.HasOne(rp => rp.Hotel)
-            .WithMany(h => h.RatingProcesses)
-            .HasForeignKey(rp => rp.HotelId)
-            .HasPrincipalKey(h => h.HotelId);*/
 
     }
 }

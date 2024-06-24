@@ -9,7 +9,7 @@ public class DeleteRatingCommandHandler(IRatingRepository repository,
 {
     public Task<bool> Handle(DeleteRatingCommand request, CancellationToken cancellationToken)
     {
-        var res = repository.DeleteHotelReview(request.GuestId,request.ReservationId);
+        var res = repository.DeleteHotelReview(request.HotelId);
         return res;
     }
 }

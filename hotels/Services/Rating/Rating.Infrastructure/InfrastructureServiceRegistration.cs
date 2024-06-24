@@ -28,9 +28,6 @@ namespace Rating.Infrastructure
             services.AddScoped(typeof(IAsyncRepository<>), typeof(RepositoryBase<>));
             services.AddScoped<IRatingRepository, RatingRepository>();
             services.AddScoped<IRatingProcessRepository, RatingProcessRepository>();
-
-            //services.AddScoped<IHotelRatingCollectionFactory, HotelRatingCollectionFactory>();
-            //services.AddScoped<IHotelRatingCollectionViewModelFactory, HotelRatingCollectionViewModelFactory>();
             services.AddScoped<IHotelReviewFactory,HotelReviewFactory>();
             services.AddScoped<IHotelReviewViewModelFactory,HotelReviewViewModelFactory>();
             services.AddScoped<IRatingProcessFactory, RatingProcessFactory>();

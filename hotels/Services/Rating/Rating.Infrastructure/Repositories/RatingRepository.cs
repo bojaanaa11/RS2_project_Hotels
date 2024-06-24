@@ -63,9 +63,9 @@ namespace Rating.Infrastructure.Repositories
             }
         }
 
-        public async Task<bool> DeleteHotelReview(string requestGuestId, string requestReservationId)
+        public async Task<bool> DeleteHotelReview(string hotelId)
         {
-            var res = await _dbContext.Ratings.Where(o => o.GuestId==requestGuestId && o.ReservationId==requestReservationId).ExecuteDeleteAsync();
+            var res = await _dbContext.Ratings.Where(o => o.HotelId == hotelId).ExecuteDeleteAsync();
             return res != 0;
         }
     }

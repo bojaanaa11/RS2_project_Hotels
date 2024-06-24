@@ -24,8 +24,7 @@ public class GuestCheckoutConsumer : IConsumer<GuestCheckoutEvent>
          try
          {
              _logger.LogInformation("Received context message: {MessageId}", context.Message.ReservationId);
-             var command = _mapper.Map<CreateRatingProcessCommand>(context.Message);
-             //var command=new CreateRatingProcessCommand(context.Message.HotelId, context.Message.ReservationId, context.Message.GuestId);
+             var command = _mapper.Map<CreateRatingProcessCommand>(context.Message);             
              _logger.LogInformation("Mapped command: {CommandId}", command.ReservationId);
 
              await _mediator.Send(command);
@@ -35,7 +34,7 @@ public class GuestCheckoutConsumer : IConsumer<GuestCheckoutEvent>
          catch (Exception ex)
          {
              _logger.LogError(ex, "Error consuming message {MessageId}", context.Message.ReservationId);
-             throw; // Rethrow the exception to ensure it is handled by MassTransit
+             throw;
          }
     }
 }

@@ -74,9 +74,9 @@ namespace Rating_API.Controllers
         [Authorize(Roles = "Hotel")]
         [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteHotelReview(string guestId, string reservationId)
+        public async Task<IActionResult> DeleteHotelReview(string hotelId)
         {
-            var deleteCommand = new DeleteRatingCommand(reservationId, guestId);
+            var deleteCommand = new DeleteRatingCommand(hotelId);
             var res = await _mediator.Send(deleteCommand);
             if (res)
                 return Ok();

@@ -14,8 +14,6 @@ namespace Rating.Application.Features.Ratings.Commands.DTOs
         public string HotelName { get; set; }
         //guest
         public string GuestId { get; set; } 
-        //public string GuestName { get; set; } 
-        //public string EmailAddress { get; set; }
         public string ReservationId {  get; set;  } 
         //rating
         public int Rating { get; set; }

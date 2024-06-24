@@ -1,6 +1,5 @@
 using Rating.Application.Features.Ratings.Queries.ViewModels;
 using Rating.Domain.Aggregates;
-using Rating.Domain.Entities;
 
 namespace Rating.Application.Contracts.Persistence;
 

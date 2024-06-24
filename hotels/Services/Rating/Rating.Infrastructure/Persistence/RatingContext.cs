@@ -42,9 +42,7 @@ namespace Rating.Infrastructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.ApplyConfiguration(new GuestEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new ReviewEntityTypeConfiguration());
-            //modelBuilder.ApplyConfiguration(new RatingCollectionEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new RatingProcessTypeConfiguration());
 
             base.OnModelCreating(modelBuilder);
