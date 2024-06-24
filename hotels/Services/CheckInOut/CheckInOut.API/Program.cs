@@ -35,7 +35,7 @@ builder.Services.AddMassTransit(config =>
 
         cfg.Publish<GuestCheckoutEvent>(p =>
         {
-            p.ExchangeType = EventBusConstants.guestcheckout_exchangename;
+            p.ExchangeType = EventBusConstants.guestcheckout_exchangetype;
         });
     });
 });
