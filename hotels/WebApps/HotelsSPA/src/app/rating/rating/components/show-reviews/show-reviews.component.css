@@ -1,0 +1,67 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 20px;
+}
+
+.list-group {
+  list-style-type: none;
+  padding: 0;
+}
+
+.average-rating-container {
+  background-color: #F8F9FA;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: 20px;
+  max-width: 600px;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.average-rating-title {
+  color: #333333;
+}
+
+.average-rating-value {
+  color: #0d6efd;
+}
+
+.list-group-item {
+  background-color: #F8F9FA;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  max-width: 600px;
+}
+
+.review-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.review-guest, .review-rating, .review-comment {
+  font-size: 16px;
+  color: #333333;
+  margin-bottom: 5px;
+}
+
+.review-guest {
+  font-weight: bold;
+}
+
+.review-rating {
+  font-weight: bold;
+  color: #0d6efd;
+}
+
+.review-comment {
+  font-style: italic;
+}

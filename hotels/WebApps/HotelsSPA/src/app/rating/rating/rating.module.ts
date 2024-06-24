@@ -7,12 +7,14 @@ import { HotelStayComponent } from './components/hotel-stay/hotel-stay.component
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RatingInterceptor } from '../../shared/interceptors/rating.interceptor';
 import { FormsModule } from '@angular/forms';
+import { ShowReviewsComponent } from './components/show-reviews/show-reviews.component';
 
 
 @NgModule({
   declarations: [
     RatingComponent,
-    HotelStayComponent
+    HotelStayComponent,
+    ShowReviewsComponent
   ],
   imports: [
     CommonModule,

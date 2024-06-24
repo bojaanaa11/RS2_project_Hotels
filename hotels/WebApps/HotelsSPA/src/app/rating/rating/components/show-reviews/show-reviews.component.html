@@ -1,0 +1,15 @@
+<ul class="list-group">
+  <div class="average-rating-container">
+    <span class="average-rating-title">Average hotel rating:</span> 
+    <span class="average-rating-value">{{ averageRating | number:'1.1-1' }}</span>
+  </div>
+  <li class="list-group-item" *ngFor="let review of HotelReviews">
+    <div class="review-container">
+      <div class="d-flex flex-column">
+        <span class="review-guest">Guest: {{ review.guestId }}</span>
+        <span class="review-rating">Rating: {{ review.rating }}</span>
+        <span class="review-comment">Comment: {{ review.comment }}</span>
+      </div>
+    </div>
+  </li>
+</ul>
