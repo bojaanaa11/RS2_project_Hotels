@@ -6,7 +6,7 @@ export interface IHotel {
     address: string;
     city: string;
     country: string;
-    fileImages: Array<string>;
-    rooms: Array<IRoom>;
-    description: string;
+    fileImages: string[];
+    rooms: IRoom[];
+    //description: string;
 }

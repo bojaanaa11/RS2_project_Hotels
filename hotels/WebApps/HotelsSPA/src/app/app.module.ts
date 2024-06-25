@@ -8,6 +8,7 @@ import { AuthenticationInterceptor } from './shared/interceptors/authentication.
 import { NavbarComponent } from './ui-utils/navbar/navbar.component';
 import { HomeComponent } from './ui-utils/home/home.component';
 import { ManagingroomsModule } from './managingrooms/managingrooms.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ManagingroomsModule } from './managingrooms/managingrooms.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ManagingroomsModule
+    ManagingroomsModule,
+    AdminModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}

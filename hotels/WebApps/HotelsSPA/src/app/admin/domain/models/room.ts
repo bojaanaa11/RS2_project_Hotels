@@ -4,6 +4,6 @@ export interface IRoom {
     roomNumber: string;
     status: string;
     price: number;
-    fileImages: Array<string>;
+    fileImages: string[];
     description: string;
 }

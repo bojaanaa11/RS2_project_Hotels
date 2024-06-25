@@ -25,12 +25,18 @@ export class HotelService {
   }
 
   addHotel(Hotel: IHotel): Observable<IHotel> {
+    const body = {
+      id : Hotel.id,
+      name : Hotel.name,
+      address: Hotel.address,
+      city: Hotel.city,
+      country: Hotel.country,
+      fileImages: Hotel.fileImages,
+      rooms: Hotel.rooms,
+      //description: Hotel.description
+    }
     return this.httpClient.post<IHotel>(`http://localhost:8004/api/v1/RoomManaging`,
-      {
-        params: {
-          hotel: Hotel
-        }
-      }
+      Hotel
     );
   }
 

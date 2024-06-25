@@ -11,26 +11,26 @@ import { IRoom } from '../../domain/models/room';
   styleUrl: './add-hotel.component.css'
 })
 export class AddHotelComponent implements OnInit{
-  Id: string
+  hotelId: string
   Name: string
   Address: string
   City: string
   Country: string
-  FileImages: Array<string>
-  Rooms: IRoom[]
-  Description: string
+  hotelFileImages: string[]
+  Rooms: IRoom[] = []
+  //hotelDescription: string
+  //hotelFileImage: string;
 
-  constructor(private hotelService: HotelFacadeService, private router: Router) {
-    // this.hotelForm = new FormGroup({
-    //   id: new FormControl("", Validators.required),
-    //   name: new FormControl("", Validators.required),
-    //   address: new FormControl("", Validators.required),
-    //   city: new FormControl("", Validators.required),
-    //   country: new FormControl("", Validators.required),
-    //   fileimages: new FormControl([], Validators.required),
-    //   description: new FormControl("", Validators.required),
-    // })
-  }
+  roomId: string
+  roomNumber: string
+  roomStatus: string
+  roomPrice: number
+  roomFileImages: string[]
+  roomDescription: string
+  //roomFileImage;
+
+
+  constructor(private hotelService: HotelFacadeService, private router: Router) { }
 
   ngOnInit(): void {
     
@@ -42,41 +42,55 @@ export class AddHotelComponent implements OnInit{
     //   return;
     // }
 
-    let hotel: IHotel
+    let hotel: IHotel = {
+      id: this.hotelId,
+      name: this.Name,
+      address: this.Address,
+      city: this.City,
+      country: this.Country,
+      fileImages: this.hotelFileImages,
+      rooms: this.Rooms,
+      //description: ''
+    }
 
-    hotel.id = this.Id;
-    hotel.name = this.Name;
-    hotel.address = this.Address;
-    hotel.city = this.City;
-    hotel.country = this.Country;
-    hotel.fileImages = this.FileImages;
-    hotel.rooms = this.Rooms;
-    hotel.description = this.Description;
+    
 
-    this.hotelService.AddHotel(hotel).subscribe((response: any) => {
+    this.hotelService.AddHotel(hotel.id, hotel.name, hotel.address, hotel.city, hotel.country, hotel.fileImages, hotel.rooms).subscribe((response: any) => {
       console.log(`Hotel successfully created`);
       window.alert(`Hotel successfully created!`);
       //this.hotelForm.reset();
-      this.router.navigate(['/managingrooms']);
+      this.router.navigate(['/admin-managingrooms']);
     }),
       (error: any) => {
       console.error(`Error creating hotel: `, error);
       window.alert(`Error creating hotel!`);
     }
   }
-}
 
-// this.authenticationService.registerAsHotel(
-//   this.registerHotelForm.value.firstName,
-//   this.registerHotelForm.value.lastName,
-//   this.registerHotelForm.value.username, 
-//   this.registerHotelForm.value.password,
-//   this.registerHotelForm.value.email,
-//   this.registerHotelForm.value.phoneNumber).subscribe((success: boolean) => {
-//   window.alert(`Registration ${success ? 'is' : 'is not'} successful!`);
-//   this.registerHotelForm.reset();
-//   if(success) {
-//     this.routerService.navigate(['/identity', 'login']);
-//   }
-// });
+  addRoomToList() {
+    const room: IRoom = {
+      id: this.roomId,
+      hotelid: this.hotelId,
+      roomNumber: this.roomNumber,
+      status: this.roomStatus,
+      price: this.roomPrice,
+      fileImages: this.roomFileImages,
+      description: this.roomDescription
+    };
+
+    this.Rooms.push(room);
+
+    console.log(this.Rooms)
+
+    // Reset room fields after adding to list
+    // this.roomId = '';
+    // this.roomNumber = '';
+    // this.roomStatus = '';
+    // this.roomPrice = 0;
+    // this.roomFileImages = [];
+    // this.roomDescription = '';
+  }
+
+
+}
 

@@ -6,13 +6,15 @@ body {
 }
 
 .container {
+    display: flex;
+    flex-direction: row;
+    gap: 200px;
     background-color: #F8F9FA;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: left;
     margin: 20px;
-    max-width: 600px;
 }
 
 .container label {
@@ -41,4 +43,11 @@ body {
 
 .container button:hover {
     background-color: #094bad;
+}
+
+.hotelDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 50%;
 }

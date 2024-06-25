@@ -1,3 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div class="content">
+    <h2>Hotel List</h2>
+    <div class="hotel" *ngFor="let hotel of hotels">
+      <img [src]="hotel.fileImages" alt="{{ hotel.name }}">
+      <div >
+        <h5 >{{ hotel.name }}</h5>
+        <!-- <p >{{ hotel.description }}</p> -->
+        <label class="btn btn-primary" (click)="deleteHotel(hotel.id)">Delete hotel</label>
+        <a class="btn btn-primary" [routerLink]="['/update-hotel']">Update hotel</a>
+        <!-- <a class="btn btn-primary btn-lg" [routerLink]="['/rating/show-reviews/hotel.id']">View rating</a> -->
+        <!-- <label class="btn btn-primary" (click)="goToRatingComponent(hotel.id)">View rating</label> -->
+      </div>
+    </div>
+    <a class="btn btn-primary btn-lg" [routerLink]="['/add-hotel']">Add hotel</a>
+  </div>
+     
+        
+   
+</body>
+</html>
+
+
+
 <!-- <div>
     <h2>Hotel List</h2>
     <ul>
@@ -28,16 +59,16 @@
     </div>
   </div> -->
 
-  <div>
+  <!-- <div>
     <h2>Hotel List</h2>
     <div *ngFor="let hotel of hotels" class="hotel-card">
       <img [src]="hotel.fileImages[0]" alt="{{ hotel.name }}" class="hotel-image">
       <h3>{{ hotel.name }}</h3>
       <p>{{ hotel.address }}, {{ hotel.city }}, {{ hotel.country }}</p>
       <p>{{ hotel.description }}</p>
-      <!--<button (click)="updateHotel(hotel)">Update</button>-->
+      <button (click)="updateHotel(hotel)">Update</button>
       <button (click)="deleteHotel(hotel.id)">Delete</button>
     </div>
     <button (click)="addHotel()">Add Hotel</button>
-  </div>
+  </div> -->
   

@@ -7,9 +7,9 @@ import { CheckInUserComponent } from './components/check-in-user/check-in-user.c
 import { CheckOutUserComponent } from './components/check-out-user/check-out-user.component';
 import { ReservationComponent } from './components/reservation/reservation.component';
 import { HotelStayComponent } from './components/hotel-stay/hotel-stay.component';
-import { ManagingroomsComponent } from './components/managingrooms/managingrooms.component';
 import { AddHotelComponent } from './components/add-hotel/add-hotel.component';
 import { UpdateHotelComponent } from './components/update-hotel/update-hotel.component';
+import { AdminManagingroomsComponent } from './components/admin-managingrooms/admin-managingrooms.component';
 
 
 @NgModule({
@@ -19,15 +19,14 @@ import { UpdateHotelComponent } from './components/update-hotel/update-hotel.com
     CheckOutUserComponent,
     ReservationComponent,
     HotelStayComponent,
-    ManagingroomsComponent,
     AddHotelComponent,
-    UpdateHotelComponent
+    UpdateHotelComponent,
+    AdminManagingroomsComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
+    FormsModule
   ],
   bootstrap: [AdminComponent]
 })

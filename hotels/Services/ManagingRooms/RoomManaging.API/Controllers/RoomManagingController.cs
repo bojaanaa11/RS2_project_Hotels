@@ -60,7 +60,7 @@ namespace Room_Managing_API.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Hotel")]
-        [ProducesResponseType(typeof(void), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status201Created)]
         public async Task<ActionResult<string>> CreateHotel([FromBody] Hotel hotel)
         {
             await _repository.CreateHotel(hotel);

@@ -9,8 +9,7 @@ import { RatingComponent } from '../rating/rating/rating.component';
 const routes: Routes = [
   { path: '', component: ClientHotelsComponent },
   { path: 'reservations', loadChildren: () => import('../reservations/reservations.module').then(m => m.ReservationsModule) },
-  { path: 'client-rooms', component: ClientRoomsComponent},
- // { path: 'rating', component: RatingComponent}
+  { path: 'client-rooms', component: ClientRoomsComponent}
 ];
 
 @NgModule({

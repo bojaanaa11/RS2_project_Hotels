@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { HotelFacadeService } from '../../domain/application-services/hotel-facade.service';
 import { IHotel } from '../../domain/models/hotel';
+import { HotelFacadeService } from '../../domain/application-services/hotel-facade.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-managingrooms',
-  templateUrl: './managingrooms.component.html',
-  styleUrl: './managingrooms.component.css'
+  selector: 'app-admin-managingrooms',
+  templateUrl: './admin-managingrooms.component.html',
+  styleUrl: './admin-managingrooms.component.css'
 })
-export class ManagingroomsComponent implements OnInit {
-
+export class AdminManagingroomsComponent implements OnInit {
   hotels: IHotel[] = [];
   newHotel: IHotel = {
     id: '',
@@ -19,11 +18,13 @@ export class ManagingroomsComponent implements OnInit {
     country: '',
     fileImages: [],
     rooms: [],
-    description: ''
+    //description: ''
   };
 
-  constructor(private hotelFacadeService: HotelFacadeService, private router: Router) {}
-  
+  constructor(private hotelFacadeService: HotelFacadeService, private router: Router) {
+    console.log("AAA2");
+  }
+
   ngOnInit(): void {
     this.loadHotels();
   }
@@ -34,12 +35,14 @@ export class ManagingroomsComponent implements OnInit {
       console.log(this.hotels);
     })
   }
+  
+ 
 
   public addHotel(): void {
     console.log("adding new hotel")
-    this.hotelFacadeService.AddHotel(this.newHotel).subscribe(() => {
+    //this.hotelFacadeService.AddHotel().subscribe(() => {
       this.router.navigate(['add-hotel'])
-    });
+    //});
   }
 
   updateHotel(hotel: IHotel): void {
@@ -54,6 +57,5 @@ export class ManagingroomsComponent implements OnInit {
       this.loadHotels();
     });
   }
-
 
 }

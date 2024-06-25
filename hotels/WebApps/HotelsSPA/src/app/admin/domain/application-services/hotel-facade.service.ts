@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HotelService } from '../infrastructure/hotel.service';
 import { IHotel } from '../models/hotel';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map } from 'rxjs';
+import { IRoom } from '../models/room';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,28 @@ export class HotelFacadeService {
     return this.hotelService.getHotel(Id);
   }
 
-  public AddHotel(Hotel: IHotel): Observable<IHotel> {
-    return this.hotelService.addHotel(Hotel);
+  public AddHotel(id: string, name: string, address: string, city: string, country: string, fileImages: string[], rooms: IRoom[]): Observable<string> {
+    const request: IHotel = {
+      id,
+      name,
+      address,
+      city,
+      country,
+      fileImages,
+      rooms
+    };
+
+    return this.hotelService.addHotel(request).pipe(
+      map((request: IHotel) => {
+        console.log('Hotel created');
+        return "Hotel successfully added to database";
+      }),
+      catchError((err) => {
+        console.log(err);
+        return "Hotel didn't create successfully";
+      })
+    );
+
   }
 
   public UpdateHotel(Hotel: IHotel): Observable<IHotel> {
