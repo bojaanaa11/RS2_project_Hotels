@@ -45,6 +45,7 @@ export class ClientHotelsComponent implements OnInit {
   
   goToRoomComponent(hotelId: string) {
     sessionStorage.setItem('hotelId', hotelId);
+    //sessionStorage.setItem('hotelName', hotelName)
     this.router.navigate(['client-rooms'])
   }
 

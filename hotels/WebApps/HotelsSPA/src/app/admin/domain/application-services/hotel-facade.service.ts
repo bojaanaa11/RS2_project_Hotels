@@ -21,13 +21,13 @@ export class HotelFacadeService {
 
   public AddHotel(id: string, name: string, address: string, city: string, country: string, fileImages: string[], rooms: IRoom[]): Observable<string> {
     const request: IHotel = {
-      id,
-      name,
-      address,
-      city,
-      country,
-      fileImages,
-      rooms
+      id: id,
+      name: name,
+      address: address,
+      city: city,
+      country: country,
+      fileImages: fileImages,
+      rooms: rooms
     };
 
     return this.hotelService.addHotel(request).pipe(

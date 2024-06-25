@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, ObservedValueOf } from 'rxjs';
 import { IHotel } from '../models/hotel';
@@ -10,12 +10,16 @@ export class HotelService {
 
   constructor(private httpClient: HttpClient) { }
 
+  private readonly url: string = "http://localhost:8004/api/v1/RoomManaging"
+
   public getHotels(): Observable<IHotel[]> {
-    return this.httpClient.get<IHotel[]>(`http://localhost:8004/api/v1/RoomManaging/GetHotels`)
+    console.log("bbb");
+    return this.httpClient.get<IHotel[]>(`${this.url}/GetHotels`)
+
   }
 
   getHotel(Id: string): Observable<IHotel> {
-    return this.httpClient.get<IHotel>(`http://localhost:8004/api/v1/RoomManaging/${Id}`,
+    return this.httpClient.get<IHotel>(`${this.url}/${Id}`,
       {
         params: {
             id: Id
@@ -34,10 +38,14 @@ export class HotelService {
       fileImages: Hotel.fileImages,
       rooms: Hotel.rooms,
       //description: Hotel.description
-    }
-    return this.httpClient.post<IHotel>(`http://localhost:8004/api/v1/RoomManaging`,
-      Hotel
-    );
+    }      
+    console.log(body)
+    return this.httpClient.post<IHotel>(`${this.url}`,
+      body, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+      });
   }
 
   updateHotel(Hotel: IHotel): Observable<IHotel> {

@@ -58,12 +58,14 @@ namespace Room_Managing_API.Controllers
             return room == null ? NotFound(null) : Ok(room);
         }
 
-        [HttpPost]
         [Authorize(Roles = "Hotel")]
+        [HttpPost]
         [ProducesResponseType(typeof(string), StatusCodes.Status201Created)]
         public async Task<ActionResult<string>> CreateHotel([FromBody] Hotel hotel)
         {
+            Console.WriteLine(hotel);
             await _repository.CreateHotel(hotel);
+
             return CreatedAtRoute("GetHotel", new { id = hotel.Id }, hotel);
         }
 

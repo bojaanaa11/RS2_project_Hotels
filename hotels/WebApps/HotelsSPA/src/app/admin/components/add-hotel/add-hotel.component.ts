@@ -19,15 +19,14 @@ export class AddHotelComponent implements OnInit{
   hotelFileImages: string[]
   Rooms: IRoom[] = []
   //hotelDescription: string
-  //hotelFileImage: string;
+  hotelFileImage: string;
 
   roomId: string
   roomNumber: string
-  roomStatus: string
   roomPrice: number
   roomFileImages: string[]
   roomDescription: string
-  //roomFileImage;
+  roomFileImage: string;
 
 
   constructor(private hotelService: HotelFacadeService, private router: Router) { }
@@ -41,7 +40,8 @@ export class AddHotelComponent implements OnInit{
     //   window.alert('Form has errors!');
     //   return;
     // }
-
+    this.hotelFileImages = []
+    this.hotelFileImages.push(this.hotelFileImage)
     let hotel: IHotel = {
       id: this.hotelId,
       name: this.Name,
@@ -52,35 +52,31 @@ export class AddHotelComponent implements OnInit{
       rooms: this.Rooms,
       //description: ''
     }
-
     
-
     this.hotelService.AddHotel(hotel.id, hotel.name, hotel.address, hotel.city, hotel.country, hotel.fileImages, hotel.rooms).subscribe((response: any) => {
       console.log(`Hotel successfully created`);
-      window.alert(`Hotel successfully created!`);
       //this.hotelForm.reset();
-      this.router.navigate(['/admin-managingrooms']);
+      //this.router.navigate(['/admin-managingrooms']);
     }),
       (error: any) => {
       console.error(`Error creating hotel: `, error);
-      window.alert(`Error creating hotel!`);
     }
   }
 
   addRoomToList() {
+    this.roomFileImages = []
+    this.roomFileImages.push(this.roomFileImage)
     const room: IRoom = {
       id: this.roomId,
-      hotelid: this.hotelId,
+      hotelId: this.hotelId,
       roomNumber: this.roomNumber,
-      status: this.roomStatus,
+      status: false,
       price: this.roomPrice,
       fileImages: this.roomFileImages,
       description: this.roomDescription
     };
 
     this.Rooms.push(room);
-
-    console.log(this.Rooms)
 
     // Reset room fields after adding to list
     // this.roomId = '';

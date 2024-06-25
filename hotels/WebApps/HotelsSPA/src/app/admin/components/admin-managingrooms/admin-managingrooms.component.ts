@@ -22,7 +22,7 @@ export class AdminManagingroomsComponent implements OnInit {
   };
 
   constructor(private hotelFacadeService: HotelFacadeService, private router: Router) {
-    console.log("AAA2");
+    //console.log("AAA2");
   }
 
   ngOnInit(): void {
@@ -30,7 +30,7 @@ export class AdminManagingroomsComponent implements OnInit {
   }
 
   public loadHotels(): void {
-    this.hotelFacadeService.GetHotels().subscribe((response:any) => {
+    this.hotelFacadeService.GetHotels().subscribe((response:IHotel[]) => {
       this.hotels = response;
       console.log(this.hotels);
     })
@@ -40,9 +40,7 @@ export class AdminManagingroomsComponent implements OnInit {
 
   public addHotel(): void {
     console.log("adding new hotel")
-    //this.hotelFacadeService.AddHotel().subscribe(() => {
-      this.router.navigate(['add-hotel'])
-    //});
+    this.router.navigate(['add-hotel'])
   }
 
   updateHotel(hotel: IHotel): void {

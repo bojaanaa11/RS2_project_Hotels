@@ -1,8 +1,8 @@
 export interface IRoom {
     id: string;
-    hotelid: string;
+    hotelId: string;
     roomNumber: string;
-    status: string;
+    status: boolean;
     price: number;
     fileImages: string[];
     description: string;

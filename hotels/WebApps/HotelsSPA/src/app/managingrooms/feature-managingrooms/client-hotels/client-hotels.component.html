@@ -11,7 +11,7 @@
       <img [src]="hotel.fileimages" alt="{{ hotel.name }}">
       <div >
         <h5 >{{ hotel.name }}</h5>
-        <p >{{ hotel.description }}</p>
+        <!--<p >{{ hotel.description }}</p>-->
         <label class="btn btn-primary btn-lg" (click)="goToRoomComponent(hotel.id)">View rooms</label>
         <a class="btn btn-primary btn-lg" [routerLink]="['/rating/show-reviews', hotel.id]">View rating</a>
         <!-- <label class="btn btn-primary" (click)="goToRatingComponent(hotel.id)">View rating</label> -->
