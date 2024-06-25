@@ -14,7 +14,7 @@ export class ClientRoomsComponent implements OnInit{
   rooms: IRoomResponse[] = [];
   hotelId: string;
   hotelName: string;
-  popUpRoom: IRoomResponse;
+  popUpRoom: IRoomResponse = null;
 
   constructor(private roomService: RoomFacadeService, private router: Router) {}
 
@@ -34,7 +34,7 @@ export class ClientRoomsComponent implements OnInit{
   //   this.router.navigate(['reservations'])
   // }
 
-  openImages(room) {
+  openImages(room: IRoomResponse) {
     this.popUpRoom=room;
     let popUpDiv = document.getElementById("popUpDiv");
     popUpDiv.style.display = "flex";

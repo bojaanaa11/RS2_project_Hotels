@@ -15,8 +15,8 @@ export class UpdateHotelComponent {
   constructor(private hotelService: HotelFacadeService, private router: Router) {
   }
 
-  hotelId: string
-  hotel: IHotel
+  hotelId: string = "";
+  hotel: IHotel;
   hotelFileImage: string;
   roomFileImage: any;
 
