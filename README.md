@@ -46,6 +46,9 @@ The supported roles include Hotel Administrator and Hotel Guest.
 ### Managing Rooms
 The Rooms Management Microservice allows administrators to add and update hotels and rooms. 
 Guests can use it to search for hotels, check room availability, and make reservations.
+The ManagingRooms microservice leverages gRPC communication to interact with the Reservations microservice, 
+facilitating the transfer of hotel and room lists. This microservice ensures efficient data handling 
+and real-time updates by using Redis as its database.
 
 ### Reservations
 
@@ -69,5 +72,5 @@ facilitating informed decisions based on previous guest experiences.
 ## Authors
 - Bojana Obradović, 1065/2023
 - Isidora Burmaz, 1057/2023
-- Aleksandra Biočanin, 21/2016
+- Aleksandra Biočanin, 21/2019
 
