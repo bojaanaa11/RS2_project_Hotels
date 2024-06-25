@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HotelFacadeService } from '../../domain/application-services/hotel-facade.service';
 import { IHotel } from '../../domain/models/hotel';
 import { Router } from '@angular/router';
