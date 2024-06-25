@@ -129,11 +129,22 @@ namespace RoomManaging.Common.Repositories
             return await GetRoomById(room.HotelId, room.Id);
         }
 
-        public async Task<string> CreateHotel(Hotel hotel)
+        public async Task<int> CreateHotel(Hotel hotel)
         { 
             Hotel existingHotel = await GetHotelById(hotel.Id);
             if (existingHotel == null)
             {
+                IEnumerable<Room> roomsInHotel = hotel.Rooms;
+                Dictionary<string, int> existingRooms = new Dictionary<string, int>();
+                foreach (Room room in roomsInHotel)
+                {
+                    if (existingRooms.ContainsKey(room.Id))
+                    {
+                        return 1;
+                    }
+                    existingRooms.Add(room.Id, 1);
+                }
+                
                 var hotelString = JsonConvert.SerializeObject(hotel);
                 await _cache.SetStringAsync(hotel.Id, hotelString);
 
@@ -153,10 +164,10 @@ namespace RoomManaging.Common.Repositories
             }
             else
             {
-                return "Hotel with id=" + hotel.Id + " already exists in database!";
+                return 2;
             }
 
-            return "Hotel successfully added to database";
+            return 0;
             
         }
 

@@ -11,63 +11,35 @@ import { IRoom } from '../../domain/models/room';
   styleUrl: './update-hotel.component.css'
 })
 export class UpdateHotelComponent {
-  hotelId: string
-  Name: string
-  Address: string
-  City: string
-  Country: string
-  hotelFileImages: Array<string>
-  Rooms: IRoom[] = []
-  hotelDescription: string
-
-  roomId: string
-  roomNumber: string
-  roomStatus: string
-  roomPrice: number
-  roomFileImages: Array<string> = []
-  roomDescription: string
-
+ 
   constructor(private hotelService: HotelFacadeService, private router: Router) {
-   
   }
 
+  hotelId: string
+  hotel: IHotel
+  hotelFileImage: string;
+  roomFileImage: any;
+
   ngOnInit(): void {
-    //this.hotelId = this.route.snapshot.params['id'];
-    // this.hotelService.GetHotel(this.hotelId).subscribe((hotel: IHotel) => {
-    //   this.Name = hotel.name;
-    //   this.Address = hotel.address;
-    //   this.City = hotel.city;
-    //   this.Country = hotel.country;
-    //   this.hotelFileImages = hotel.fileImages;
-    //   this.Rooms = hotel.rooms;
-    //   this.hotelDescription = hotel.description;
-    // }, (error) => {
-    //   console.error(`Error fetching hotel details: `, error);
-    // });
+
+    this.hotelId = sessionStorage.getItem('hotelId');
+    console.log(this.hotelId);
+
+    this.hotelService.GetHotel(this.hotelId).subscribe((hotel: IHotel) => {
+      this.hotel = hotel
+    }),
+    (error: any) => {
+      console.error(`Error updating hotel: `, error);
+    }
   }
 
   public UpdateHotel(): void {
-    // if (this.hotelForm.invalid) {
-    //   window.alert('Form has errors!');
-    //   return;
-    // }
+    
+    this.hotel.fileImages.push(this.hotelFileImage)
 
-    let hotel: IHotel
-
-    hotel.id = this.hotelId;
-    hotel.name = this.Name;
-    hotel.address = this.Address;
-    hotel.city = this.City;
-    hotel.country = this.Country;
-    hotel.fileImages = this.hotelFileImages;
-    hotel.rooms = this.Rooms;
-    //hotel.description = this.hotelDescription;
-
-
-    this.hotelService.UpdateHotel(hotel).subscribe((response: any) => {
+    this.hotelService.UpdateHotel(this.hotel).subscribe((response: any) => {
       console.log(`Hotel successfully updated`);
       window.alert(`Hotel successfully updated!`);
-      //this.hotelForm.reset();
       this.router.navigate(['/admin-managingrooms']);
     }),
       (error: any) => {
@@ -75,4 +47,6 @@ export class UpdateHotelComponent {
       window.alert(`Error updating hotel!`);
     }
   }
+
+  
 }

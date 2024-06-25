@@ -6,7 +6,7 @@ export interface IHotelResponse {
     address: string;
     city: string;
     country: string;
-    fileimages: Array<string>;
+    fileImages: Array<string>;
     rooms: Array<IRoomResponse>;
     //description: string;
 }

@@ -14,16 +14,17 @@ export class ClientRoomsComponent implements OnInit{
   rooms: IRoomResponse[] = [];
   hotelId: string;
   hotelName: string;
+  popUpRoom: IRoomResponse;
 
   constructor(private roomService: RoomFacadeService, private router: Router) {}
 
   ngOnInit(): void {
     this.hotelId = sessionStorage.getItem('hotelId');
     this.hotelName = sessionStorage.getItem('hotelName');
-    console.log(this.hotelId);
     this.roomService.getAllRooms(this.hotelId).subscribe((response:any) => {
       this.rooms = response;
       console.log(this.rooms);
+      this.popUpRoom = this.rooms[0]
     })
   }
 
@@ -33,4 +34,15 @@ export class ClientRoomsComponent implements OnInit{
   //   this.router.navigate(['reservations'])
   // }
 
+  openImages(room) {
+    this.popUpRoom=room;
+    let popUpDiv = document.getElementById("popUpDiv");
+    popUpDiv.style.display = "flex";
+  }
+
+  closePopUp() {
+    let popUpDiv = document.getElementById("popUpDiv");
+    popUpDiv.style.display = "none";
+  }
+  
 }

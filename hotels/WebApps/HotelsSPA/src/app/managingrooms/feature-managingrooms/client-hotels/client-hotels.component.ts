@@ -49,9 +49,4 @@ export class ClientHotelsComponent implements OnInit {
     this.router.navigate(['client-rooms'])
   }
 
-  // goToRatingComponent(hotelId: string) {
-  //   sessionStorage.setItem('hotelId', hotelId);
-  //   this.router.navigate(['rating']);
-  // }
-
 }

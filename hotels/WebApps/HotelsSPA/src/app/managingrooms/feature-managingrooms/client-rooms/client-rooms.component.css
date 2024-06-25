@@ -1,25 +1,89 @@
-.content {
-    height: fit-content;
-    width: 500px;
+
+.container {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    margin: 50px 0px 0px 100px;
-    padding: 10px;
-    background-color: rgb(32, 40, 85);
+    background-color: #F8F9FA;
+    padding: 20px;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    margin: 20px;
+    max-width: 700px;
+}
+
+.container label {
+    font-size: 16px;
+    color: #333333;
+}
+
+.container input[type="text"] {
+    width: calc(100% - 24px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.container button {
+    background-color: #0d6efd;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.container button:hover {
+    background-color: #094bad;
 }
 
 .room {
     display: flex;
+    flex-direction: row;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    box-shadow: 0px 0px 3px 2px rgb(168, 168, 168);
+}
+
+.roomDescription {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.popUpBackground {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.popUpContent {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: #F8F9FA;
+    border-radius: 10px;
+    box-sizing: border-box;
+    box-shadow: 0 0 3px 2px lightgray;
+    display: flex;
     flex-direction: column;
     gap: 10px;
-    color: white;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 20px;
-    box-sizing: border-box;
-    border-radius: 10px;
-    box-shadow: 0px 0px 5px 3px rgb(255, 255, 255);
-    padding: 10px;
-    background-color: rgb(34, 45, 99);
+    padding: 10px 50px 5px 50px;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
 }

@@ -22,7 +22,7 @@ export class AdminManagingroomsComponent implements OnInit {
   };
 
   constructor(private hotelFacadeService: HotelFacadeService, private router: Router) {
-    //console.log("AAA2");
+
   }
 
   ngOnInit(): void {
@@ -32,7 +32,11 @@ export class AdminManagingroomsComponent implements OnInit {
   public loadHotels(): void {
     this.hotelFacadeService.GetHotels().subscribe((response:IHotel[]) => {
       this.hotels = response;
-      console.log(this.hotels);
+      this.hotels.forEach(hotel => {
+        hotel.fileImages.forEach(image => {
+          
+        });
+      });
     })
   }
   
@@ -44,16 +48,18 @@ export class AdminManagingroomsComponent implements OnInit {
   }
 
   updateHotel(hotel: IHotel): void {
-    this.hotelFacadeService.UpdateHotel(hotel).subscribe(() => {
+    //this.hotelFacadeService.UpdateHotel(hotel).subscribe(() => {
       sessionStorage.setItem('hotelId', hotel.id);
       this.router.navigate(['update-hotel'])
-    });
+    //});
   }
 
   deleteHotel(id: string): void {
-    this.hotelFacadeService.DeleteHotel(id).subscribe(() => {
-      this.loadHotels();
-    });
+    if (confirm('Are you sure you want to delete hotel?')){
+      this.hotelFacadeService.DeleteHotel(id).subscribe(() => {
+        this.loadHotels();
+      });
+    }
   }
 
 }

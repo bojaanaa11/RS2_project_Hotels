@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Room_Managing_API.Entities;
 using RoomManaging.Common.Repositories;
+using System.Diagnostics.Eventing.Reader;
+using System.Net;
 using System.Security.Claims;
 
 namespace Room_Managing_API.Controllers
@@ -63,9 +65,7 @@ namespace Room_Managing_API.Controllers
         [ProducesResponseType(typeof(string), StatusCodes.Status201Created)]
         public async Task<ActionResult<string>> CreateHotel([FromBody] Hotel hotel)
         {
-            Console.WriteLine(hotel);
             await _repository.CreateHotel(hotel);
-
             return CreatedAtRoute("GetHotel", new { id = hotel.Id }, hotel);
         }
 

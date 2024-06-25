@@ -15,7 +15,7 @@ export class AddHotelComponent implements OnInit{
   Address: string
   City: string
   Country: string
-  hotelFileImages: string[]
+  hotelFileImages: string[] = []
   Rooms: IRoom[] = []
   //hotelDescription: string
   hotelFileImage: string;
@@ -23,24 +23,28 @@ export class AddHotelComponent implements OnInit{
   roomId: string
   roomNumber: string
   roomPrice: number
-  roomFileImages: string[]
+  roomFileImages: string[] = []
   roomDescription: string
   roomFileImage: string;
 
+  hotels: IHotel[] = [];
 
   constructor(private hotelService: HotelFacadeService, private router: Router) { }
 
   ngOnInit(): void {
-    
+    this.hotelService.GetHotels().subscribe((response:IHotel[]) => {
+      this.hotels = response;
+    })
   }
 
   public AddHotel(): void {
-    // if (this.hotelForm.invalid) {
-    //   window.alert('Form has errors!');
-    //   return;
-    // }
+    if (this.Rooms.length == 0) {
+      window.alert('There are no rooms added to hotel.\nAdd rooms first.');
+      return
+    }
+
     this.hotelFileImages = []
-    this.hotelFileImages.push(this.hotelFileImage)
+    this.hotelFileImages.push('assets/images/' + this.hotelFileImage.split('\\').pop())
     let hotel: IHotel = {
       id: this.hotelId,
       name: this.Name,
@@ -48,23 +52,41 @@ export class AddHotelComponent implements OnInit{
       city: this.City,
       country: this.Country,
       fileImages: this.hotelFileImages,
-      rooms: this.Rooms,
-      //description: ''
+      rooms: this.Rooms
+    }
+
+    let addHotel = true;
+    for (let index = 0; index < this.hotels.length; index++) {
+      if (this.hotelId === this.hotels[index].id) {
+        addHotel = false;
+        window.alert('Hotel with given id already exists.')
+        break;
+      }
     }
     
-    this.hotelService.AddHotel(hotel.id, hotel.name, hotel.address, hotel.city, hotel.country, hotel.fileImages, hotel.rooms).subscribe((response: any) => {
-      console.log(`Hotel successfully created`);
-      //this.hotelForm.reset();
-      //this.router.navigate(['/admin-managingrooms']);
-    }),
-      (error: any) => {
-      console.error(`Error creating hotel: `, error);
+    if (addHotel) {
+      console.log(hotel.fileImages) 
+      this.hotelService.AddHotel(hotel.id, hotel.name, hotel.address, hotel.city, hotel.country, hotel.fileImages, hotel.rooms).subscribe((response: any) => {
+        console.log('Response:' + response)
+        window.alert('Hotel added successfully')
+        this.hotelId = "";
+        this.Name = "";
+        this.Address = "";
+        this.City = "";
+        this.Country = "";
+        this.hotelFileImages = [];
+        this.hotelFileImage = ""
+        this.Rooms = []
+      }),
+        (error: any) => {
+        console.error(`Error creating hotel: `, error);
+      }
     }
+    
   }
 
   addRoomToList() {
-    this.roomFileImages = []
-    this.roomFileImages.push(this.roomFileImage)
+   
     const room: IRoom = {
       id: this.roomId,
       hotelId: this.hotelId,
@@ -75,15 +97,36 @@ export class AddHotelComponent implements OnInit{
       description: this.roomDescription
     };
 
-    this.Rooms.push(room);
+    let addRoom = true;
+    for (let index = 0; index < this.Rooms.length; index++) {
+      if (this.roomId === this.Rooms[index].id) {
+        addRoom = false;
+        window.alert('Room with given id already exists.')
+        break;
+      }
+    }
+   
+    if (addRoom) this.Rooms.push(room);
 
-    // Reset room fields after adding to list
-    // this.roomId = '';
-    // this.roomNumber = '';
-    // this.roomStatus = '';
-    // this.roomPrice = 0;
-    // this.roomFileImages = [];
-    // this.roomDescription = '';
+    this.roomId = '';
+    this.roomNumber = '';
+    this.roomPrice = 0;
+    this.roomFileImages = [];
+    this.roomDescription = '';
+    this.roomFileImage = ''
+
+    window.alert('Room successfully added to hotel');
+  }
+
+  addImageToRoomsImages() {
+    this.roomFileImages.push('assets/images/' + this.roomFileImage.split('\\').pop())
+    this.roomFileImage = ''
+  }
+
+  clearAllRooms() {
+    if (confirm('Are you sure you want to delete all rooms added to hotel?')){
+      this.Rooms = [];
+    }
   }
 
 

@@ -6,13 +6,16 @@ body {
 }
 
 .container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     background-color: #F8F9FA;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: left;
     margin: 20px;
-    max-width: 400px;
+    max-width: 600px;
 }
 
 .container label {
@@ -41,4 +44,21 @@ body {
 
 .container button:hover {
     background-color: #094bad;
+}
+
+.hotel {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    box-shadow: 0px 0px 3px 2px rgb(168, 168, 168);
+}
+
+.hotelDescription {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5px;
 }

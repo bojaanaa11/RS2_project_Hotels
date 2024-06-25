@@ -6,21 +6,22 @@
     <title>Document</title>
 </head>
 <body>
-  <div class="content">
+  
+  <div class="container">
+    <h2>Hotel List</h2>
     <div class="hotel" *ngFor="let hotel of hotels">
-      <img [src]="hotel.fileimages" alt="{{ hotel.name }}">
-      <div >
-        <h5 >{{ hotel.name }}</h5>
-        <!--<p >{{ hotel.description }}</p>-->
-        <label class="btn btn-primary btn-lg" (click)="goToRoomComponent(hotel.id, hotel.name)">View rooms</label>
-        <a class="btn btn-primary btn-lg" [routerLink]="['/rating/show-reviews', hotel.id]">View rating</a>
-        <!-- <label class="btn btn-primary" (click)="goToRatingComponent(hotel.id)">View rating</label> -->
+      <div class="hotelDescription" >
+        <h5 >{{hotel.name}}</h5>
+        <label>{{hotel.address}}, {{hotel.city}}, {{hotel.country}}</label>
+        <div style="display: flex; flex-direction: row; gap: 10px;">
+          <button class="btn btn-primary" (click)="goToRoomComponent(hotel.id, hotel.name)">View rooms</button>
+          <button class="btn btn-primary" [routerLink]="['/rating/show-reviews', hotel.id]">View rating</button>
+        </div>
       </div>
+      <img [src]="hotel.fileImages[0]" alt="" style="width: 200px; height: 200px; margin-left: auto;"/>
     </div>
   </div>
      
-        
-   
 </body>
 </html>
 

@@ -4,6 +4,6 @@ export interface IRoomResponse {
     roomnumber: string;
     status: boolean;
     price: number;
-    fileimages: Array<string>;
+    fileImages: Array<string>;
     description: string;
 }

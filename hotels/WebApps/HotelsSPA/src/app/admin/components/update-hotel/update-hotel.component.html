@@ -1,51 +1,96 @@
-<p>update-hotel works!</p>
-<div class="container">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
 
-    <h3>Create Hotel</h3>
+        <h3>Update Hotel</h3>
+        
+        <!-- <form [formGroup]="hotelForm" (ngSubmit)="UpdateHotel()"> -->
+            <div class="form-group">
+                <label class="form-label">Hotel Id</label>
+                <input type="text" disabled [(ngModel)]="hotel.id">
+            </div>
+        
+            <div class="form-group">
+                <label class="form-label">Hotel Name</label>
+                <input type="text" [(ngModel)]="hotel.name">
+            </div>
     
-    <!-- <form [formGroup]="hotelForm" (ngSubmit)="UpdateHotel()"> -->
-        <div class="form-group">
-            <label class="form-label">Hotel Id</label>
-            <input type="text" formControlName="id">
-        </div>
+            <div class="form-group">
+                <label class="form-label">Hotel Address</label>
+                <input type="text" [(ngModel)]="hotel.address">
+            </div>
     
-        <div class="form-group">
-            <label class="form-label">Hotel Name</label>
-            <input type="text" formControlName="name">
-        </div>
-
-        <div class="form-group">
-            <label class="form-label">Hotel Address</label>
-            <input type="text" formControlName="address">
-        </div>
-
-        <div class="form-group">
-            <label class="form-label">City</label>
-            <input type="text" formControlName="city">
-        </div>
-
-        <div class="form-group">
-            <label class="form-label">Country</label>
-            <input type="text" formControlName="country">
-        </div>
-
-        <div class="form-group">
-            <label class="form-label">Hotel Images</label>
-            <input type="text" formControlName="name">
-        </div>
-
-        <div class="form-group">
-            <label class="form-label">Rooms</label>
-            <input type="text" formControlName="rooms">
-        </div>
-
-        <div class="form-group">
-            <label class="form-label">Hotel Description</label>
-            <input type="text" formControlName="description">
-        </div>
+            <div class="form-group">
+                <label class="form-label">City</label>
+                <input type="text"  [(ngModel)]="hotel.city">
+            </div>
     
-        <button type="submit" class="btn btn-primary mt-3">Update</button>
-    <!-- </form> -->
+            <div class="form-group">
+                <label class="form-label">Country</label>
+                <input type="text" [(ngModel)]="hotel.country">
+            </div>      
     
-</div>
-
+            <!-- <div class="form-group">
+                <label class="form-label">Rooms</label>
+                <input type="text" [(ngModel)]="Rooms">
+            </div> -->
+    
+            <!-- <div class="form-group">
+                <label class="form-label">Hotel Description</label>
+                <input type="text" formControlName="description">
+            </div> -->
+           
+        
+        <div style="width: 100%; height: 2px; background-color: rgb(100, 100, 100); margin: 15px 0 15px 0;"></div>
+    
+    
+    
+        <div class="roomDiv">
+            <h3>Update Rooms in Hotel</h3>
+            
+            <div style="margin-top: 20px;" *ngFor="let room of hotel.rooms">
+                <div class="form-group">
+                    <label class="form-label">Room Id</label>
+                    <input type="text" disabled [(ngModel)]="room.id">
+                </div>
+    
+                <div class="form-group">
+                    <label class="form-label">Room Number</label>
+                    <input type="text"  [(ngModel)]="room.roomNumber">
+                </div>
+        
+                <div class="form-group">
+                    <label class="form-label">Price</label>
+                    <input type="text" [(ngModel)]="room.price">
+                </div>
+    
+                <div class="form-group">
+                    <label class="form-label">Room Description</label>
+                    <input type="text"  [(ngModel)]="room.description">
+                </div>
+    
+                <div class="form-group" style="display: flex; flex-direction: row; gap: 20px;">
+                    <label class="form-label">Room Status</label>
+                    <select [(ngModel)]="room.status">
+                        <option selected="room.status == true" [ngValue]="true">Zauzeta</option>
+                        <option selected="room.status == false" [ngValue]="false">Slobodna</option>
+                    </select>
+                </div>
+    
+                <div style="width: 100%; height: 2px; background-color: rgb(184, 184, 184); margin: 15px 0 15px 0;"></div>
+            </div>  
+        </div>
+        <div style="width: 100%; display: flex; flex-direction: row; justify-content: space-between;">
+            <label></label>
+            <button type="submit" (click)="UpdateHotel()" class ="btn btn-primary mt-3">Update</button>
+        </div>
+    </div>
+    
+</body>
+</html>

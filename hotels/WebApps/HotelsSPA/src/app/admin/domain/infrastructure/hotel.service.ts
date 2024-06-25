@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, ObservedValueOf } from 'rxjs';
 import { IHotel } from '../models/hotel';
+import { IRoom } from '../models/room';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,6 @@ export class HotelService {
   private readonly url: string = "http://localhost:8004/api/v1/RoomManaging"
 
   public getHotels(): Observable<IHotel[]> {
-    console.log("bbb");
     return this.httpClient.get<IHotel[]>(`${this.url}/GetHotels`)
 
   }
@@ -28,6 +28,15 @@ export class HotelService {
     );
   }
 
+  // getRoomsInHotel(HotelId: string): Observable<IRoom[]> {
+  //   return this.httpClient.get<IRoom[]>(`${this.url}/GetRoomsInHotel/${HotelId}`,
+  //     {
+  //       params: {
+  //           hotelId: HotelId
+  //       }
+  //   });
+  // }
+
   addHotel(Hotel: IHotel): Observable<IHotel> {
     const body = {
       id : Hotel.id,
@@ -39,7 +48,6 @@ export class HotelService {
       rooms: Hotel.rooms,
       //description: Hotel.description
     }      
-    console.log(body)
     return this.httpClient.post<IHotel>(`${this.url}`,
       body, {
         headers: new HttpHeaders({
@@ -49,11 +57,21 @@ export class HotelService {
   }
 
   updateHotel(Hotel: IHotel): Observable<IHotel> {
-    return this.httpClient.put<IHotel>(`http://localhost:8004/api/v1/RoomManaging/UpdateHotel`,
-      {
-        params: {
-          hotel: Hotel
-        }
+    const body = {
+      id : Hotel.id,
+      name : Hotel.name,
+      address: Hotel.address,
+      city: Hotel.city,
+      country: Hotel.country,
+      fileImages: Hotel.fileImages,
+      rooms: Hotel.rooms,
+      //description: Hotel.description
+    }
+    return this.httpClient.put<IHotel>(`${this.url}`,
+      body, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
       }
     );
   }
