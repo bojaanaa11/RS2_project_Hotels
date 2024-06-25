@@ -13,8 +13,8 @@
             <p>{{ room.description }}</p>
             <p>{{ room.price }} per night</p>
             <p>{{ room.status }}</p>
-            <!-- <a class="btn btn-primary btn-lg" [routerLink]="['/reservations/create-reservation/', room.hotelid, hotel.name, room.id]">Reserve</a> -->
-            <button class="btn btn-primary" (click)="goToReservationsComponent(room.id)">Reserve</button>
+            <a class="btn btn-primary btn-lg" [routerLink]="['/reservations/create-reservation/', hotelId, hotelName, room.id]">Reserve</a>
+            <!-- <button class="btn btn-primary" (click)="goToReservationsComponent(room.id)">Reserve</button> -->
           </div>
       </div>
     </div>
