@@ -12,7 +12,7 @@ Check-In/Check-Out, and Rating. These microservices communicate using gRPC and R
 the project includes a dynamic frontend developed in Angular (HotelsSPA), providing an intuitive 
 user interface for guests and administrators.
 
-![alt text](https://github.com/bojaanaa11/RS2_project_Hotels/blob/main/IMG-20240625-WA0053.jpg)
+![alt text](https://github.com/bojaanaa11/RS2_project_Hotels/blob/main/images/IMG-20240625-WA0053.jpg)
 
 
 ## Required software
