@@ -26,13 +26,12 @@
                 
             </div>
           </div>
-          <img [src]="room.fileImages[0]" (click)="openImages(room)" style="width: 200px; height: 200px; margin-left: auto; cursor: pointer;"/>
-        
+            <img [src]="room.fileImages[0]" (click)="openImages(room)" style="width: 230px; height: 200px; margin-left: auto; cursor: pointer;"/>
         
       </div>
     </div>
     
-    <div class="popUpBackground" id="popUpDiv">
+    <div *ngIf="popUpRoom != null" class="popUpBackground" id="popUpDiv">
       <div class="popUpContent">
         <button class="btn btn-primary btn-lg" style="width: 100px; margin-left: auto;" (click)="closePopUp()" >Close</button>
         <div *ngFor="let image of popUpRoom.fileImages">

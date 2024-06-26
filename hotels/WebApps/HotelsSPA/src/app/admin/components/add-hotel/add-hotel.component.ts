@@ -43,7 +43,7 @@ export class AddHotelComponent implements OnInit{
       return
     }
 
-    this.hotelFileImages = []
+    //this.hotelFileImages = []
     this.hotelFileImages.push('assets/images/' + this.hotelFileImage.split('\\').pop())
     let hotel: IHotel = {
       id: this.hotelId,
