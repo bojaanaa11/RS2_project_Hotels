@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { IHotel } from '../../domain/models/hotel';
 import { HotelFacadeService } from '../../domain/application-services/hotel-facade.service';
 import { Router } from '@angular/router';
+import { AppStateService } from '../../../shared/app-state/app-state.service';
+import { Observable } from 'rxjs';
+import { AppState, IAppState } from '../../../shared/app-state/app-state';
 
 @Component({
   selector: 'app-admin-managingrooms',
@@ -10,19 +13,18 @@ import { Router } from '@angular/router';
 })
 export class AdminManagingroomsComponent implements OnInit {
   hotels: IHotel[] = [];
-  newHotel: IHotel = {
-    id: '',
-    name: '',
-    address: '',
-    city: '',
-    country: '',
-    fileImages: [],
-    rooms: [],
-    //description: ''
-  };
+  // newHotel: IHotel = {
+  //   id: '',
+  //   name: '',
+  //   address: '',
+  //   city: '',
+  //   country: '',
+  //   fileImages: [],
+  //   rooms: [],
+  //   //description: ''
+  // };
 
   constructor(private hotelFacadeService: HotelFacadeService, private router: Router) {
-
   }
 
   ngOnInit(): void {

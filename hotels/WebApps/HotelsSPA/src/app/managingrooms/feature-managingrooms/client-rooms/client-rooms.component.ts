@@ -3,6 +3,8 @@ import { RoomFacadeService } from '../../domain/application-services/room-facade
 import { HotelFacadeService } from '../../domain/application-services/hotel-facade.service';
 import { IRoomResponse } from '../../domain/models/room-response';
 import { Router } from '@angular/router';
+import { AppState } from '../../../shared/app-state/app-state';
+import { Role } from '../../../shared/app-state/role';
 
 @Component({
   selector: 'app-client-rooms',
@@ -16,7 +18,9 @@ export class ClientRoomsComponent implements OnInit{
   hotelName: string;
   popUpRoom: IRoomResponse = null;
 
-  constructor(private roomService: RoomFacadeService, private router: Router) {}
+  constructor(private roomService: RoomFacadeService, private router: Router) {
+   
+  }
 
   ngOnInit(): void {
     this.hotelId = sessionStorage.getItem('hotelId');

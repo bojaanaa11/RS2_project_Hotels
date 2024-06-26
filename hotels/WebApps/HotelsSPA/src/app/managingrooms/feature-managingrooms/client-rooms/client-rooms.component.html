@@ -23,7 +23,7 @@
                 <label style="font-size: 16px; color: rgb(248, 123, 123);">This room is currently unavailable</label>
                 <button class="btn btn-primary btn-lg" style="width: 150px;" disabled [routerLink]="['/reservations/create-reservation/', hotelId, hotelName, room.id]">Reserve</button>
               </div>
-                
+
             </div>
           </div>
             <img [src]="room.fileImages[0]" (click)="openImages(room)" style="width: 230px; height: 200px; margin-left: auto; cursor: pointer;"/>

@@ -3,6 +3,8 @@ import { HotelFacadeService } from '../../domain/application-services/hotel-faca
 import { Router } from '@angular/router';
 import { IHotelResponse } from '../../domain/models/hotel-response';
 import { IRoomResponse } from '../../domain/models/room-response';
+import { AppState } from '../../../shared/app-state/app-state';
+import { Role } from '../../../shared/app-state/role';
 
 @Component({
   selector: 'app-client-hotels',
@@ -10,7 +12,9 @@ import { IRoomResponse } from '../../domain/models/room-response';
   styleUrl: './client-hotels.component.css'
 })
 export class ClientHotelsComponent implements OnInit {
+
   
+
   constructor(private hotelService: HotelFacadeService, private router: Router) {}
 
   hotels: IHotelResponse[] = []
