@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public getNavBarTitle(appState: IAppState): string {
+  public getNavBarTitle(appState: IAppState): { title: string, name: string } {
     if (appState.firstName !== undefined && appState.lastName !== undefined) {
       return {
         title: `Welcome to Hotels, `,
