@@ -1,7 +1,10 @@
 <nav class="navbar navbar-light bg-light" *ngIf="appState$ | async as appState">
     <div class="container-fluid">
       <div class="d-flex">
-        <span class="navbar-brand mb-0 h1">{{ getNavBarTitle(appState) }}</span>
+        <span class="navbar-brand mb-0 h1">
+          {{ getNavBarTitle(appState).title }}
+          <span class="highlight">{{ getNavBarTitle(appState).name }}</span>
+        </span>
   
         <ul class="nav">
           <li class="nav-item">

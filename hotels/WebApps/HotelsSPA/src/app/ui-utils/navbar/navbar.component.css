@@ -1,0 +1,7 @@
+.highlight {
+  color: #ff6347;
+  font-weight: bold;
+  border-radius: 5px; // shape
+  padding: 2px 4px; // shape 
+  background-color: #f0f0f0; // optional
+}
