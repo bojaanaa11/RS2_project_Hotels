@@ -28,15 +28,6 @@ export class HotelService {
     );
   }
 
-  // getRoomsInHotel(HotelId: string): Observable<IRoom[]> {
-  //   return this.httpClient.get<IRoom[]>(`${this.url}/GetRoomsInHotel/${HotelId}`,
-  //     {
-  //       params: {
-  //           hotelId: HotelId
-  //       }
-  //   });
-  // }
-
   addHotel(Hotel: IHotel): Observable<IHotel> {
     const body = {
       id : Hotel.id,

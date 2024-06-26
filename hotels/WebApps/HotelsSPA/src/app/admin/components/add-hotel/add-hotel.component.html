@@ -2,7 +2,6 @@
 
     <div class="hotelDiv">
         <h3>Create Hotel</h3>
-    <!-- <form [formGroup]="hotelForm" (ngSubmit)="onAddHotelFormSubmit()"> -->
         <div class="form-group">
             <label class="form-label">Hotel Id</label>
             <input type="text" [(ngModel)]="hotelId">
@@ -33,18 +32,12 @@
             <input type="file"  [(ngModel)]="hotelFileImage">
         </div>
 
-        <!-- <div class="form-group">
-            <label class="form-label">Hotel Description</label>
-            <input type="text"  [ngModel]="hotelDescription">
-        </div> -->
     
         <button type="submit" (click)="AddHotel()" class="btn btn-primary mt-3">Create</button>
-    <!-- </form> -->
     </div>
 
     <div class="roomDiv">
         <h3>Create Room in Hotel</h3>
-    <!-- <form [formGroup]="hotelForm" (ngSubmit)="onAddHotelFormSubmit()"> -->
         <div class="form-group">
             <label class="form-label">Room Id</label>
             <input type="text" [(ngModel)]="roomId">
@@ -83,7 +76,6 @@
             <button type="submit" (click)="addRoomToList()" class="btn btn-primary mt-3">Add to hotel</button>
             <button type="submit" (click)="clearAllRooms()" class="btn btn-primary mt-3">Clear rooms</button>
         </div>
-    <!-- </form> -->
     </div>
 </div>
 

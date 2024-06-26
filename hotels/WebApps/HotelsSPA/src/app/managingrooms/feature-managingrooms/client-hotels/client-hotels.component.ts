@@ -13,27 +13,6 @@ export class ClientHotelsComponent implements OnInit {
   
   constructor(private hotelService: HotelFacadeService, private router: Router) {}
 
-  // room: IRoomResponse = {
-  //   id: '1',
-  //   hotelid: '1',
-  //   roomnumber: '100',
-  //   status: 'available',
-  //   price: 5434.00,
-  //   fileimages: ["https://images.app.goo.gl/UXBZGMXtZAizRCFA8", "https://images.app.goo.gl/n1qZ8ZhNXGfbT2Bg7"],
-  //   description: 'Apartman sa terasom, klima uredjajem i pogledom na reku.'
-  // }
-
-  // hotel: IHotelResponse = {
-  //   id: "1",
-  //   name: 'Jugoslavija',
-  //   address: 'Bulevar Nikole Tesle 3',
-  //   city: 'Belgrade',
-  //   country: 'Serbia',
-  //   fileimages: [],
-  //   rooms: [this.room],
-  //   description: 'https://images.app.goo.gl/5SwYqTHJJjeeEe3c8", "https://images.app.goo.gl/r58JYvLU1YS3xcWX7'
-  // }
-
   hotels: IHotelResponse[] = []
 
   ngOnInit(): void {

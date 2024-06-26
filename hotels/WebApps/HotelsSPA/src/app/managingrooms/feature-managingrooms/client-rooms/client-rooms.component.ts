@@ -28,11 +28,6 @@ export class ClientRoomsComponent implements OnInit{
     })
   }
 
-  // goToReservationsComponent(roomId: string) {
-  //   sessionStorage.setItem('hotelId', this.hotelId);
-  //   sessionStorage.setItem('roomId', roomId);
-  //   this.router.navigate(['reservations'])
-  // }
 
   openImages(room: IRoomResponse) {
     this.popUpRoom=room;

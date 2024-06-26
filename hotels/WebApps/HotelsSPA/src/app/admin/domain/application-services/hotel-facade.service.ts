@@ -19,10 +19,6 @@ export class HotelFacadeService {
     return this.hotelService.getHotel(Id);
   }
 
-  // public GetRoomsInHotel(HotelId: string): Observable<IRoom[]> {
-  //   return this.hotelService.getRoomsInHotel(HotelId);
-  // }
-
   public AddHotel(id: string, name: string, address: string, city: string, country: string, fileImages: string[], rooms: IRoom[]): Observable<string> {
     const request: IHotel = {
       id: id,
@@ -33,10 +29,6 @@ export class HotelFacadeService {
       fileImages: fileImages,
       rooms: rooms
     };
-
-    // let response = this.hotelService.addHotel(request)
-    // console.log(response)
-    // return response
     
     return this.hotelService.addHotel(request).pipe(
       map((request: IHotel) => {

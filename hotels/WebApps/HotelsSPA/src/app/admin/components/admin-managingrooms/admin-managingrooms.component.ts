@@ -48,10 +48,8 @@ export class AdminManagingroomsComponent implements OnInit {
   }
 
   updateHotel(hotel: IHotel): void {
-    //this.hotelFacadeService.UpdateHotel(hotel).subscribe(() => {
-      sessionStorage.setItem('hotelId', hotel.id);
-      this.router.navigate(['update-hotel'])
-    //});
+    sessionStorage.setItem('hotelId', hotel.id);
+    this.router.navigate(['update-hotel'])
   }
 
   deleteHotel(id: string): void {

@@ -12,60 +12,6 @@ namespace RoomManaging.Common.Repositories
         public RoomManagingRepository(IDistributedCache cache)
         {
             _cache = cache ?? throw new ArgumentNullException(nameof(cache));
-            
-            /*Room r1 = new Room
-            {
-                Id = "1",
-                HotelId = "1",
-                RoomNumber = "100",
-                Status = true,
-                Price = 7143.00,
-                FileImages = ["https://images.app.goo.gl/XRnygPLBtMLnbnmp7", "https://images.app.goo.gl/feV7ApuADavBGtvp6"],
-                Description = "Dvokrevetna soba sa terasom, klima uredjajem i pogledom na jednu od najlepsih ulica u Beogradu."
-            };
-
-            Room r2 = new Room 
-            {
-                Id = "2",
-                HotelId = "2",
-                RoomNumber = "101",
-                Status = false,
-                Price = 14643.00,
-                FileImages = ["https://images.app.goo.gl/UXBZGMXtZAizRCFA8", "https://images.app.goo.gl/n1qZ8ZhNXGfbT2Bg7"],
-                Description = "Apartman sa terasom, klima uredjajem i pogledom na reku."
-            };
-
-
-            IEnumerable<Hotel> hotels = new List<Hotel>();
-            Hotel h1 = new Hotel
-            {
-                Id = "1",
-                Name = "Metropol Palace",
-                Address = "Bulevar Kralja Aleksandra 69",
-                City = "Belgrade",
-                Country = "Serbia",
-                FileImages = ["https://images.app.goo.gl/7uTXNFpcjf4X1Bcd8", "https://images.app.goo.gl/vX3FbqFPbefHWnof7"],
-                Rooms = [r1]
-            };
-            //h1.Rooms = []; //new List<Room>();
-            
-            hotels = hotels.Append(h1);
-
-            Hotel h2 = new Hotel
-            {
-                Id = "2",
-                Name = "Jugoslavija",
-                Address = "Bulevar Nikole Tesle 3",
-                City = "Belgrade",
-                Country = "Serbia",
-                FileImages = ["https://images.app.goo.gl/5SwYqTHJJjeeEe3c8", "https://images.app.goo.gl/r58JYvLU1YS3xcWX7"],
-                Rooms = [r2]
-            };
-            
-            hotels = hotels.Append(h2);
-
-            var hotelsString = JsonConvert.SerializeObject(hotels);
-            _cache.SetStringAsync(ListOfAllHotels, hotelsString);*/
         }
 
         public async Task<IEnumerable<Hotel>> GetHotels()

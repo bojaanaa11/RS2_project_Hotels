@@ -14,7 +14,7 @@
             <div class="card-body">
               <label style="font-size: 20px;">Room description:</label>
               <label>{{room.description}}</label>
-              <label style="margin-top: 10px; font-size: 22px;">Price: {{ room.price }} per night</label>
+              <label style="margin-top: 10px; font-size: 22px;">Price: {{ room.price }} RSD per night</label>
               <div style="display: flex; flex-direction: row; gap: 10px;"></div>
               <div style="margin-top: auto; display: flex; flex-direction: column; gap: 5px;" *ngIf="!room.status">
                 <button class="btn btn-primary btn-lg" style="width: 150px;" [routerLink]="['/reservations/create-reservation/', hotelId, hotelName, room.id]">Reserve</button>
