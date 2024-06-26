@@ -12,6 +12,9 @@ Check-In/Check-Out, and Rating. These microservices communicate using gRPC and R
 the project includes a dynamic frontend developed in Angular (HotelsSPA), providing an intuitive 
 user interface for guests and administrators.
 
+![alt text](https://github.com/bojaanaa11/RS2_project_Hotels/blob/main/IMG-20240625-WA0053.jpg)
+
+
 ## Required software
 - .NET 6
 - Docker
@@ -43,6 +46,8 @@ The Identity microservice manages both user accounts and roles.
 Authentication is performed using JWT and refresh tokens, while roles are used for authorization. 
 The supported roles include Hotel Administrator and Hotel Guest.
 
+<img src="https://github.com/bojaanaa11/RS2_project_Hotels/blob/main/IMG-20240625-WA0058.jpg" alt="alt text" width="500"/>
+
 ### Managing Rooms
 The Rooms Management Microservice allows administrators to add and update hotels and rooms. 
 Guests can use it to search for hotels, check room availability, and make reservations.
@@ -50,11 +55,15 @@ The ManagingRooms microservice leverages gRPC communication to interact with the
 facilitating the transfer of hotel and room lists. This microservice ensures efficient data handling 
 and real-time updates by using Redis as its database.
 
+<img src="https://github.com/bojaanaa11/RS2_project_Hotels/blob/main/IMG-20240626-WA0005.jpg" alt="alt text" width="500"/>
+
 ### Reservations
 
 The Reservations Microservice is designed to facilitate the booking process for hotel guests. It allows guests 
 to easily make reservations for their chosen rooms and hotels. Additionally, it keeps track of all current
 reservations, allowing guests to review and manage their bookings as needed. 
+
+<img src="https://github.com/bojaanaa11/RS2_project_Hotels/blob/main/IMG-20240626-WA0008.jpg" alt="alt text" width="500"/>
 
 ### Check in and check out
 The Check-In and Check-Out Microservice enables administrators to manage guest arrivals and departures. 
@@ -62,11 +71,16 @@ Administrators verify reservations through gRPC communication with the Reservati
 to check in guests. Upon check-out, the microservice initiates an asynchronous message to both the Rating and 
 Reservations Microservices. This will allow guests to provide feedback and rate their stay.
 
+<img src="https://github.com/bojaanaa11/RS2_project_Hotels/blob/main/IMG-20240625-WA0063.jpg" alt="alt text" width="500"/>
+
+
 ### Rating
 The Rating Microservice enhances guest experience by receiving asynchronous message from the Check-In and 
 Check-Out Microservice upon guest check-out, enabling guests to provide feedback and rate their stay. 
 Additionally, when guests browse hotels, they can view average ratings and comments, 
 facilitating informed decisions based on previous guest experiences.
+
+<img src="https://github.com/bojaanaa11/RS2_project_Hotels/blob/main/IMG-20240626-WA0023.jpg" alt="alt text" width="500"/>
 
 
 ## Authors
