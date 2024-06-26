@@ -23,12 +23,6 @@ services:
   ratingdb:
     image: mcr.microsoft.com/mssql/server:2022-latest
 
-  payment.api:
-    image: ${DOCKER_REGISTRY-}paymentapi
-    build:
-      context: .
-      dockerfile: Services/Payment/Payment.API/Dockerfile
-
   rating.api:
     image: ${DOCKER_REGISTRY-}ratingapi
     build:

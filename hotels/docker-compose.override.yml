@@ -72,14 +72,6 @@ services:
     volumes:
       - identitydb_data:/var/opt/mssql/data
 
-  payment.api:
-    container_name: paymentapi
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_HTTP_PORTS=8080
-    ports:
-      - "8001:8080"
-
   rating.api:
     container_name: ratingapi
     environment:
