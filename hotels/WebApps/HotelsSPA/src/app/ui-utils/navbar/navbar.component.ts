@@ -20,11 +20,17 @@ export class NavbarComponent implements OnInit {
   }
 
   public getNavBarTitle(appState: IAppState): string {
-    if(appState.firstName !== undefined && appState.lastName !== undefined) {
-      return `Welcome to Hotels, ${appState.firstName} ${appState.lastName}`;
+    if (appState.firstName !== undefined && appState.lastName !== undefined) {
+      return {
+        title: `Welcome to Hotels, `,
+        name: `${appState.firstName} ${appState.lastName}`
+      };
     }
 
-    return `Hotels`;
+    return {
+      title: `Hotels`,
+      name: ''
+    };
   }
 
   public canShowReservations(appState: IAppState): boolean {
